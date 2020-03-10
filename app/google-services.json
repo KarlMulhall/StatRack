@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "33283746227",
+    "firebase_url": "https://statrack-392de.firebaseio.com",
+    "project_id": "statrack-392de",
+    "storage_bucket": "statrack-392de.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:33283746227:android:d2b46ae8c8829d988c03c6",
+        "android_client_info": {
+          "package_name": "com.example.StatRack"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "33283746227-npj75c0bn7033l5e0pftsuko4md9tl7m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.StatRack",
+            "certificate_hash": "d04c5e8c3497ceff20aa4ab118aa9e552fbb3f52"
+          }
+        },
+        {
+          "client_id": "33283746227-ibuo80e16f2aocg96n9gvb4v94kiu8ir.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1MJHSTZJydGGD4pZaMPrfqbi2PwHG1e4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "33283746227-ibuo80e16f2aocg96n9gvb4v94kiu8ir.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
