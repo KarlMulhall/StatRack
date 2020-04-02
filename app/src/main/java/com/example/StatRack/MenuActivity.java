@@ -19,6 +19,8 @@ public class MenuActivity extends AppCompatActivity {
 
     private Button btnSignOut;
 
+    public String email;
+
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
@@ -48,6 +50,8 @@ public class MenuActivity extends AppCompatActivity {
                 }
             }
         };
+
+        email = mAuth.getCurrentUser().getEmail();
 
         btnSignOut.setOnClickListener(new View.OnClickListener() {
             @Override

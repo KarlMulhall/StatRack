@@ -21,7 +21,7 @@
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="Welcome" />
 
             <Button
                 android:id="@+id/signOutButton"
@@ -33,6 +33,7 @@
                 android:textStyle="bold" />
 
         </LinearLayout>
+
     </ScrollView>
 
 </LinearLayout>
