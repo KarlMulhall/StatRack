@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
 
     private EditText mEmail,mPassword;
-    private Button btnSignIn,btnSignOut, btnAddToDatabase, btnTest;
+    private Button btnSignIn,btnSignOut, btnTest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
         mPassword = (EditText) findViewById(R.id.password);
         btnSignIn = (Button) findViewById(R.id.signInButton);
         btnSignOut = (Button) findViewById(R.id.signOutButton);
-        btnAddToDatabase = (Button) findViewById(R.id.addToDatabaseButton);
         btnTest = (Button) findViewById(R.id.testButton);
 
         // Initialize Firebase Auth
@@ -94,17 +93,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btnAddToDatabase.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent intent = new Intent(MainActivity.this, MenuActivity.class);
-                startActivity(intent);
-                toastMessage("Changing Pages....");
-
-            }
-        });
-
         btnTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -138,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openActivityTest(){
-        Intent intent = new Intent(this, testMenuActivity.class);
+        Intent intent = new Intent(this, MenuActivity.class);
         startActivity(intent);
     }
 

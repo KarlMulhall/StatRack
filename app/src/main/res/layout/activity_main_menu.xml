@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MenuActivity" >
+    tools:context=".MenuActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -16,43 +16,21 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-            <EditText
-                android:id="@+id/email"
+
+            <TextView
+                android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Email"
-                android:inputType="textEmailAddress"
-                android:textSize="21dp"
-                android:maxLines="1" />
-
-
-            <EditText
-                android:id="@+id/password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Page Has Changed"
-                android:inputType="textPassword"
-                android:textSize="21dp"
-                android:maxLines="1" />
+                android:text="TextView" />
 
             <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/signInButton"
-                style="?android:textAppearanceSmall"
-                android:layout_marginTop="16dp"
-                android:text="Sign In"
-                android:textStyle="bold" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:id="@+id/signOutButton"
                 style="?android:textAppearanceSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Sign Out"
                 android:textStyle="bold" />
-
 
         </LinearLayout>
     </ScrollView>
