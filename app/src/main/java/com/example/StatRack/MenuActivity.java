@@ -17,7 +17,7 @@ public class MenuActivity extends AppCompatActivity {
 
     private static final String TAG = "MenuActivity";
 
-    private Button btnSignOut;
+    private Button btnSignOut, createPlayer, viewPlayers;
 
     public String email;
 
@@ -30,6 +30,8 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_menu);
 
         btnSignOut = (Button) findViewById(R.id.signOutButton);
+        createPlayer = (Button) findViewById(R.id.createPlayerButton);
+        viewPlayers = (Button) findViewById(R.id.viewPlayersButton);
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
@@ -52,6 +54,21 @@ public class MenuActivity extends AppCompatActivity {
         };
 
         email = mAuth.getCurrentUser().getEmail();
+
+        createPlayer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openPlayerCreation();
+
+            }
+        });
+
+        viewPlayers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openViewPlayers();
+            }
+        });
 
         btnSignOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,12 +95,26 @@ public class MenuActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * customizable toast
+     * @param message
+     */
     private void toastMessage(String message){
         Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
     }
 
     public void signOut(){
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(MenuActivity.this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    public void openPlayerCreation(){
+        Intent intent = new Intent(MenuActivity.this, TestPlayerCreation.class);
+        startActivity(intent);
+    }
+
+    public void openViewPlayers(){
+        Intent intent = new Intent(MenuActivity.this, PlayerViewTest.class);
         startActivity(intent);
     }
 }

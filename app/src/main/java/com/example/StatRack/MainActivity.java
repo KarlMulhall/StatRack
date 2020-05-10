@@ -94,7 +94,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
     }
 
     @Override
@@ -116,18 +115,12 @@ public class MainActivity extends AppCompatActivity {
      * @param message
      */
     private void toastMessage(String message){
-        Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
+        Toast.makeText(MainActivity.this,message,Toast.LENGTH_SHORT).show();
     }
 
     public void openMenuActivity(){
-        Intent intent = new Intent(this, MenuActivity.class);
+        Intent intent = new Intent(MainActivity.this, MenuActivity.class);
         startActivity(intent);
     }
-
-    public void openTestLogin(){
-        Intent intent = new Intent(this, PlayerCreationTest.class);
-        startActivity(intent);
-    }
-
 
 }
