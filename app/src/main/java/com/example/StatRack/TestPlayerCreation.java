@@ -37,11 +37,13 @@ public class TestPlayerCreation extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_player_creation);
 
+        //Views
         nameInput = (EditText) findViewById(R.id.nameInput);
         ageInput = (EditText) findViewById(R.id.ageInput);
         positionInput = (EditText) findViewById(R.id.positionInput);
         back = (Button) findViewById(R.id.backButton);
         addToDatabase = (Button) findViewById(R.id.addToDatabaseButton);
+
 
         mAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
@@ -88,6 +90,7 @@ public class TestPlayerCreation extends AppCompatActivity {
                 String age = ageInput.getText().toString().trim();
                 String position = positionInput.getText().toString().trim();
 
+
                 if(!name.equals("")){
                     String id = "";
                     FirebaseUser user = mAuth.getCurrentUser();
@@ -95,7 +98,15 @@ public class TestPlayerCreation extends AppCompatActivity {
                     myRef.child(id).child("squad").child("name").setValue(name);
                     myRef.child(id).child("squad").child("age").setValue(age);
                     myRef.child(id).child("squad").child("position").setValue(position);
+                    myRef.child(id).child("squad").child("goals").setValue(0);
+                    myRef.child(id).child("squad").child("assists").setValue(0);
+                    myRef.child(id).child("squad").child("yellow cards").setValue(0);
+                    myRef.child(id).child("squad").child("red cards").setValue(0);
+
+
                     toastMessage("Adding " + name + " to the database...");
+
+                    //resetting the data fields
                     nameInput.setText("");
                     ageInput.setText("");
                     positionInput.setText("");
