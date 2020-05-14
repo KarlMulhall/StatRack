@@ -31,6 +31,92 @@ public class MainActivity extends AppCompatActivity {
     private EditText mEmail,mPassword;
     private Button btnSignIn, regButton;
 
+    //validation
+    private Boolean validEmptyEmailPass()
+    {
+        String email = mEmail.getText().toString();
+        String pass = mPassword.getText().toString();
+
+        //EMPTY
+        if (email.isEmpty())
+        {
+            mEmail.setError("You need to enter a email!");
+            return false;
+        }
+        else if (pass.isEmpty())
+        {
+            mPassword.setError("You to enter a password!");
+            return false;
+        }
+
+
+        else
+        {
+            mEmail.setError(null);
+            mPassword.setError(null);
+            return true;
+        }
+    }
+
+    private Boolean validpassLength()
+    {
+        String pass = mPassword.getText().toString();
+
+        if (pass.length() <= 5)
+        {
+            mPassword.setError("We need a longer password!");
+            return false;
+        }
+        else
+        {
+            mPassword.setError(null);
+            return true;
+        }
+    }
+
+    private Boolean validEmail()
+    {
+        String email = mEmail.getText().toString();
+        String emailPrefix = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+
+        if (!email.matches(emailPrefix))
+        {
+            mEmail.setError("Invalid Email!");
+            return false;
+        }
+
+        else
+        {
+            mEmail.setError(null);
+            return false;
+        }
+    }
+
+    private Boolean seriousPassValid()
+    {
+        String pass = mPassword.getText().toString();
+        String passwordValid = "^" +
+                //"(?=.*[0-9])" +               //at least 1 digit
+                //"(?=.*[a-z])" +               //at least 1 lower case char
+                //"(?=.*[A-Z])" +               //at least 1 upper case char
+                "(?=.*[a-zA-Z])" +              //any letter
+                "(?=.*[@#$%^&+=])" +            //at least 1 special char
+                "(?=\\S+$)" +                   //no spaces
+                ".{4,}" +                       //at least 4 char
+                "$";
+
+        if (!pass.matches(passwordValid))
+        {
+            mPassword.setError("Password is weak!");
+            return false;
+        }
+
+        else
+        {
+            mPassword.setError(null);
+            return  true;
+        }
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,6 +177,15 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String email = mEmail.getText().toString();
                 String pass = mPassword.getText().toString();
+
+                //All validation checks
+                validEmptyEmailPass();
+                validpassLength();
+                validEmail();
+                seriousPassValid();
+
+
+
 
                 if (!email.equals("") && !pass.equals("")){
                     mAuth.signInWithEmailAndPassword(email,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {

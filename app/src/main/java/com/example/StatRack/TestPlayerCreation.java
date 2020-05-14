@@ -35,6 +35,7 @@ public class TestPlayerCreation extends AppCompatActivity {
     int num;
     private DatabaseReference PlayerRef;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -155,6 +156,7 @@ public class TestPlayerCreation extends AppCompatActivity {
             }
         });
     }
+
 
     @Override
     public void onStart(){

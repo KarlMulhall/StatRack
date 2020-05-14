@@ -30,6 +30,54 @@ public class RegisterActivity extends AppCompatActivity {
     //Database
     private FirebaseAuth mAuth;
 
+    private Boolean validEmail()
+    {
+        String email = regEmail.getText().toString();
+        String emailPrefix = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+
+        if (!email.matches(emailPrefix))
+        {
+            regEmail.setError("Invalid Email!");
+            return false;
+        }
+
+        else
+        {
+            regEmail.setError(null);
+            return false;
+        }
+    }
+
+    private Boolean seriousPassValid()
+    {
+        String pass = regPass.getText().toString();
+        String passwordValid = "^" +
+                //"(?=.*[0-9])" +               //at least 1 digit
+                //"(?=.*[a-z])" +               //at least 1 lower case char
+                //"(?=.*[A-Z])" +               //at least 1 upper case char
+                "(?=.*[a-zA-Z])" +              //any letter
+                "(?=.*[@#$%^&!.+=])" +            //at least 1 special char
+                "(?=\\S+$)" +                   //no spaces
+                ".{4,}" +                       //at least 4 char
+                "$";
+
+        if (!pass.matches(passwordValid))
+        {
+            regPass.setError("Password is weak!");
+            toastMessage("Please use: \n " +
+                    "1 special character \n" +
+                    "no spaces \n" +
+                    "at least 4 characters");
+            return false;
+        }
+
+        else
+        {
+            regPass.setError(null);
+            return  true;
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +116,10 @@ public class RegisterActivity extends AppCompatActivity {
                 String email = regEmail.getText().toString().trim();
                 String pass = regPass.getText().toString().trim();
 
+                validEmail();
+                seriousPassValid();
+
+
                 if (email.isEmpty())
                 {
                     toastMessage("Please place your email!");
@@ -90,7 +142,6 @@ public class RegisterActivity extends AppCompatActivity {
 
                         else
                         {
-                            toastMessage("Hmmm something went wrong..");
                             Log.d(TAG, "BIG ERROR : " + task);
                         }
                     }
