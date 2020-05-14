@@ -3,6 +3,7 @@ package com.example.StatRack;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
 
     private EditText mEmail,mPassword;
-    private Button btnSignIn, regButton, signOut;
+    private Button btnSignIn, regButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
             w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         }
 
-
         setContentView(R.layout.activity_main);
 
         getSupportActionBar().hide();
@@ -52,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
         mPassword = (EditText) findViewById(R.id.password);
         btnSignIn = (Button) findViewById(R.id.signInButton);
         regButton = (Button) findViewById(R.id.buttonRegister);
-        signOut = (Button) findViewById(R.id.signOutButton);
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
@@ -74,20 +73,16 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
+        //If logged in send to main
+        if (mAuth.getCurrentUser() != null)
+        {
+            openMenuActivity();
+        }
+
         regButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, Register.class));
-                finish();
-            }
-        });
-
-        signOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(MainActivity.this, Register.class)); //Go back to home page
-                finish();
+                openRegisterActivity();
             }
         });
 
@@ -143,6 +138,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void openMenuActivity(){
         Intent intent = new Intent(MainActivity.this, MenuActivity.class);
+        startActivity(intent);
+    }
+
+    public void openRegisterActivity(){
+        Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
         startActivity(intent);
     }
 

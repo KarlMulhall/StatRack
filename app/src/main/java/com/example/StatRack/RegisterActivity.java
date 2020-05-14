@@ -4,10 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -17,9 +19,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class Register extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity {
     //Message Tag
-    private static final String TAG = "REGISTER_TAG";
+    private static final String TAG = "RegisterActivity";
 
     //buttons, textfields, passwords
     Button regButton, regLogin;
@@ -28,12 +30,20 @@ public class Register extends AppCompatActivity {
     //Database
     private FirebaseAuth mAuth;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+        //gets rid of the action bar at the top
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
+            Window w = getWindow();
+            w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        }
+
         setContentView(R.layout.activity_register);
+
+        getSupportActionBar().hide();
 
         //Firebase Auth
         mAuth = FirebaseAuth.getInstance();
@@ -41,8 +51,7 @@ public class Register extends AppCompatActivity {
         //If logged in send to main
         if (mAuth.getCurrentUser() != null)
         {
-            startActivity( new Intent(getApplicationContext(), MainActivity.class));
-            finish();
+            openMenuActivity();
         }
 
         //setting views
@@ -61,12 +70,12 @@ public class Register extends AppCompatActivity {
 
                 if (email.isEmpty())
                 {
-                    Toast.makeText(Register.this, "Please place your email!", Toast.LENGTH_SHORT).show();
+                    toastMessage("Please place your email!");
                 }
 
                 if (pass.isEmpty())
                 {
-                    Toast.makeText(Register.this, "Please type a password!", Toast.LENGTH_SHORT).show();
+                    toastMessage("Please type a password!");
                 }
 
                 //Sending off to the database
@@ -75,13 +84,13 @@ public class Register extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful())
                         {
-                            Toast.makeText(Register.this, "Registration Completed!", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(Register.this, MainActivity.class));
+                            toastMessage("Registration Completed!");
+                            openMainActivity();
                         }
 
                         else
                         {
-                            Toast.makeText(Register.this, "Hmmm something went wrong..", Toast.LENGTH_SHORT).show();
+                            toastMessage("Hmmm something went wrong..");
                             Log.d(TAG, "BIG ERROR : " + task);
                         }
                     }
@@ -95,8 +104,22 @@ public class Register extends AppCompatActivity {
         regLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Register.this, MainActivity.class));
+               openMainActivity();
             }
         });
+    }
+
+    private void toastMessage(String message){
+        Toast.makeText(RegisterActivity.this,message,Toast.LENGTH_SHORT).show();
+    }
+
+    public void openMenuActivity(){
+        Intent intent = new Intent(RegisterActivity.this, MenuActivity.class);
+        startActivity(intent);
+    }
+
+    public void openMainActivity(){
+        Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+        startActivity(intent);
     }
 }

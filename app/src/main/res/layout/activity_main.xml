@@ -79,16 +79,6 @@ tools:context=".MainActivity">
         android:textColor="#FF954CFB"
         android:layout_width="wrap_content"
         android:layout_height="35dp" />
-    <Button
-        android:layout_marginTop="10dp"
-        android:paddingRight="20dp"
-        android:paddingLeft="20dp"
-        android:background="@drawable/rounded_corner_button"
-        android:text="sign out"
-        android:id="@+id/signOutButton"
-        android:textColor="#FF954CFB"
-        android:layout_width="wrap_content"
-        android:layout_height="35dp" />
 
     <TextView
         android:layout_marginTop="40dp"

@@ -98,13 +98,13 @@ public class TestPlayerCreation extends AppCompatActivity {
                     myRef.child(id).child("squad").child("name").setValue(name);
                     myRef.child(id).child("squad").child("age").setValue(age);
                     myRef.child(id).child("squad").child("position").setValue(position);
+                    myRef.child(id).child("squad").child("appearances").setValue(0);
                     myRef.child(id).child("squad").child("goals").setValue(0);
                     myRef.child(id).child("squad").child("assists").setValue(0);
                     myRef.child(id).child("squad").child("yellow cards").setValue(0);
                     myRef.child(id).child("squad").child("red cards").setValue(0);
 
-
-                    toastMessage("Adding " + name + " to the database...");
+                    toastMessage("Saving " + name + " to your squad...");
 
                     //resetting the data fields
                     nameInput.setText("");

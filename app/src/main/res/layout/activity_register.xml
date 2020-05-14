@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Register">
+    tools:context=".RegisterActivity">
 
     <LinearLayout
         android:orientation="vertical"
@@ -47,20 +47,20 @@
 
         <EditText
             android:id="@+id/regEmail"
-            android:textColor="#CC000000"
-            android:textColorHint="#CC000000"
+            android:textColor="#fff"
+            android:textColorHint="#eee"
             android:paddingStart="10dp"
             android:paddingLeft="10dp"
             android:hint="Email"
             android:layout_margin="20dp"
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
-            android:background="@drawable/rounded_white_corner"
+            android:background="@drawable/rounded_corner"
             android:textSize="17sp" />
         <EditText
             android:id="@+id/regPass"
-            android:textColor="#CC000000"
-            android:textColorHint="#CC000000"
+            android:textColor="#fff"
+            android:textColorHint="#eee"
             android:paddingStart="10dp"
             android:paddingLeft="10dp"
             android:hint="Password"
@@ -68,15 +68,15 @@
             android:layout_margin="20dp"
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
-            android:background="@drawable/rounded_white_corner"
+            android:background="@drawable/rounded_corner"
             android:textSize="17sp" />
         <Button
             android:id="@+id/regButton"
             android:paddingRight="20dp"
             android:paddingLeft="20dp"
             android:background="@drawable/rounded_corner_button"
-            android:text="Register Account"
-            android:textColor="#CC000000"
+            android:text="Register"
+            android:textColor="#FF6E04D7"
             android:layout_width="wrap_content"
             android:layout_height="35dp" />
 
@@ -95,7 +95,7 @@
             android:background="@drawable/rounded_corner_button"
             android:color="#fff"
             android:text="Login"
-            android:textColor="#CC000000"
+            android:textColor="#FF6E04D7"
             android:layout_width="wrap_content"
             android:layout_height="25dp" />
 
