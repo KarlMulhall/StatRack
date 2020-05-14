@@ -21,6 +21,8 @@
         <activity android:name=".RegisterActivity"></activity>
         <activity android:name=".TestPlayerCreation" />
         <activity android:name=".PlayerViewTest" />
+        <activity android:name=".TestEventCreation" />
+        <activity android:name=".EventViewTest" />
         <activity android:name=".MenuActivity" />
     </application>
 

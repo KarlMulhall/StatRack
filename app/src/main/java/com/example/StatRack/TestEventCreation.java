@@ -20,11 +20,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class TestPlayerCreation extends AppCompatActivity {
+public class TestEventCreation extends AppCompatActivity {
 
-    private static final String TAG = "TestPlayerCreation";
+    private static final String TAG = "TestEventCreation";
 
-    private EditText nameInput, positionInput, ageInput;
+    private EditText nameInput, timeInput, locationInput;
     private Button back, addToDatabase;
 
     FirebaseDatabase mFirebaseDatabase;
@@ -32,18 +32,15 @@ public class TestPlayerCreation extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
     private DatabaseReference myRef;
 
-    int num;
-    private DatabaseReference PlayerRef;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_test_player_creation);
+        setContentView(R.layout.activity_test_event_creation);
 
         //Views
         nameInput = (EditText) findViewById(R.id.nameInput);
-        ageInput = (EditText) findViewById(R.id.ageInput);
-        positionInput = (EditText) findViewById(R.id.positionInput);
+        timeInput = (EditText) findViewById(R.id.timeInput);
+        locationInput = (EditText) findViewById(R.id.locationInput);
         back = (Button) findViewById(R.id.backButton);
         addToDatabase = (Button) findViewById(R.id.addToDatabaseButton);
 
@@ -51,10 +48,6 @@ public class TestPlayerCreation extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         myRef = mFirebaseDatabase.getReference("users");
-        FirebaseUser user = mAuth.getCurrentUser();
-        String id = "";
-        id = user.getUid();
-        PlayerRef = myRef.child(id).child("squad");
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -70,9 +63,6 @@ public class TestPlayerCreation extends AppCompatActivity {
                     toastMessage("Successfully Signed Out");
                 }
             }
-
-            private void toastMessage(String s) {
-            }
         };
 
         // Read from the database
@@ -83,29 +73,6 @@ public class TestPlayerCreation extends AppCompatActivity {
                 // whenever data at this location is updated.
                 Object value = dataSnapshot.getValue();
                 Log.d(TAG, "Value is: " + value);
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w(TAG, "Failed to read value.", error.toException());
-            }
-        });
-
-        PlayerRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                Object value = dataSnapshot.getValue();
-                Log.d(TAG, "Value is: " + value);
-
-                if(dataSnapshot.exists()){
-                    num = (int) dataSnapshot.getChildrenCount();
-                }else{
-                    num = 0;
-                }
             }
 
             @Override
@@ -120,29 +87,25 @@ public class TestPlayerCreation extends AppCompatActivity {
             public void onClick(View view) {
 
                 String name = nameInput.getText().toString().trim();
-                String age = ageInput.getText().toString().trim();
-                String position = positionInput.getText().toString().trim();
+                String time = timeInput.getText().toString().trim();
+                String location = locationInput.getText().toString().trim();
+
 
                 if(!name.equals("")){
                     String id = "";
-                    String id1 = ("player" + num);
                     FirebaseUser user = mAuth.getCurrentUser();
                     id = user.getUid();
-                    myRef.child(id).child("squad").child(id1).child("name").setValue(name);
-                    myRef.child(id).child("squad").child(id1).child("age").setValue(age);
-                    myRef.child(id).child("squad").child(id1).child("position").setValue(position);
-                    myRef.child(id).child("squad").child(id1).child("appearances").setValue(0);
-                    myRef.child(id).child("squad").child(id1).child("goals").setValue(0);
-                    myRef.child(id).child("squad").child(id1).child("assists").setValue(0);
-                    myRef.child(id).child("squad").child(id1).child("yellow cards").setValue(0);
-                    myRef.child(id).child("squad").child(id1).child("red cards").setValue(0);
+                    myRef.child(id).child("event").child("name").setValue(name);
+                    myRef.child(id).child("event").child("time").setValue(time);
+                    myRef.child(id).child("event").child("location").setValue(location);
 
-                    toastMessage("Saving " + name + " to your squad...");
+
+                    toastMessage("Adding " + name + " to the database...");
 
                     //resetting the data fields
                     nameInput.setText("");
-                    ageInput.setText("");
-                    positionInput.setText("");
+                    timeInput.setText("");
+                    locationInput.setText("");
                 }
             }
         });
@@ -173,11 +136,11 @@ public class TestPlayerCreation extends AppCompatActivity {
      * @param message
      */
     private void toastMessage(String message){
-        Toast.makeText(TestPlayerCreation.this,message,Toast.LENGTH_SHORT).show();
+        Toast.makeText(TestEventCreation.this,message,Toast.LENGTH_SHORT).show();
     }
 
     public void backToMenu(){
-        Intent intent = new Intent(TestPlayerCreation.this, MenuActivity.class);
+        Intent intent = new Intent(TestEventCreation.this, MenuActivity.class);
         startActivity(intent);
     }
 

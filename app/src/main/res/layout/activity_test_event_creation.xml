@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MenuActivity">
+    tools:context=".TestEventCreation">
 
     <ScrollView
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1">
 
@@ -17,55 +17,41 @@
             android:orientation="vertical" >
 
 
-            <TextView
-                android:id="@+id/textView"
+            <EditText
+                android:id="@+id/nameInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Welcome" />
+                android:hint="Enter Event"/>
+
+            <EditText
+                android:id="@+id/timeInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter Start Time"/>
+
+            <EditText
+                android:id="@+id/locationInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter Location of Event"/>
+
 
             <Button
-                android:id="@+id/createPlayerButton"
+                android:id="@+id/addToDatabaseButton"
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Create Player"
+                android:text="Add to Database"
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/viewPlayersButton"
+                android:id="@+id/backButton"
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="View Players"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/createEventButton"
-                style="?android:textAppearanceSmall"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Create Event"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/viewEventsButton"
-                style="?android:textAppearanceSmall"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="View Events"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/signOutButton"
-                style="?android:textAppearanceSmall"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Sign Out"
+                android:text="Back"
                 android:textStyle="bold" />
 
         </LinearLayout>

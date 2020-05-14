@@ -17,7 +17,7 @@ public class MenuActivity extends AppCompatActivity {
 
     private static final String TAG = "MenuActivity";
 
-    private Button btnSignOut, createPlayer, viewPlayers;
+    private Button btnSignOut, createPlayer, viewPlayers, createEvent, viewEvents;
 
     public String email;
 
@@ -32,6 +32,8 @@ public class MenuActivity extends AppCompatActivity {
         btnSignOut = (Button) findViewById(R.id.signOutButton);
         createPlayer = (Button) findViewById(R.id.createPlayerButton);
         viewPlayers = (Button) findViewById(R.id.viewPlayersButton);
+        createEvent = (Button) findViewById(R.id.createEventButton);
+        viewEvents = (Button) findViewById(R.id.viewEventsButton);
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
@@ -67,6 +69,21 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 openViewPlayers();
+            }
+        });
+
+        createEvent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openEventCreation();
+
+            }
+        });
+
+        viewEvents.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openViewEvents();
             }
         });
 
@@ -115,6 +132,16 @@ public class MenuActivity extends AppCompatActivity {
 
     public void openViewPlayers(){
         Intent intent = new Intent(MenuActivity.this, PlayerViewTest.class);
+        startActivity(intent);
+    }
+
+    public void openEventCreation(){
+        Intent intent = new Intent(MenuActivity.this, TestEventCreation.class);
+        startActivity(intent);
+    }
+
+    public void openViewEvents(){
+        Intent intent = new Intent(MenuActivity.this, EventViewTest.class);
         startActivity(intent);
     }
 }
