@@ -79,19 +79,30 @@ tools:context=".MainActivity">
         android:textColor="#FF954CFB"
         android:layout_width="wrap_content"
         android:layout_height="35dp" />
+    <Button
+        android:layout_marginTop="10dp"
+        android:paddingRight="20dp"
+        android:paddingLeft="20dp"
+        android:background="@drawable/rounded_corner_button"
+        android:text="sign out"
+        android:id="@+id/signOutButton"
+        android:textColor="#FF954CFB"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp" />
 
     <TextView
         android:layout_marginTop="40dp"
-        android:textColor="#777"
+        android:textColor="#C3000000"
         android:text="New to StatRack? Register Today!"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
     <Button
+        android:id="@+id/buttonRegister"
         android:paddingRight="10dp"
         android:paddingLeft="10dp"
         android:background="@drawable/rounded_corner_button"
-        android:color="#fff"
+        android:color="#C7FFFFFF"
         android:text="Register"
         android:textColor="#FF954CFB"
         android:layout_width="wrap_content"

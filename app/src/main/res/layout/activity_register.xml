@@ -47,7 +47,7 @@
 
         <EditText
             android:id="@+id/regEmail"
-            android:textColor="#fff"
+            android:textColor="#CC000000"
             android:textColorHint="#CC000000"
             android:paddingStart="10dp"
             android:paddingLeft="10dp"
@@ -59,7 +59,7 @@
             android:textSize="17sp" />
         <EditText
             android:id="@+id/regPass"
-            android:textColor="#fff"
+            android:textColor="#CC000000"
             android:textColorHint="#CC000000"
             android:paddingStart="10dp"
             android:paddingLeft="10dp"

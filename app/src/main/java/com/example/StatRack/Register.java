@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -31,6 +32,7 @@ public class Register extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_register);
 
         //Firebase Auth
@@ -49,9 +51,6 @@ public class Register extends AppCompatActivity {
         regButton = findViewById(R.id.regButton);
         regLogin = findViewById(R.id.loginButton);
 
-        //toStrings
-        String globalEmail = regEmail.getText().toString().trim();
-        String globalPass = regPass.getText().toString().trim();
 
         //On click for register button
         regButton.setOnClickListener(new View.OnClickListener() {
@@ -60,27 +59,37 @@ public class Register extends AppCompatActivity {
                 String email = regEmail.getText().toString().trim();
                 String pass = regPass.getText().toString().trim();
 
-                validation();
+                if (email.isEmpty())
+                {
+                    Toast.makeText(Register.this, "Please place your email!", Toast.LENGTH_SHORT).show();
+                }
+
+                if (pass.isEmpty())
+                {
+                    Toast.makeText(Register.this, "Please type a password!", Toast.LENGTH_SHORT).show();
+                }
+
+                //Sending off to the database
+                mAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful())
+                        {
+                            Toast.makeText(Register.this, "Registration Completed!", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(Register.this, MainActivity.class));
+                        }
+
+                        else
+                        {
+                            Toast.makeText(Register.this, "Hmmm something went wrong..", Toast.LENGTH_SHORT).show();
+                            Log.d(TAG, "BIG ERROR : " + task);
+                        }
+                    }
+                });
             }
         });
 
-        //Sending off to the database
-        mAuth.createUserWithEmailAndPassword(globalEmail, globalPass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful())
-                {
-                    Toast.makeText(Register.this, "Registration Completed!", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(Register.this, MainActivity.class));
-                }
 
-                else
-                {
-                    Toast.makeText(Register.this, "Hmmm something went wrong..", Toast.LENGTH_SHORT).show();
-                    Log.d(TAG, "BIG ERROR : " + task);
-                }
-            }
-        });
 
         //Sending new Activity to Login
         regLogin.setOnClickListener(new View.OnClickListener() {
@@ -90,20 +99,4 @@ public class Register extends AppCompatActivity {
             }
         });
     }
-
-    private void validation()
-    {
-        if (regEmail == null)
-        {
-            Toast.makeText(Register.this, "Please place your email!", Toast.LENGTH_SHORT).show();
-        }
-
-        if (regPass == null)
-        {
-            Toast.makeText(Register.this, "Please type a password!", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-
-
 }
