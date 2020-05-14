@@ -82,7 +82,7 @@ tools:context=".MainActivity">
 
     <TextView
         android:layout_marginTop="40dp"
-        android:textColor="#C3000000"
+        android:textColor="#A6000000"
         android:text="New to StatRack? Register Today!"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

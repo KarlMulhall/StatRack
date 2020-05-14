@@ -136,6 +136,7 @@ public class TestPlayerCreation extends AppCompatActivity {
                     myRef.child(id).child("squad").child(id1).child("assists").setValue(0);
                     myRef.child(id).child("squad").child(id1).child("yellow cards").setValue(0);
                     myRef.child(id).child("squad").child(id1).child("red cards").setValue(0);
+                    myRef.child(id).child("squad").child(id1).child("attendance").setValue(0);
 
                     toastMessage("Saving " + name + " to your squad...");
 
