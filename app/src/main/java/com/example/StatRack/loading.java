@@ -8,16 +8,19 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.view.Window;
 
 import com.airbnb.lottie.LottieAnimationView;
 
 public class loading extends AppCompatActivity {
     private static final String TAG = "LOADING";
+
     LottieAnimationView loading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_loading);
 
         loading = findViewById(R.id.loadingnums);
