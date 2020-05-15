@@ -37,6 +37,16 @@
                 android:layout_height="wrap_content">
             </AutoCompleteTextView>
 
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/tickAnmimation"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                app:lottie_autoPlay="true"
+                android:visibility="invisible"
+                app:lottie_loop="false"
+                app:lottie_rawRes="@raw/tick"
+                />
 
             <Button
                 android:id="@+id/addToDatabaseButton"

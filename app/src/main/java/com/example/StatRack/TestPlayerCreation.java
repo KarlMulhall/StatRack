@@ -1,5 +1,6 @@
 package com.example.StatRack;
 
+import android.animation.Animator;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -31,6 +33,7 @@ public class TestPlayerCreation extends AppCompatActivity {
 
     private EditText nameInput, positionInput, ageInput;
     private Button back, addToDatabase;
+    private LottieAnimationView tickAnimation;
 
     FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth mAuth;
@@ -102,6 +105,8 @@ public class TestPlayerCreation extends AppCompatActivity {
         positionInput = (AutoCompleteTextView) findViewById(R.id.positionInput);
         back = (Button) findViewById(R.id.backButton);
         addToDatabase = (Button) findViewById(R.id.addToDatabaseButton);
+        //animation
+        tickAnimation = findViewById(R.id.tickAnmimation);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.select_dialog_singlechoice, positions);
         AutoCompleteTextView autoTextfield = (AutoCompleteTextView) findViewById(R.id.positionInput);
@@ -179,6 +184,8 @@ public class TestPlayerCreation extends AppCompatActivity {
         addToDatabase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                tickAnimation.isAnimating();
+                tickAnimation.setVisibility(View.VISIBLE);
 
                 String name = nameInput.getText().toString().trim();
                 String age = ageInput.getText().toString().trim();
