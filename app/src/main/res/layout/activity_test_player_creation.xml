@@ -27,13 +27,15 @@
                 android:id="@+id/ageInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:hint="Enter Age"/>
 
-            <EditText
+            <AutoCompleteTextView
+                android:hint="Enter Position"
                 android:id="@+id/positionInput"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Enter Position"/>
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+            </AutoCompleteTextView>
 
 
             <Button
