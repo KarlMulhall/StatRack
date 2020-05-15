@@ -18,7 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegisterActivity"></activity>
+        <activity android:name=".loading"></activity>
+        <activity android:name=".RegisterActivity" />
         <activity android:name=".TestPlayerCreation" />
         <activity android:name=".PlayerViewTest" />
         <activity android:name=".TestEventCreation" />

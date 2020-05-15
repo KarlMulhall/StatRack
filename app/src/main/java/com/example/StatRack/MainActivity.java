@@ -232,7 +232,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openMenuActivity(){
-        Intent intent = new Intent(MainActivity.this, MenuActivity.class);
+        Intent intent = new Intent(MainActivity.this, loading.class);
         startActivity(intent);
     }
 
