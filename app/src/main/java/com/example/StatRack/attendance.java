@@ -12,6 +12,7 @@ import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,26 +32,33 @@ public class attendance extends AppCompatActivity {
     TextView title;
     ListView players;
     Button back;
+    RadioButton button1, button2, button3, button4, button5, button6, button7;
     private String userID;
     int num;
-    ArrayList<String> playerList;
+    int counter = 0;
 
     private FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
-    private DatabaseReference myRef, PlayerRef, secondPlayerRef;
+    private DatabaseReference myRef, PlayerRef, appearRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attendance);
 
-        //array adapter
-        final ArrayAdapter<String> playerAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, playerList);
-
         title = (TextView) findViewById(R.id.title);
         players = (ListView) findViewById(R.id.players);
         back = (Button) findViewById(R.id.back);
+        button1 = (RadioButton) findViewById(R.id.radio1);
+        button2 = (RadioButton) findViewById(R.id.radio2);
+        button3 = (RadioButton) findViewById(R.id.radio3);
+        button4 = (RadioButton) findViewById(R.id.radio4);
+        button5 = (RadioButton) findViewById(R.id.radio5);
+        button6 = (RadioButton) findViewById(R.id.radio6);
+        button7 = (RadioButton) findViewById(R.id.radio7);
+
+
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
@@ -59,7 +67,7 @@ public class attendance extends AppCompatActivity {
         FirebaseUser user = mAuth.getCurrentUser();
         userID = user.getUid();
         PlayerRef = myRef.child(userID).child("squad");
-        secondPlayerRef = myRef.child(userID).child("squad");
+
 
         //Listener to get current user
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -90,7 +98,7 @@ public class attendance extends AppCompatActivity {
                 if(dataSnapshot.exists()){
                     num = (int) dataSnapshot.getChildrenCount();
                 }else{
-                    num = 0;
+                    num = 1;
                 }
             }
 
@@ -106,6 +114,7 @@ public class attendance extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 showData(dataSnapshot);
+                Log.d(TAG, "Number of Profiles:      " + dataSnapshot);
             }
 
             @Override
@@ -132,28 +141,99 @@ public class attendance extends AppCompatActivity {
 
 
     private void showData(DataSnapshot dataSnapshot) {
+
         for (DataSnapshot ds : dataSnapshot.getChildren()) {
             Player player1 = new Player();
+            Player player02 = new Player();
+            Player player03 = new Player();
+            Player player04 = new Player();
+            Player player05 = new Player();
+
+
+            String id0 = ("player" + 0);
             String id1 = ("player" + num);
-            player1.setName(ds.child(userID).child("squad").child(id1).getValue(Player.class).getName());
-            player1.setAge(ds.child(userID).child("squad").child(id1).getValue(Player.class).getAge());
-            player1.setPosition(ds.child(userID).child("squad").child(id1).getValue(Player.class).getPosition());
+            String id2 = ("player" + 2);
+            String id3 = ("player" + 3);
+            String id4 = ("player" + 4);
+
+
+
+            player1.setName(ds.child(userID).child("squad").child(id0).getValue(Player.class).getName());
+            displayRadioOne();
+            //player1.setAge(ds.child(userID).child("squad").child(id1).getValue(Player.class).getAge());
+            //player1.setPosition(ds.child(userID).child("squad").child(id1).getValue(Player.class).getPosition());
+
+            player02.setName(ds.child(userID).child("squad").child(id1).getValue(Player.class).getName());
+            displayRadioTwo();
+
+            player03.setName(ds.child(userID).child("squad").child(id2).getValue(Player.class).getName());
+            displayRadioThree();
+
+            player04.setName(ds.child(userID).child("squad").child(id3).getValue(Player.class).getName());
+            displayRadioFour();
+
+            player05.setName(ds.child(userID).child("squad").child(id4).getValue(Player.class).getName());
+            displayRadioFive();
+
+
 
             Log.d(TAG, "showData: name: " + player1.getName());
-            Log.d(TAG, "showData: age: " + player1.getAge());
-            Log.d(TAG, "showData: position: " + player1.getPosition());
+           // Log.d(TAG, "showData: age: " + player1.getAge());
+           // Log.d(TAG, "showData: position: " + player1.getPosition());
 
             ArrayList<String> array = new ArrayList<>();
             array.add(player1.getName());
-            array.add(player1.getAge());
-            array.add(player1.getPosition());
+            array.add(player02.getName());
+            array.add(player03.getName());
+            array.add(player04.getName());
+            array.add(player05.getName());
+
+
+
+            //array.add(player1.getPosition());
 
             ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, array);
             players.setAdapter(adapter);
         }
     }
 
+
+
+    private void displayRadioFive() {
+
+        button5.setVisibility(View.VISIBLE);
+        button5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //add one to appearance
+                //myRef.child(userID).child("squad").child("player4").child("appearances").setValue(counter + 1);
+            }
+        });
+    }
+
+    private void displayRadioFour() {
+        button4.setVisibility(View.VISIBLE);
+    }
+
+    private void displayRadioThree() {
+        button3.setVisibility(View.VISIBLE);
+    }
+
+    private void displayRadioTwo() {
+        button2.setVisibility(View.VISIBLE);
+    }
+
+    private void displayRadioOne() {
+        button1.setVisibility(View.VISIBLE);
+    }
+
     private void toastMessage (String message){
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    public void onStart() {
+
+        super.onStart();
+
     }
 }

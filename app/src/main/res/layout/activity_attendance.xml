@@ -1,15 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".attendance">
 
-    <LinearLayout
+    <RadioButton
+        android:id="@+id/radio1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="200dp"
+        android:layout_marginTop="50dp"
+        android:visibility="invisible"
+        android:text="Present" />
+
+    <RadioButton
+        android:id="@+id/radio2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="200dp"
+        android:layout_marginTop="100dp"
+        android:visibility="invisible"
+        android:text="Present" />
+
+    <RadioButton
+        android:id="@+id/radio3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="200dp"
+        android:layout_marginTop="150dp"
+        android:visibility="invisible"
+        android:text="Present" />
+
+    <RadioButton
+        android:id="@+id/radio4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="200dp"
+        android:layout_marginTop="200dp"
+        android:visibility="invisible"
+        android:text="Present" />
+
+    <RadioButton
+        android:id="@+id/radio5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="200dp"
+        android:layout_marginTop="250dp"
+        android:visibility="invisible"
+        android:text="Present" />
+
+    <RadioButton
+        android:id="@+id/radio6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="200dp"
+        android:layout_marginTop="300dp"
+        android:visibility="invisible"
+        android:text="Present" />
+
+    <RadioButton
+        android:id="@+id/radio7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="200dp"
+        android:layout_marginTop="350dp"
+        android:visibility="invisible"
+        android:text="Present" />
+
+
+
+
+    <GridLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:columnCount="2"
+        android:rowCount="10">
 
         <TextView
             android:id="@+id/title"
@@ -19,9 +87,10 @@
             android:layout_gravity="center"
             android:textSize="30dp" />
 
+
         <ListView
             android:id="@+id/players"
-            android:layout_width="match_parent"
+            android:layout_width="200dp"
             android:layout_height="match_parent" />
 
         <Button
@@ -33,6 +102,6 @@
             android:text="Back"
             android:textStyle="bold" />
 
-    </LinearLayout>
+    </GridLayout>
 
-</LinearLayout>
+</RelativeLayout>
