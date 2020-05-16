@@ -63,10 +63,10 @@ public class attendance extends AppCompatActivity {
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
-        myRef = mFirebaseDatabase.getReference();
+        myRef = mFirebaseDatabase.getReference("users");
         FirebaseUser user = mAuth.getCurrentUser();
         userID = user.getUid();
-        PlayerRef = myRef.child(userID).child("squad");
+
 
 
         //Listener to get current user
@@ -89,37 +89,23 @@ public class attendance extends AppCompatActivity {
 
 
 
-        PlayerRef.addValueEventListener(new ValueEventListener() {
+
+
+        // Read from the database
+        myRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
                 Object value = dataSnapshot.getValue();
                 Log.d(TAG, "Value is: " + value);
 
-                if(dataSnapshot.exists()){
-                    num = (int) dataSnapshot.getChildrenCount();
-                }else{
-                    num = 1;
-                }
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-
-        //snapshot of the database
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                showData(dataSnapshot);
-                Log.d(TAG, "Number of Profiles:      " + dataSnapshot);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.w(TAG, "Failed to read value.", databaseError.toException());
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
             }
         });
 
@@ -206,7 +192,12 @@ public class attendance extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //add one to appearance
-                //myRef.child(userID).child("squad").child("player4").child("appearances").setValue(counter + 1);
+                int counter =0;
+                String id = "";
+                FirebaseUser user = mAuth.getCurrentUser();
+                id = user.getUid();
+                //add one to counter when clicked
+                myRef.child(id).child("squad").child("player4").child("appearances").setValue(counter + 1);
             }
         });
     }
@@ -234,6 +225,5 @@ public class attendance extends AppCompatActivity {
     public void onStart() {
 
         super.onStart();
-
     }
 }

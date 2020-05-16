@@ -42,24 +42,6 @@
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/editPlayerButton"
-                style="?android:textAppearanceSmall"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Edit Player"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/deletePlayerButton"
-                style="?android:textAppearanceSmall"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Delete Player"
-                android:textStyle="bold" />
-
-            <Button
                 android:id="@+id/createEventButton"
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
@@ -120,33 +102,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Delete Note"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/createMatchLogButton"
-                style="?android:textAppearanceSmall"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Create Match Log"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/editMatchLogButton"
-                style="?android:textAppearanceSmall"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Edit Match Log"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/deleteMatchLogButton"
-                style="?android:textAppearanceSmall"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Delete Match Log"
                 android:textStyle="bold" />
 
             <Button
