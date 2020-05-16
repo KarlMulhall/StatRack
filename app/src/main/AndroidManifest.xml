@@ -24,7 +24,9 @@
         <activity android:name=".TestPlayerCreation" />
         <activity android:name=".PlayerViewTest" />
         <activity android:name=".TestEventCreation" />
+        <activity android:name=".TestEventEdit" />
         <activity android:name=".EventViewTest" />
+        <activity android:name=".TestEventDelete" />
         <activity android:name=".MenuActivity" />
     </application>
 

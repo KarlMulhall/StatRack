@@ -60,12 +60,21 @@
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/viewAttendance"
+                android:id="@+id/editEventButton"
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Attendance"
+                android:text="Edit Events"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/deleteEventsButton"
+                style="?android:textAppearanceSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Delete Events"
                 android:textStyle="bold" />
 
             <Button

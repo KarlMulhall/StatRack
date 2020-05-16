@@ -17,7 +17,7 @@ public class MenuActivity extends AppCompatActivity {
 
     private static final String TAG = "MenuActivity";
 
-    private Button btnSignOut, createPlayer, viewPlayers, createEvent, viewEvents, attendancePlayers;
+    private Button btnSignOut, createPlayer, viewPlayers, createEvent, viewEvents, editEvent, deleteEvents;
 
     public String email;
 
@@ -33,8 +33,9 @@ public class MenuActivity extends AppCompatActivity {
         createPlayer = (Button) findViewById(R.id.createPlayerButton);
         viewPlayers = (Button) findViewById(R.id.viewPlayersButton);
         createEvent = (Button) findViewById(R.id.createEventButton);
+        editEvent = (Button) findViewById(R.id.editEventButton);
         viewEvents = (Button) findViewById(R.id.viewEventsButton);
-        attendancePlayers = (Button) findViewById(R.id.viewAttendance);
+        deleteEvents = (Button) findViewById(R.id.deleteEventsButton);
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
@@ -81,17 +82,26 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
+        editEvent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openEventEdit();
+
+            }
+        });
+
+        deleteEvents.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openEventDelete();
+
+            }
+        });
+
         viewEvents.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openViewEvents();
-            }
-        });
-
-        attendancePlayers.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openAttendnace();
             }
         });
 
@@ -105,11 +115,6 @@ public class MenuActivity extends AppCompatActivity {
         });
 
 
-    }
-
-    private void openAttendnace() {
-        Intent intent = new Intent(MenuActivity.this, attendance.class);
-        startActivity(intent);
     }
 
     @Override
@@ -150,6 +155,16 @@ public class MenuActivity extends AppCompatActivity {
 
     public void openEventCreation(){
         Intent intent = new Intent(MenuActivity.this, TestEventCreation.class);
+        startActivity(intent);
+    }
+
+    public void openEventEdit(){
+        Intent intent = new Intent(MenuActivity.this, TestEventEdit.class);
+        startActivity(intent);
+    }
+
+    public void openEventDelete(){
+        Intent intent = new Intent(MenuActivity.this, TestEventDelete.class);
         startActivity(intent);
     }
 
