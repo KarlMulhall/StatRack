@@ -24,13 +24,16 @@ public class TestEventCreation extends AppCompatActivity {
 
     private static final String TAG = "TestEventCreation";
 
-    private EditText nameInput, timeInput, locationInput;
+    private EditText nameInput, timeInput, dateInput, locationInput;
     private Button back, addToDatabase;
 
     FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private DatabaseReference myRef;
+
+    int num;
+    private DatabaseReference EventRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +43,7 @@ public class TestEventCreation extends AppCompatActivity {
         //Views
         nameInput = (EditText) findViewById(R.id.nameInput);
         timeInput = (EditText) findViewById(R.id.timeInput);
+        dateInput = (EditText) findViewById(R.id.dateInput);
         locationInput = (EditText) findViewById(R.id.locationInput);
         back = (Button) findViewById(R.id.backButton);
         addToDatabase = (Button) findViewById(R.id.addToDatabaseButton);
@@ -48,6 +52,10 @@ public class TestEventCreation extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         myRef = mFirebaseDatabase.getReference("users");
+        FirebaseUser user = mAuth.getCurrentUser();
+        String id = "";
+        id = user.getUid();
+        EventRef = myRef.child(id).child("events");
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -63,6 +71,9 @@ public class TestEventCreation extends AppCompatActivity {
                     toastMessage("Successfully Signed Out");
                 }
             }
+
+            private void toastMessage(String s) {
+            }
         };
 
         // Read from the database
@@ -73,6 +84,29 @@ public class TestEventCreation extends AppCompatActivity {
                 // whenever data at this location is updated.
                 Object value = dataSnapshot.getValue();
                 Log.d(TAG, "Value is: " + value);
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
+
+        EventRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                Object value = dataSnapshot.getValue();
+                Log.d(TAG, "Value is: " + value);
+
+                if(dataSnapshot.exists()){
+                    num = (int) dataSnapshot.getChildrenCount();
+                }else{
+                    num = 0;
+                }
             }
 
             @Override
@@ -88,23 +122,25 @@ public class TestEventCreation extends AppCompatActivity {
 
                 String name = nameInput.getText().toString().trim();
                 String time = timeInput.getText().toString().trim();
+                String date = dateInput.getText().toString().trim();
                 String location = locationInput.getText().toString().trim();
-
 
                 if(!name.equals("")){
                     String id = "";
+                    String id1 = ("event" + num);
                     FirebaseUser user = mAuth.getCurrentUser();
                     id = user.getUid();
-                    myRef.child(id).child("event").child("name").setValue(name);
-                    myRef.child(id).child("event").child("time").setValue(time);
-                    myRef.child(id).child("event").child("location").setValue(location);
+                    myRef.child(id).child("events").child(id1).child("name").setValue(name);
+                    myRef.child(id).child("events").child(id1).child("time").setValue(time);
+                    myRef.child(id).child("events").child(id1).child("date").setValue(date);
+                    myRef.child(id).child("events").child(id1).child("location").setValue(location);
 
-
-                    toastMessage("Adding " + name + " to the database...");
+                    toastMessage("Saving " + name + " to your events list...");
 
                     //resetting the data fields
                     nameInput.setText("");
                     timeInput.setText("");
+                    dateInput.setText("");
                     locationInput.setText("");
                 }
             }

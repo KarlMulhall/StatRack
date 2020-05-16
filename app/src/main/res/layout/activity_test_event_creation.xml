@@ -30,6 +30,12 @@
                 android:hint="Enter Start Time"/>
 
             <EditText
+                android:id="@+id/dateInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter Date"/>
+
+            <EditText
                 android:id="@+id/locationInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -52,6 +58,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Back"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/EditEvent"
+                style="?android:textAppearanceSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="EditEvent"
                 android:textStyle="bold" />
 
         </LinearLayout>
