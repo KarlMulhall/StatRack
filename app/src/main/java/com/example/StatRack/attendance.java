@@ -99,7 +99,7 @@ public class attendance extends AppCompatActivity {
                 // whenever data at this location is updated.
                 Object value = dataSnapshot.getValue();
                 Log.d(TAG, "Value is: " + value);
-
+                showData(dataSnapshot);
             }
 
             @Override
