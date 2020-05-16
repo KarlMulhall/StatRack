@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NoteCreation">
+    tools:context=".PlayerEdit">
 
     <ScrollView
         android:layout_width="0dp"
@@ -16,26 +16,37 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-
             <EditText
-                android:id="@+id/titleInput"
+                android:id="@+id/playerInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Enter Note"/>
+                android:hint="Enter Player You Wish to Edit"/>
 
             <EditText
-                android:id="@+id/descriptionInput"
+                android:id="@+id/nameInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Enter Description"/>
+                android:hint="Enter Name"/>
+
+            <EditText
+                android:id="@+id/positionInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter Position"/>
+
+            <EditText
+                android:id="@+id/ageInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter Age"/>
 
             <Button
-                android:id="@+id/addToDatabaseButton"
+                android:id="@+id/edit"
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Add to Database"
+                android:text="Edit Player"
                 android:textStyle="bold" />
 
             <Button

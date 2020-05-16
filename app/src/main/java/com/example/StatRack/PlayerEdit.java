@@ -2,17 +2,16 @@ package com.example.StatRack;
 
 import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.StatRack.MenuActivity;
-import com.example.StatRack.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -21,12 +20,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class NoteDelete extends AppCompatActivity {
+public class PlayerEdit extends AppCompatActivity {
 
-    private static final String TAG = "NoteDelete";
+    private static final String TAG = "PlayerEdit";
 
-    private EditText noteInput;
-    private Button back, delete;
+    private EditText playerInput, nameInput, positionInput, ageInput;
+    private Button back, edit;
 
     FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth mAuth;
@@ -34,18 +33,21 @@ public class NoteDelete extends AppCompatActivity {
     private DatabaseReference myRef;
 
     int num;
-    private DatabaseReference NoteRef;
+    private DatabaseReference PlayerRef;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_note_delete);
+        setContentView(R.layout.activity_player_edit);
 
         //Views
-        noteInput = (EditText) findViewById(R.id.noteInput);
+        playerInput = (EditText) findViewById(R.id.playerInput);
+        nameInput = (EditText) findViewById(R.id.nameInput);
+        positionInput = (EditText) findViewById(R.id.positionInput);
+        ageInput = (EditText) findViewById(R.id.ageInput);
         back = (Button) findViewById(R.id.backButton);
-        delete = (Button) findViewById(R.id.deleteButton);
+        edit = (Button) findViewById(R.id.edit);
 
 
         mAuth = FirebaseAuth.getInstance();
@@ -54,7 +56,7 @@ public class NoteDelete extends AppCompatActivity {
         FirebaseUser user = mAuth.getCurrentUser();
         String id = "";
         id = user.getUid();
-        NoteRef = myRef.child(id).child("notes");
+        PlayerRef = myRef.child(id).child("squad");
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -93,7 +95,7 @@ public class NoteDelete extends AppCompatActivity {
             }
         });
 
-        NoteRef.addValueEventListener(new ValueEventListener() {
+        PlayerRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
@@ -110,23 +112,30 @@ public class NoteDelete extends AppCompatActivity {
             }
         });
 
-        delete.setOnClickListener(new View.OnClickListener() {
+        edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                String note = noteInput.getText().toString().trim();
+                String player = playerInput.getText().toString().trim();
+                String name = nameInput.getText().toString().trim();
+                String position = positionInput.getText().toString().trim();
+                String age = ageInput.getText().toString().trim();
 
                 String id = "";
-                String id1 = (note);
+                String id1 = (player);
                 FirebaseUser user = mAuth.getCurrentUser();
                 id = user.getUid();
 
-                myRef.child(id).child("notes").child(id1).removeValue();
+                myRef.child(id).child("squad").child(id1).child("name").setValue(name);
+                myRef.child(id).child("squad").child(id1).child("position").setValue(position);
+                myRef.child(id).child("squad").child(id1).child("age").setValue(age);
 
-                toastMessage("Deleting note from notes list.");
+                toastMessage("Saving " + name + " to your players list...");
 
                 //resetting the data fields
-                noteInput.setText("");
+                nameInput.setText("");
+                positionInput.setText("");
+                ageInput.setText("");
             }
         });
 
@@ -156,12 +165,13 @@ public class NoteDelete extends AppCompatActivity {
      * @param message
      */
     private void toastMessage(String message){
-        Toast.makeText(com.example.StatRack.NoteDelete.this,message,Toast.LENGTH_SHORT).show();
+        Toast.makeText(PlayerEdit.this,message,Toast.LENGTH_SHORT).show();
     }
 
     public void backToMenu(){
-        Intent intent = new Intent(com.example.StatRack.NoteDelete.this, MenuActivity.class);
+        Intent intent = new Intent(PlayerEdit.this, MenuActivity.class);
         startActivity(intent);
     }
 
 }
+

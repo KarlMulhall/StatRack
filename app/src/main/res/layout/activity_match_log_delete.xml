@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NoteCreation">
+    tools:context=".MatchLogDelete">
 
     <ScrollView
         android:layout_width="0dp"
@@ -16,26 +16,19 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-
             <EditText
-                android:id="@+id/titleInput"
+                android:id="@+id/matchlogInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Enter Note"/>
-
-            <EditText
-                android:id="@+id/descriptionInput"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Enter Description"/>
+                android:hint="Enter Match Log You Wish to Delete"/>
 
             <Button
-                android:id="@+id/addToDatabaseButton"
+                android:id="@+id/deleteButton"
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Add to Database"
+                android:text="Delete Match Log"
                 android:textStyle="bold" />
 
             <Button

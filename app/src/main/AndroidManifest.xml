@@ -23,6 +23,8 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".TestPlayerCreation" />
         <activity android:name=".PlayerViewTest" />
+        <activity android:name=".PlayerEdit" />
+        <activity android:name=".PlayerDelete" />
         <activity android:name=".TestEventCreation" />
         <activity android:name=".TestEventEdit" />
         <activity android:name=".EventViewTest" />
@@ -30,6 +32,9 @@
         <activity android:name=".NoteCreation" />
         <activity android:name=".NoteEdit" />
         <activity android:name=".NoteDelete" />
+        <activity android:name=".MatchLogCreate" />
+        <activity android:name=".MatchLogEdit" />
+        <activity android:name=".MatchLogDelete" />
         <activity android:name=".MenuActivity" />
     </application>
 
