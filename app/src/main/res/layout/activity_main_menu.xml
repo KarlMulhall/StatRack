@@ -42,6 +42,15 @@
                 android:textStyle="bold" />
 
             <Button
+                android:id="@+id/attendance"
+                style="?android:textAppearanceSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Attendance"
+                android:textStyle="bold" />
+
+            <Button
                 android:id="@+id/createEventButton"
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
