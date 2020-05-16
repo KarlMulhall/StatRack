@@ -27,6 +27,9 @@
         <activity android:name=".TestEventEdit" />
         <activity android:name=".EventViewTest" />
         <activity android:name=".TestEventDelete" />
+        <activity android:name=".NoteCreation" />
+        <activity android:name=".NoteEdit" />
+        <activity android:name=".NoteDelete" />
         <activity android:name=".MenuActivity" />
     </application>
 

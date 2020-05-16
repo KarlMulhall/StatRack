@@ -17,7 +17,8 @@ public class MenuActivity extends AppCompatActivity {
 
     private static final String TAG = "MenuActivity";
 
-    private Button btnSignOut, createPlayer, viewPlayers, createEvent, viewEvents, editEvent, deleteEvents;
+    private Button btnSignOut, createPlayer, viewPlayers, createEvent, viewEvents, editEvent, deleteEvents,
+            createNote, editNote, deleteNote;
 
     public String email;
 
@@ -36,6 +37,9 @@ public class MenuActivity extends AppCompatActivity {
         editEvent = (Button) findViewById(R.id.editEventButton);
         viewEvents = (Button) findViewById(R.id.viewEventsButton);
         deleteEvents = (Button) findViewById(R.id.deleteEventsButton);
+        createNote = (Button) findViewById(R.id.createNoteButton);
+        editNote = (Button) findViewById(R.id.editNoteButton);
+        deleteNote = (Button) findViewById(R.id.deleteNoteButton);
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
@@ -105,6 +109,30 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
+        createNote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openNoteCreation();
+
+            }
+        });
+
+        editNote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openNoteEdit();
+
+            }
+        });
+
+        deleteNote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openNoteDelete();
+
+            }
+        });
+
         btnSignOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -170,6 +198,21 @@ public class MenuActivity extends AppCompatActivity {
 
     public void openViewEvents(){
         Intent intent = new Intent(MenuActivity.this, EventViewTest.class);
+        startActivity(intent);
+    }
+
+    public void openNoteCreation(){
+        Intent intent = new Intent(MenuActivity.this, NoteCreation.class);
+        startActivity(intent);
+    }
+
+    public void openNoteEdit(){
+        Intent intent = new Intent(MenuActivity.this, NoteEdit.class);
+        startActivity(intent);
+    }
+
+    public void openNoteDelete(){
+        Intent intent = new Intent(MenuActivity.this, NoteDelete.class);
         startActivity(intent);
     }
 }

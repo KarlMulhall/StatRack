@@ -78,6 +78,33 @@
                 android:textStyle="bold" />
 
             <Button
+                android:id="@+id/createNoteButton"
+                style="?android:textAppearanceSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Create Note"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/editNoteButton"
+                style="?android:textAppearanceSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Edit Note"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/deleteNoteButton"
+                style="?android:textAppearanceSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Delete Note"
+                android:textStyle="bold" />
+
+            <Button
                 android:id="@+id/signOutButton"
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
