@@ -10,7 +10,6 @@ public class Player
     private int assists;
     private int yCards;
     private int rCards;
-    private int attendance;
 
 
     public Player()
@@ -18,7 +17,7 @@ public class Player
         //empty constructor
     }
 
-    public Player(String name, String age, String position,int appearances, int goals, int assists, int yCards, int rCards, int attendance) {
+    public Player(String name, String age, String position,int appearances, int goals, int assists, int yCards, int rCards) {
         this.name = name;
         this.age = age;
         this.position = position;
@@ -27,16 +26,9 @@ public class Player
         this.assists = assists;
         this.yCards = yCards;
         this.rCards = rCards;
-        this.attendance = attendance;
     }
 
-    public int getAttendance() {
-        return attendance;
-    }
 
-    public void setAttendance(int attendance) {
-        this.attendance = attendance;
-    }
 
     public String getName() {
         return name;

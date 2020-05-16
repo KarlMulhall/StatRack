@@ -17,7 +17,7 @@ public class MenuActivity extends AppCompatActivity {
 
     private static final String TAG = "MenuActivity";
 
-    private Button btnSignOut, createPlayer, viewPlayers, createEvent, viewEvents;
+    private Button btnSignOut, createPlayer, viewPlayers, createEvent, viewEvents, attendancePlayers;
 
     public String email;
 
@@ -34,6 +34,7 @@ public class MenuActivity extends AppCompatActivity {
         viewPlayers = (Button) findViewById(R.id.viewPlayersButton);
         createEvent = (Button) findViewById(R.id.createEventButton);
         viewEvents = (Button) findViewById(R.id.viewEventsButton);
+        attendancePlayers = (Button) findViewById(R.id.viewAttendance);
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
@@ -87,6 +88,13 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
+        attendancePlayers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openAttendnace();
+            }
+        });
+
         btnSignOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -97,6 +105,11 @@ public class MenuActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    private void openAttendnace() {
+        Intent intent = new Intent(MenuActivity.this, attendance.class);
+        startActivity(intent);
     }
 
     @Override
