@@ -24,8 +24,10 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".TestPlayerCreation" />
         <activity android:name=".PlayerViewTest" />
-        <activity android:name=".TestPlayerEdit" />
+        <activity android:name=".PlayerDelete" />
+        <activity android:name=".PlayerEdit" />
         <activity android:name=".TestEventCreation" />
+        <activity android:name=".Calendar" />
         <activity android:name=".TestEventEdit" />
         <activity android:name=".EventViewTest" />
         <activity android:name=".TestEventDelete" />

@@ -2,17 +2,17 @@ package com.example.StatRack;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.util.Log;
 import android.view.View;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.StatRack.MenuActivity;
+import com.example.StatRack.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -21,12 +21,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class TestPlayerEdit extends AppCompatActivity {
+public class PlayerDelete extends AppCompatActivity {
 
-    private static final String TAG = "TestPlayerEdit";
+    private static final String TAG = "PlayerDelete";
 
-    private EditText playerInput, nameInput, positionInput, ageInput;
-    private Button back, edit;
+    private EditText playerInput;
+    private Button back, delete;
 
     FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth mAuth;
@@ -40,15 +40,12 @@ public class TestPlayerEdit extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_player_edit);
+        setContentView(R.layout.activity_player_delete);
 
         //Views
         playerInput = (EditText) findViewById(R.id.playerInput);
-        nameInput = (EditText) findViewById(R.id.nameInput);
-        ageInput = (EditText) findViewById(R.id.ageInput);
-        positionInput = (AutoCompleteTextView) findViewById(R.id.positionInput);
-        back = (Button) findViewById(R.id.back);
-        edit = (Button) findViewById(R.id.edit);
+        back = (Button) findViewById(R.id.backButton);
+        delete = (Button) findViewById(R.id.deleteButton);
 
 
         mAuth = FirebaseAuth.getInstance();
@@ -113,37 +110,23 @@ public class TestPlayerEdit extends AppCompatActivity {
             }
         });
 
-        edit.setOnClickListener(new View.OnClickListener() {
+        delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 String player = playerInput.getText().toString().trim();
-                String name = nameInput.getText().toString().trim();
-                String age = ageInput.getText().toString().trim();
-                String position = positionInput.getText().toString().trim();
 
                 String id = "";
                 String id1 = (player);
                 FirebaseUser user = mAuth.getCurrentUser();
                 id = user.getUid();
 
-                myRef.child(id).child("squad").child(id1).child("name").setValue(name);
-                myRef.child(id).child("squad").child(id1).child("age").setValue(age);
-                myRef.child(id).child("squad").child(id1).child("position").setValue(position);
-                myRef.child(id).child("squad").child(id1).child("appearances").setValue(0);
-                myRef.child(id).child("squad").child(id1).child("goals").setValue(0);
-                myRef.child(id).child("squad").child(id1).child("assists").setValue(0);
-                myRef.child(id).child("squad").child(id1).child("yellow cards").setValue(0);
-                myRef.child(id).child("squad").child(id1).child("red cards").setValue(0);
-                myRef.child(id).child("squad").child(id1).child("attendance").setValue(0);
+                myRef.child(id).child("squad").child(id1).removeValue();
 
-                toastMessage("Saving " + player + " update...");
+                toastMessage("Deleting player from players list.");
 
                 //resetting the data fields
                 playerInput.setText("");
-                nameInput.setText("");
-                ageInput.setText("");
-                positionInput.setText("");
             }
         });
 
@@ -173,11 +156,11 @@ public class TestPlayerEdit extends AppCompatActivity {
      * @param message
      */
     private void toastMessage(String message){
-        Toast.makeText(TestPlayerEdit.this,message,Toast.LENGTH_SHORT).show();
+        Toast.makeText(com.example.StatRack.PlayerDelete.this,message,Toast.LENGTH_SHORT).show();
     }
 
     public void backToMenu(){
-        Intent intent = new Intent(TestPlayerEdit.this, MenuActivity.class);
+        Intent intent = new Intent(com.example.StatRack.PlayerDelete.this, MenuActivity.class);
         startActivity(intent);
     }
 

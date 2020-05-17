@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TestPlayerEdit">
+    tools:context=".PlayerEdit">
 
     <ScrollView
         android:layout_width="0dp"
@@ -26,7 +26,7 @@
                 android:id="@+id/nameInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Enter Name"/>
+                android:hint="Enter Player Name"/>
 
             <EditText
                 android:id="@+id/positionInput"
@@ -46,7 +46,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Edit Player"
+                android:text="Edit Event"
                 android:textStyle="bold" />
 
             <Button

@@ -2,18 +2,16 @@ package com.example.StatRack;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.StatRack.MenuActivity;
-import com.example.StatRack.R;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -22,13 +20,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class attendance extends AppCompatActivity {
+public class PlayerEdit extends AppCompatActivity {
 
-    private static final String TAG = "attendance";
+    private static final String TAG = "PlayerEdit";
 
-    private EditText playerInput, dateInput;
-    private RadioButton present, absent;
-    private Button back, submit;
+    private EditText playerInput, nameInput, positionInput, ageInput;
+    private Button back, edit;
 
     FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth mAuth;
@@ -42,15 +39,15 @@ public class attendance extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_attendance);
+        setContentView(R.layout.activity_player_edit);
 
         //Views
         playerInput = (EditText) findViewById(R.id.playerInput);
-        dateInput = (EditText) findViewById(R.id.dateInput);
-        present = (RadioButton) findViewById(R.id.present);
-        absent = (RadioButton) findViewById(R.id.absent);
+        nameInput = (EditText) findViewById(R.id.nameInput);
+        positionInput = (EditText) findViewById(R.id.positionInput);
+        ageInput = (EditText) findViewById(R.id.ageInput);
         back = (Button) findViewById(R.id.backButton);
-        submit = (Button) findViewById(R.id.submitButton);
+        edit = (Button) findViewById(R.id.edit);
 
 
         mAuth = FirebaseAuth.getInstance();
@@ -88,10 +85,7 @@ public class attendance extends AppCompatActivity {
                 // whenever data at this location is updated.
                 Object value = dataSnapshot.getValue();
                 Log.d(TAG, "Value is: " + value);
-                showData(dataSnapshot);
-            }
 
-            private void showData(DataSnapshot dataSnapshot) {
             }
 
             @Override
@@ -118,40 +112,38 @@ public class attendance extends AppCompatActivity {
             }
         });
 
-        submit.setOnClickListener(new View.OnClickListener() {
+        edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 String player = playerInput.getText().toString().trim();
-                String date = dateInput.getText().toString().trim();
-                String present1 = "present";
-                String absent1 = "absent";
+                String name = nameInput.getText().toString().trim();
+                String position = positionInput.getText().toString().trim();
+                String age = ageInput.getText().toString().trim();
 
                 String id = "";
                 String id1 = (player);
-                String id2 = (date);
                 FirebaseUser user = mAuth.getCurrentUser();
                 id = user.getUid();
 
-                if(present.isChecked()){
-                    myRef.child(id).child("squad").child(id1).child("attendance").child(id2).setValue(present1);
-                }else if(absent.isChecked()){
-                    myRef.child(id).child("squad").child(id1).child("attendance").child(id2).setValue(absent1);
-                }
+                myRef.child(id).child("squad").child(id1).child("name").setValue(name);
+                myRef.child(id).child("squad").child(id1).child("position").setValue(position);
+                myRef.child(id).child("squad").child(id1).child("age").setValue(age);
 
-
-
-                toastMessage("Updating player from player attendance.");
+                toastMessage("Editing " + name + " to your squad list...");
 
                 //resetting the data fields
                 playerInput.setText("");
+                nameInput.setText("");
+                positionInput.setText("");
+                ageInput.setText("");
             }
         });
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                backToMenu();
+                back();
             }
         });
     }
@@ -174,11 +166,11 @@ public class attendance extends AppCompatActivity {
      * @param message
      */
     private void toastMessage(String message){
-        Toast.makeText(com.example.StatRack.attendance.this,message,Toast.LENGTH_SHORT).show();
+        Toast.makeText(PlayerEdit.this,message,Toast.LENGTH_SHORT).show();
     }
 
-    public void backToMenu(){
-        Intent intent = new Intent(com.example.StatRack.attendance.this, MenuActivity.class);
+    public void back(){
+        Intent intent = new Intent(PlayerEdit.this, MenuActivity.class);
         startActivity(intent);
     }
 
