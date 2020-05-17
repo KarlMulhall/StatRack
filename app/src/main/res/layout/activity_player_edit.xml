@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PlayerEdit">
+    tools:context=".TestPlayerEdit">
 
     <ScrollView
         android:layout_width="0dp"
@@ -50,7 +50,7 @@
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/backButton"
+                android:id="@+id/back"
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.util.Log;
 import android.view.View;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -20,9 +21,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class PlayerEdit extends AppCompatActivity {
+public class TestPlayerEdit extends AppCompatActivity {
 
-    private static final String TAG = "PlayerEdit";
+    private static final String TAG = "TestPlayerEdit";
 
     private EditText playerInput, nameInput, positionInput, ageInput;
     private Button back, edit;
@@ -44,9 +45,9 @@ public class PlayerEdit extends AppCompatActivity {
         //Views
         playerInput = (EditText) findViewById(R.id.playerInput);
         nameInput = (EditText) findViewById(R.id.nameInput);
-        positionInput = (EditText) findViewById(R.id.positionInput);
         ageInput = (EditText) findViewById(R.id.ageInput);
-        back = (Button) findViewById(R.id.backButton);
+        positionInput = (AutoCompleteTextView) findViewById(R.id.positionInput);
+        back = (Button) findViewById(R.id.back);
         edit = (Button) findViewById(R.id.edit);
 
 
@@ -118,8 +119,8 @@ public class PlayerEdit extends AppCompatActivity {
 
                 String player = playerInput.getText().toString().trim();
                 String name = nameInput.getText().toString().trim();
-                String position = positionInput.getText().toString().trim();
                 String age = ageInput.getText().toString().trim();
+                String position = positionInput.getText().toString().trim();
 
                 String id = "";
                 String id1 = (player);
@@ -127,15 +128,22 @@ public class PlayerEdit extends AppCompatActivity {
                 id = user.getUid();
 
                 myRef.child(id).child("squad").child(id1).child("name").setValue(name);
-                myRef.child(id).child("squad").child(id1).child("position").setValue(position);
                 myRef.child(id).child("squad").child(id1).child("age").setValue(age);
+                myRef.child(id).child("squad").child(id1).child("position").setValue(position);
+                myRef.child(id).child("squad").child(id1).child("appearances").setValue(0);
+                myRef.child(id).child("squad").child(id1).child("goals").setValue(0);
+                myRef.child(id).child("squad").child(id1).child("assists").setValue(0);
+                myRef.child(id).child("squad").child(id1).child("yellow cards").setValue(0);
+                myRef.child(id).child("squad").child(id1).child("red cards").setValue(0);
+                myRef.child(id).child("squad").child(id1).child("attendance").setValue(0);
 
-                toastMessage("Saving " + name + " to your players list...");
+                toastMessage("Saving " + player + " update...");
 
                 //resetting the data fields
+                playerInput.setText("");
                 nameInput.setText("");
-                positionInput.setText("");
                 ageInput.setText("");
+                positionInput.setText("");
             }
         });
 
@@ -165,13 +173,12 @@ public class PlayerEdit extends AppCompatActivity {
      * @param message
      */
     private void toastMessage(String message){
-        Toast.makeText(PlayerEdit.this,message,Toast.LENGTH_SHORT).show();
+        Toast.makeText(TestPlayerEdit.this,message,Toast.LENGTH_SHORT).show();
     }
 
     public void backToMenu(){
-        Intent intent = new Intent(PlayerEdit.this, MenuActivity.class);
+        Intent intent = new Intent(TestPlayerEdit.this, MenuActivity.class);
         startActivity(intent);
     }
 
 }
-

@@ -42,6 +42,24 @@
                 android:textStyle="bold" />
 
             <Button
+                android:id="@+id/editPlayerButton"
+                style="?android:textAppearanceSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Edit Player"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/deletePlayersButton"
+                style="?android:textAppearanceSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Delete Players"
+                android:textStyle="bold" />
+
+            <Button
                 android:id="@+id/createEventButton"
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
@@ -102,6 +120,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Delete Note"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/attendanceButton"
+                style="?android:textAppearanceSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Player Attendance"
                 android:textStyle="bold" />
 
             <Button

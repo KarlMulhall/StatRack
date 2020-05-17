@@ -23,7 +23,7 @@
                 android:hint="Enter Player You Wish to Delete"/>
 
             <Button
-                android:id="@+id/deleteButton"
+                android:id="@+id/delete"
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
