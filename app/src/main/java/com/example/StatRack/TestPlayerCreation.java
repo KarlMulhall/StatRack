@@ -1,13 +1,7 @@
 package com.example.StatRack;
 
-import android.animation.Animator;
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -15,6 +9,9 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,8 +21,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import java.util.Arrays;
 
 public class TestPlayerCreation extends AppCompatActivity {
 
@@ -43,7 +38,7 @@ public class TestPlayerCreation extends AppCompatActivity {
     int num;
     private DatabaseReference PlayerRef;
 
-    String[] positions = {"Goal Keeper", "Right Full Back", "Center Full Back", "Left Full Back", "Center Back", "Right Center Back", "Left Center Back", "Midfielder", "Attacker", "Right Attacker", "Left Attacker"};
+    String[] positions = {"Goalkeeper", "Defender", "Midfielder", "Forward"};
 
     private Boolean validatePosition() {
         String position = positionInput.getText().toString();
@@ -136,10 +131,7 @@ public class TestPlayerCreation extends AppCompatActivity {
                 }
             }
 
-            private void toastMessage(String s) {
-            }
         };
-
 
         // Read from the database
         myRef.addValueEventListener(new ValueEventListener() {
@@ -191,21 +183,20 @@ public class TestPlayerCreation extends AppCompatActivity {
                 String age = ageInput.getText().toString().trim();
                 String position = positionInput.getText().toString().trim();
 
-
-                if(validateName() && validateAge()){
-                    String id = "";
-                    String id1 = ("player" + num);
+                if(!name.equals("")){
+                    String userID = "";
+                    String playerID = ("player" + num);
                     FirebaseUser user = mAuth.getCurrentUser();
-                    id = user.getUid();
-                    myRef.child(id).child("squad").child(id1).child("name").setValue(name);
-                    myRef.child(id).child("squad").child(id1).child("age").setValue(age);
-                    myRef.child(id).child("squad").child(id1).child("position").setValue(position);
-                    myRef.child(id).child("squad").child(id1).child("appearances").setValue(0);
-                    myRef.child(id).child("squad").child(id1).child("goals").setValue(0);
-                    myRef.child(id).child("squad").child(id1).child("assists").setValue(0);
-                    myRef.child(id).child("squad").child(id1).child("yellow cards").setValue(0);
-                    myRef.child(id).child("squad").child(id1).child("red cards").setValue(0);
-                    myRef.child(id).child("squad").child(id1).child("attendance").setValue(0);
+                    userID = user.getUid();
+                    myRef.child(userID).child("squad").child(playerID).child("name").setValue(name);
+                    myRef.child(userID).child("squad").child(playerID).child("age").setValue(age);
+                    myRef.child(userID).child("squad").child(playerID).child("position").setValue(position);
+                    myRef.child(userID).child("squad").child(playerID).child("appearances").setValue(0);
+                    myRef.child(userID).child("squad").child(playerID).child("goals").setValue(0);
+                    myRef.child(userID).child("squad").child(playerID).child("assists").setValue(0);
+                    myRef.child(userID).child("squad").child(playerID).child("yellow cards").setValue(0);
+                    myRef.child(userID).child("squad").child(playerID).child("red cards").setValue(0);
+                    myRef.child(userID).child("squad").child(playerID).child("attendance").setValue(0);
 
                     toastMessage("Saving " + name + " to your squad...");
 
@@ -224,7 +215,6 @@ public class TestPlayerCreation extends AppCompatActivity {
             }
         });
     }
-
 
     @Override
     public void onStart(){

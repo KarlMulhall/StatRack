@@ -177,7 +177,7 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     public void openViewPlayers(){
-        Intent intent = new Intent(MenuActivity.this, PlayerViewTest.class);
+        Intent intent = new Intent(MenuActivity.this, TestSquadView.class);
         startActivity(intent);
     }
 

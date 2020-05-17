@@ -74,8 +74,6 @@ public class TestEventEdit extends AppCompatActivity {
                 }
             }
 
-            private void toastMessage(String s) {
-            }
         };
 
         // Read from the database

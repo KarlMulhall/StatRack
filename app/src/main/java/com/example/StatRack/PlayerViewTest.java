@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.StatRack.models.Player;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -102,21 +103,21 @@ public class PlayerViewTest extends AppCompatActivity {
         for(DataSnapshot ds : dataSnapshot.getChildren()){
             Player player1 = new Player();
 
-            player1.setName(ds.child(userID).child("squad").getValue(Player.class).getName());
-            player1.setAge(ds.child(userID).child("squad").getValue(Player.class).getAge());
-            player1.setPosition(ds.child(userID).child("squad").getValue(Player.class).getPosition());
+//            player1.setName(ds.child(userID).child("squad").getValue(Player.class).getName());
+//            player1.setAge(ds.child(userID).child("squad").getValue(Player.class).getAge());
+//            player1.setPosition(ds.child(userID).child("squad").getValue(Player.class).getPosition());
+//
+//            Log.d(TAG, "showData: name: " + player1.getName());
+//            Log.d(TAG, "showData: age: " + player1.getAge());
+//            Log.d(TAG, "showData: position: " + player1.getPosition());
+//
+//            ArrayList<String> array = new ArrayList<>();
+//            array.add(player1.getName());
+//            array.add(player1.getAge());
+//            array.add(player1.getPosition());
 
-            Log.d(TAG, "showData: name: " + player1.getName());
-            Log.d(TAG, "showData: age: " + player1.getAge());
-            Log.d(TAG, "showData: position: " + player1.getPosition());
-
-            ArrayList<String> array = new ArrayList<>();
-            array.add(player1.getName());
-            array.add(player1.getAge());
-            array.add(player1.getPosition());
-
-            ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,array);
-            list.setAdapter(adapter);
+//            ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,array);
+//            list.setAdapter(adapter);
         }
     }
 

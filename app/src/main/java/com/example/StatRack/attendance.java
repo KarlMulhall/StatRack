@@ -1,14 +1,12 @@
 package com.example.StatRack;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -16,9 +14,9 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.StatRack.models.Player;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -144,42 +142,42 @@ public class attendance extends AppCompatActivity {
 
 
 
-            player1.setName(ds.child(userID).child("squad").child(id0).getValue(Player.class).getName());
-            displayRadioOne();
-            //player1.setAge(ds.child(userID).child("squad").child(id1).getValue(Player.class).getAge());
-            //player1.setPosition(ds.child(userID).child("squad").child(id1).getValue(Player.class).getPosition());
+//            player1.setName(ds.child(userID).child("squad").child(id0).getValue(Player.class).getName());
+//            displayRadioOne();
+//            //player1.setAge(ds.child(userID).child("squad").child(id1).getValue(Player.class).getAge());
+//            //player1.setPosition(ds.child(userID).child("squad").child(id1).getValue(Player.class).getPosition());
+//
+//            player02.setName(ds.child(userID).child("squad").child(id1).getValue(Player.class).getName());
+//            displayRadioTwo();
+//
+//            player03.setName(ds.child(userID).child("squad").child(id2).getValue(Player.class).getName());
+//            displayRadioThree();
+//
+//            player04.setName(ds.child(userID).child("squad").child(id3).getValue(Player.class).getName());
+//            displayRadioFour();
+//
+//            player05.setName(ds.child(userID).child("squad").child(id4).getValue(Player.class).getName());
+//            displayRadioFive();
 
-            player02.setName(ds.child(userID).child("squad").child(id1).getValue(Player.class).getName());
-            displayRadioTwo();
-
-            player03.setName(ds.child(userID).child("squad").child(id2).getValue(Player.class).getName());
-            displayRadioThree();
-
-            player04.setName(ds.child(userID).child("squad").child(id3).getValue(Player.class).getName());
-            displayRadioFour();
-
-            player05.setName(ds.child(userID).child("squad").child(id4).getValue(Player.class).getName());
-            displayRadioFive();
 
 
-
-            Log.d(TAG, "showData: name: " + player1.getName());
-           // Log.d(TAG, "showData: age: " + player1.getAge());
-           // Log.d(TAG, "showData: position: " + player1.getPosition());
-
-            ArrayList<String> array = new ArrayList<>();
-            array.add(player1.getName());
-            array.add(player02.getName());
-            array.add(player03.getName());
-            array.add(player04.getName());
-            array.add(player05.getName());
+//            Log.d(TAG, "showData: name: " + player1.getName());
+//           // Log.d(TAG, "showData: age: " + player1.getAge());
+//           // Log.d(TAG, "showData: position: " + player1.getPosition());
+//
+//            ArrayList<String> array = new ArrayList<>();
+//            array.add(player1.getName());
+//            array.add(player02.getName());
+//            array.add(player03.getName());
+//            array.add(player04.getName());
+//            array.add(player05.getName());
 
 
 
             //array.add(player1.getPosition());
 
-            ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, array);
-            players.setAdapter(adapter);
+//            ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, array);
+//            players.setAdapter(adapter);
         }
     }
 
