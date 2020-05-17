@@ -26,7 +26,7 @@
                 android:id="@+id/nameInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Enter Name"/>
+                android:hint="Enter Player Name"/>
 
             <EditText
                 android:id="@+id/positionInput"
@@ -46,11 +46,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Edit Player"
+                android:text="Edit Event"
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/backButton"
+                android:id="@+id/back"
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

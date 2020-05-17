@@ -130,9 +130,10 @@ public class PlayerEdit extends AppCompatActivity {
                 myRef.child(id).child("squad").child(id1).child("position").setValue(position);
                 myRef.child(id).child("squad").child(id1).child("age").setValue(age);
 
-                toastMessage("Saving " + name + " to your players list...");
+                toastMessage("Editing " + name + " to your squad list...");
 
                 //resetting the data fields
+                playerInput.setText("");
                 nameInput.setText("");
                 positionInput.setText("");
                 ageInput.setText("");
@@ -142,7 +143,7 @@ public class PlayerEdit extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                backToMenu();
+                back();
             }
         });
     }
@@ -168,10 +169,9 @@ public class PlayerEdit extends AppCompatActivity {
         Toast.makeText(PlayerEdit.this,message,Toast.LENGTH_SHORT).show();
     }
 
-    public void backToMenu(){
+    public void back(){
         Intent intent = new Intent(PlayerEdit.this, MenuActivity.class);
         startActivity(intent);
     }
 
 }
-

@@ -17,8 +17,8 @@ public class MenuActivity extends AppCompatActivity {
 
     private static final String TAG = "MenuActivity";
 
-    private Button btnSignOut, createPlayer, viewPlayers, createEvent, viewEvents, editEvent, deleteEvents,
-            createNote, editNote, deleteNote;
+    private Button btnSignOut, editPlayer, deletePlayer, createPlayer, viewPlayers, createEvent, viewEvents, editEvent, deleteEvents,
+            createNote, editNote, deleteNote, attendance, calendar;
 
     public String email;
 
@@ -33,6 +33,8 @@ public class MenuActivity extends AppCompatActivity {
         btnSignOut = (Button) findViewById(R.id.signOutButton);
         createPlayer = (Button) findViewById(R.id.createPlayerButton);
         viewPlayers = (Button) findViewById(R.id.viewPlayersButton);
+        editPlayer = (Button) findViewById(R.id.editPlayerButton);
+        deletePlayer = (Button) findViewById(R.id.deletePlayersButton);
         createEvent = (Button) findViewById(R.id.createEventButton);
         editEvent = (Button) findViewById(R.id.editEventButton);
         viewEvents = (Button) findViewById(R.id.viewEventsButton);
@@ -40,6 +42,8 @@ public class MenuActivity extends AppCompatActivity {
         createNote = (Button) findViewById(R.id.createNoteButton);
         editNote = (Button) findViewById(R.id.editNoteButton);
         deleteNote = (Button) findViewById(R.id.deleteNoteButton);
+        attendance = (Button) findViewById(R.id.attendanceButton);
+        calendar = (Button) findViewById(R.id.calendarButton);
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
@@ -75,6 +79,27 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 openViewPlayers();
+            }
+        });
+
+        calendar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openCalendar();
+            }
+        });
+
+        editPlayer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openEditPlayer();
+            }
+        });
+
+        deletePlayer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openPlayerDelete();
             }
         });
 
@@ -133,6 +158,14 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
+        attendance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openAttendance();
+
+            }
+        });
+
         btnSignOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -176,8 +209,23 @@ public class MenuActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void openPlayerDelete(){
+        Intent intent = new Intent(MenuActivity.this, PlayerDelete.class);
+        startActivity(intent);
+    }
+
     public void openViewPlayers(){
         Intent intent = new Intent(MenuActivity.this, TestSquadView.class);
+        startActivity(intent);
+    }
+
+    public void openCalendar(){
+        Intent intent = new Intent(MenuActivity.this, Calendar.class);
+        startActivity(intent);
+    }
+
+    public void openEditPlayer(){
+        Intent intent = new Intent(MenuActivity.this, PlayerEdit.class);
         startActivity(intent);
     }
 
@@ -213,6 +261,11 @@ public class MenuActivity extends AppCompatActivity {
 
     public void openNoteDelete(){
         Intent intent = new Intent(MenuActivity.this, NoteDelete.class);
+        startActivity(intent);
+    }
+
+    public void openAttendance(){
+        Intent intent = new Intent(MenuActivity.this, attendance.class);
         startActivity(intent);
     }
 }

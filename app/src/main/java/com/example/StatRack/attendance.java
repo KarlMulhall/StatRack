@@ -1,20 +1,19 @@
 package com.example.StatRack;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
+import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.StatRack.models.Player;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.StatRack.MenuActivity;
+import com.example.StatRack.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -23,71 +22,63 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
-
 public class attendance extends AppCompatActivity {
-    private static final String TAG = "ATTENDANCE_TAG";
-    TextView title;
-    ListView players;
-    Button back;
-    RadioButton button1, button2, button3, button4, button5, button6, button7;
-    private String userID;
-    int num;
-    int counter = 0;
 
-    private FirebaseDatabase mFirebaseDatabase;
+    private static final String TAG = "attendance";
+
+    private EditText playerInput, dateInput;
+    private RadioButton present, absent;
+    private Button back, submit;
+
+    FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
-    private DatabaseReference myRef, PlayerRef, appearRef;
+    private DatabaseReference myRef;
+
+    int num;
+    private DatabaseReference PlayerRef;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attendance);
 
-        title = (TextView) findViewById(R.id.title);
-        players = (ListView) findViewById(R.id.players);
-        back = (Button) findViewById(R.id.back);
-        button1 = (RadioButton) findViewById(R.id.radio1);
-        button2 = (RadioButton) findViewById(R.id.radio2);
-        button3 = (RadioButton) findViewById(R.id.radio3);
-        button4 = (RadioButton) findViewById(R.id.radio4);
-        button5 = (RadioButton) findViewById(R.id.radio5);
-        button6 = (RadioButton) findViewById(R.id.radio6);
-        button7 = (RadioButton) findViewById(R.id.radio7);
+        //Views
+        playerInput = (EditText) findViewById(R.id.playerInput);
+        dateInput = (EditText) findViewById(R.id.dateInput);
+        present = (RadioButton) findViewById(R.id.present);
+        absent = (RadioButton) findViewById(R.id.absent);
+        back = (Button) findViewById(R.id.backButton);
+        submit = (Button) findViewById(R.id.submitButton);
 
 
-
-        // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         myRef = mFirebaseDatabase.getReference("users");
         FirebaseUser user = mAuth.getCurrentUser();
-        userID = user.getUid();
-
-
-
-        //Listener to get current user
+        String id = "";
+        id = user.getUid();
+        PlayerRef = myRef.child(id).child("squad");
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
 
-                if (user != null) {
+                if(user != null){
                     //user is signed in
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
                     toastMessage("Successfully Signed In with: " + user.getEmail());
-                } else {
+                }else{
                     //user is signed out
                     Log.d(TAG, "onAuthStateChanged:signed_out");
                     toastMessage("Successfully Signed Out");
                 }
             }
+
+            private void toastMessage(String s) {
+            }
         };
-
-
-
-
 
         // Read from the database
         myRef.addValueEventListener(new ValueEventListener() {
@@ -100,6 +91,9 @@ public class attendance extends AppCompatActivity {
                 showData(dataSnapshot);
             }
 
+            private void showData(DataSnapshot dataSnapshot) {
+            }
+
             @Override
             public void onCancelled(DatabaseError error) {
                 // Failed to read value
@@ -107,121 +101,85 @@ public class attendance extends AppCompatActivity {
             }
         });
 
-        //applying functionality to back button
+        PlayerRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                Object value = dataSnapshot.getValue();
+                Log.d(TAG, "Value is: " + value);
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
+
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String player = playerInput.getText().toString().trim();
+                String date = dateInput.getText().toString().trim();
+                String present1 = "present";
+                String absent1 = "absent";
+
+                String id = "";
+                String id1 = (player);
+                String id2 = (date);
+                FirebaseUser user = mAuth.getCurrentUser();
+                id = user.getUid();
+
+                if(present.isChecked()){
+                    myRef.child(id).child("squad").child(id1).child("attendance").child(id2).setValue(present1);
+                }else if(absent.isChecked()){
+                    myRef.child(id).child("squad").child(id1).child("attendance").child(id2).setValue(absent1);
+                }
+
+
+
+                toastMessage("Updating player from player attendance.");
+
+                //resetting the data fields
+                playerInput.setText("");
+            }
+        });
+
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openMenuActivity();
+                backToMenu();
             }
         });
     }
 
-    private void openMenuActivity() {
-        Intent intent = new Intent(this, MenuActivity.class);
-        startActivity(intent);
+    @Override
+    public void onStart(){
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
     }
-
-
-
-
-    private void showData(DataSnapshot dataSnapshot) {
-
-        for (DataSnapshot ds : dataSnapshot.getChildren()) {
-            Player player1 = new Player();
-            Player player02 = new Player();
-            Player player03 = new Player();
-            Player player04 = new Player();
-            Player player05 = new Player();
-
-
-            String id0 = ("player" + 0);
-            String id1 = ("player" + num);
-            String id2 = ("player" + 2);
-            String id3 = ("player" + 3);
-            String id4 = ("player" + 4);
-
-
-
-//            player1.setName(ds.child(userID).child("squad").child(id0).getValue(Player.class).getName());
-//            displayRadioOne();
-//            //player1.setAge(ds.child(userID).child("squad").child(id1).getValue(Player.class).getAge());
-//            //player1.setPosition(ds.child(userID).child("squad").child(id1).getValue(Player.class).getPosition());
-//
-//            player02.setName(ds.child(userID).child("squad").child(id1).getValue(Player.class).getName());
-//            displayRadioTwo();
-//
-//            player03.setName(ds.child(userID).child("squad").child(id2).getValue(Player.class).getName());
-//            displayRadioThree();
-//
-//            player04.setName(ds.child(userID).child("squad").child(id3).getValue(Player.class).getName());
-//            displayRadioFour();
-//
-//            player05.setName(ds.child(userID).child("squad").child(id4).getValue(Player.class).getName());
-//            displayRadioFive();
-
-
-
-//            Log.d(TAG, "showData: name: " + player1.getName());
-//           // Log.d(TAG, "showData: age: " + player1.getAge());
-//           // Log.d(TAG, "showData: position: " + player1.getPosition());
-//
-//            ArrayList<String> array = new ArrayList<>();
-//            array.add(player1.getName());
-//            array.add(player02.getName());
-//            array.add(player03.getName());
-//            array.add(player04.getName());
-//            array.add(player05.getName());
-
-
-
-            //array.add(player1.getPosition());
-
-//            ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, array);
-//            players.setAdapter(adapter);
+    @Override
+    public void onStop(){
+        super.onStop();
+        if(mAuthListener != null){
+            mAuth.removeAuthStateListener(mAuthListener);
         }
     }
 
-
-
-    private void displayRadioFive() {
-
-        button5.setVisibility(View.VISIBLE);
-        button5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //add one to appearance
-                int counter =0;
-                String id = "";
-                FirebaseUser user = mAuth.getCurrentUser();
-                id = user.getUid();
-                //add one to counter when clicked
-                myRef.child(id).child("squad").child("player4").child("appearances").setValue(counter + 1);
-            }
-        });
+    /**
+     * customizable toast
+     * @param message
+     */
+    private void toastMessage(String message){
+        Toast.makeText(com.example.StatRack.attendance.this,message,Toast.LENGTH_SHORT).show();
     }
 
-    private void displayRadioFour() {
-        button4.setVisibility(View.VISIBLE);
+    public void backToMenu(){
+        Intent intent = new Intent(com.example.StatRack.attendance.this, MenuActivity.class);
+        startActivity(intent);
     }
 
-    private void displayRadioThree() {
-        button3.setVisibility(View.VISIBLE);
-    }
-
-    private void displayRadioTwo() {
-        button2.setVisibility(View.VISIBLE);
-    }
-
-    private void displayRadioOne() {
-        button1.setVisibility(View.VISIBLE);
-    }
-
-    private void toastMessage (String message){
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-    }
-
-    public void onStart() {
-
-        super.onStart();
-    }
 }

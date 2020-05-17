@@ -11,8 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TestSquadView"></activity>
+        <activity android:name=".test_splashpage"></activity>
         <activity android:name=".attendance" />
+        <activity android:name=".TestSquadView"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,7 +27,9 @@
         <activity android:name=".PlayerViewTest" />
         <activity android:name=".PlayerEdit" />
         <activity android:name=".PlayerDelete" />
+        <activity android:name=".PlayerEdit" />
         <activity android:name=".TestEventCreation" />
+        <activity android:name=".Calendar" />
         <activity android:name=".TestEventEdit" />
         <activity android:name=".EventViewTest" />
         <activity android:name=".TestEventDelete" />

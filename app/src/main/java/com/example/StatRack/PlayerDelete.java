@@ -34,7 +34,7 @@ public class PlayerDelete extends AppCompatActivity {
     private DatabaseReference myRef;
 
     int num;
-    private DatabaseReference NoteRef;
+    private DatabaseReference PlayerRef;
 
 
     @Override
@@ -54,7 +54,7 @@ public class PlayerDelete extends AppCompatActivity {
         FirebaseUser user = mAuth.getCurrentUser();
         String id = "";
         id = user.getUid();
-        NoteRef = myRef.child(id).child("squad");
+        PlayerRef = myRef.child(id).child("squad");
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -93,7 +93,7 @@ public class PlayerDelete extends AppCompatActivity {
             }
         });
 
-        NoteRef.addValueEventListener(new ValueEventListener() {
+        PlayerRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
@@ -123,7 +123,7 @@ public class PlayerDelete extends AppCompatActivity {
 
                 myRef.child(id).child("squad").child(id1).removeValue();
 
-                toastMessage("Deleting player from player list.");
+                toastMessage("Deleting player from players list.");
 
                 //resetting the data fields
                 playerInput.setText("");

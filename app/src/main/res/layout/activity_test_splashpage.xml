@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/landingpage"
+    tools:context=".test_splashpage">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/ic_newmenu"/>
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_gravity="center"
+        android:layout_width="170dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="10dp"
+        android:text="StatRack"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:textColor="#fff"
+        android:textSize="40sp" />
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="75dp"
+        android:columnCount="2"
+        android:rowCount="5">
+
+        <Button
+            android:id="@+id/createPlayerButton"
+            style="?android:textAppearanceSmall"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/buttoncurved_trans"
+            android:text="Create Player"
+            android:textColor="#FFFFFF"
+            android:textStyle="italic" />
+
+        <Button
+            android:id="@+id/viewPlayersButton"
+            style="?android:textAppearanceSmall"
+            android:layout_width="150dp"
+            android:background="@drawable/buttoncurved_trans"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="20dp"
+            android:text="View Player"
+            android:textColor="#FFFFFF"
+            android:textStyle="italic" />
+
+        <Button
+            android:id="@+id/createEventButton"
+            style="?android:textAppearanceSmall"
+            android:layout_width="150dp"
+            android:background="@drawable/buttoncurved_trans"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="16dp"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="15dp"
+            android:textStyle="italic"
+            android:text="Create Event" />
+
+        <Button
+            android:id="@+id/viewEventsButton"
+            android:layout_width="150dp"
+            style="?android:textAppearanceSmall"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/buttoncurved_trans"
+            android:text="View Event"
+            android:textColor="#FFFFFF"
+            android:textStyle="italic" />
+
+        <Button
+            android:id="@+id/createNote"
+            style="?android:textAppearanceSmall"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="16dp"
+            android:text="Create Note"
+            android:textColor="#FFFFFF"
+            android:textStyle="italic"
+            android:background="@drawable/buttoncurved_trans"/>
+
+        <Button
+            android:id="@+id/viewNote"
+            style="?android:textAppearanceSmall"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="16dp"
+            android:text="View Note"
+            android:textColor="#FFFFFF"
+            android:textStyle="italic"
+            android:background="@drawable/buttoncurved_trans"/>
+    </GridLayout>
+
+    <Button
+        android:id="@+id/signOut"
+        style="?android:textAppearanceSmall"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="Sign Out"
+        android:textColor="#FFFFFF"
+        android:textStyle="italic"
+        android:layout_marginBottom="25dp"
+        android:background="@drawable/buttoncurved_trans"/>
+
+</RelativeLayout>
