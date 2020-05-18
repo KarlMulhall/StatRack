@@ -41,7 +41,7 @@ public class EventViewTest extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_view);
 
-        list = (ListView) findViewById(R.id.playerInfo);
+        list = (ListView) findViewById(R.id.eventInfo);
         back = (Button) findViewById(R.id.backButton);
 
         // Initialize Firebase Auth

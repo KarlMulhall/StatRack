@@ -6,13 +6,15 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin">
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#FF6E04D7">
 
     <include
         android:id="@+id/playerAuthorLayout"
         layout="@layout/include_player_author"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
         android:layout_alignParentLeft="true" />
 
     <include
@@ -35,19 +37,35 @@
         android:layout_marginLeft="5dp"
         android:layout_marginTop="10dp" />
 
+
+    <TextView
+        android:id="@+id/commentsBanner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Comments:"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:layout_below="@+id/playerStatsLayout"
+        android:layout_marginTop="50dp"
+        android:textColor="@android:color/white"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
     <LinearLayout
         android:id="@+id/commentForm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_below="@+id/playerStatsLayout"
-        android:layout_marginTop="20dp"
+        android:layout_below="@+id/commentsBanner"
+        android:layout_marginTop="10dp"
         android:weightSum="1.0">
 
         <EditText
             android:id="@+id/fieldCommentText"
             android:layout_width="0dp"
             android:layout_weight="0.8"
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/white"
             android:layout_height="wrap_content"
             android:maxLines="1"
             android:hint="Write a comment..."/>
@@ -58,7 +76,8 @@
             android:layout_width="0dp"
             android:layout_weight="0.2"
             android:layout_height="wrap_content"
-            android:text="Post"/>
+            android:text="Post"
+            android:textColor="@android:color/white"/>
 
     </LinearLayout>
 
@@ -68,5 +87,19 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/commentForm"
         tools:listitem="@layout/item_comment" />
+
+
+
+    <Button
+        android:id="@+id/backToSquadHub"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="40dp"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:background="#FF954CFB"
+        android:text="Back"/>
 
 </RelativeLayout>

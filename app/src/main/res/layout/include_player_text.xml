@@ -14,6 +14,7 @@
         android:textColor="@android:color/white"
         android:maxLines="1"
         android:textStyle="bold"
+        android:textSize="20dp"
         tools:text="My First Player" />
 
     <TextView
@@ -22,6 +23,7 @@
         android:textColor="@android:color/white"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
+        android:textSize="20dp"
         tools:text="Position" />
 
 </LinearLayout>
