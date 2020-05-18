@@ -14,6 +14,8 @@
         <activity android:name=".test_splashpage"></activity>
         <activity android:name=".attendance" />
         <activity android:name=".TestSquadView"></activity>
+        <activity android:name=".TestSquadEdit"></activity>
+        <activity android:name=".TestNotesView"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,9 +27,7 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".TestPlayerCreation" />
         <activity android:name=".PlayerViewTest" />
-        <activity android:name=".PlayerEdit" />
         <activity android:name=".PlayerDelete" />
-        <activity android:name=".PlayerEdit" />
         <activity android:name=".TestEventCreation" />
         <activity android:name=".Calendar" />
         <activity android:name=".TestEventEdit" />
@@ -42,6 +42,9 @@
         <activity android:name=".MenuActivity" />
         <activity android:name=".NewPlayerActivity" />
         <activity android:name=".PlayerDetailActivity" />
+        <activity android:name=".PlayerDetailEditActivity" />
+        <activity android:name=".NewNoteActivity" />
+        <activity android:name=".NoteDetailActivity" />
     </application>
 
 </manifest>

@@ -17,7 +17,7 @@ public class MenuActivity extends AppCompatActivity {
 
     private static final String TAG = "MenuActivity";
 
-    private Button btnSignOut, editPlayer, deletePlayer, createPlayer, viewPlayers, createEvent, viewEvents, editEvent, deleteEvents,
+    private Button btnSignOut, deletePlayer, editPlayer, createPlayer, viewPlayers, createEvent, viewEvents, editEvent, deleteEvents,
             createNote, editNote, deleteNote, attendance, calendar;
 
     public String email;
@@ -32,8 +32,8 @@ public class MenuActivity extends AppCompatActivity {
 
         btnSignOut = (Button) findViewById(R.id.signOutButton);
         createPlayer = (Button) findViewById(R.id.createPlayerButton);
-        viewPlayers = (Button) findViewById(R.id.viewPlayersButton);
         editPlayer = (Button) findViewById(R.id.editPlayerButton);
+        viewPlayers = (Button) findViewById(R.id.viewPlayersButton);
         deletePlayer = (Button) findViewById(R.id.deletePlayersButton);
         createEvent = (Button) findViewById(R.id.createEventButton);
         editEvent = (Button) findViewById(R.id.editEventButton);
@@ -75,6 +75,14 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
+        editPlayer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openPlayerEdit();
+
+            }
+        });
+
         viewPlayers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -86,13 +94,6 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 openCalendar();
-            }
-        });
-
-        editPlayer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openEditPlayer();
             }
         });
 
@@ -209,6 +210,11 @@ public class MenuActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void openPlayerEdit(){
+        Intent intent = new Intent(MenuActivity.this, TestSquadEdit.class);
+        startActivity(intent);
+    }
+
     public void openPlayerDelete(){
         Intent intent = new Intent(MenuActivity.this, PlayerDelete.class);
         startActivity(intent);
@@ -221,11 +227,6 @@ public class MenuActivity extends AppCompatActivity {
 
     public void openCalendar(){
         Intent intent = new Intent(MenuActivity.this, Calendar.class);
-        startActivity(intent);
-    }
-
-    public void openEditPlayer(){
-        Intent intent = new Intent(MenuActivity.this, PlayerEdit.class);
         startActivity(intent);
     }
 
@@ -250,7 +251,7 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     public void openNoteCreation(){
-        Intent intent = new Intent(MenuActivity.this, NoteCreation.class);
+        Intent intent = new Intent(MenuActivity.this, TestNotesView.class);
         startActivity(intent);
     }
 

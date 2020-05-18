@@ -3,6 +3,7 @@ package com.example.StatRack;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.StatRack.databinding.ActivityPlayerEditBinding;
+import com.example.StatRack.databinding.ActivityPlayerDetailEditBinding;
 import com.example.StatRack.models.ChangedPlayer;
 import com.example.StatRack.models.Comment;
 import com.example.StatRack.models.Player;
@@ -28,31 +29,37 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class PlayerEdit extends AppCompatActivity implements View.OnClickListener {
+public class PlayerDetailEdit extends AppCompatActivity implements View.OnClickListener {
 
     public String getUid() {
         return FirebaseAuth.getInstance().getCurrentUser().getUid();
     }
 
-    private static final String TAG = "PlayerEdit";
+    private static final String TAG = "PlayerDetailEdit";
 
     public static final String EXTRA_PLAYER_KEY = "player_key";
 
     private DatabaseReference mPlayerReference;
     private DatabaseReference mCommentsReference;
+    private DatabaseReference mEditPositionReference;
+    private DatabaseReference mEditNameReference;
     private ValueEventListener mPlayerListener;
     private String mPlayerKey;
     private CommentAdapter mAdapter;
-    private ActivityPlayerEditBinding binding;
+    private ActivityPlayerDetailEditBinding binding;
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityPlayerEditBinding.inflate(getLayoutInflater());
+        binding = ActivityPlayerDetailEditBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        mDatabase = FirebaseDatabase.getInstance().getReference();
         // Get player key from intent
         mPlayerKey = getIntent().getStringExtra(EXTRA_PLAYER_KEY);
         if (mPlayerKey == null) {
@@ -62,15 +69,18 @@ public class PlayerEdit extends AppCompatActivity implements View.OnClickListene
         // Initialize Database
         mPlayerReference = FirebaseDatabase.getInstance().getReference()
                 .child(getUid()).child("squad").child(mPlayerKey);
+        mEditPositionReference = FirebaseDatabase.getInstance().getReference()
+                .child(getUid()).child("squad").child(mPlayerKey).child("position");
+        mEditNameReference = FirebaseDatabase.getInstance().getReference()
+                .child(getUid()).child("squad").child(mPlayerKey).child("name");
         mCommentsReference = FirebaseDatabase.getInstance().getReference()
                 .child(getUid()).child("player-comments").child(mPlayerKey);
 
         binding.buttonPlayerComment.setOnClickListener(this);
         binding.recyclerPlayerComments.setLayoutManager(new LinearLayoutManager(this));
-
         binding.buttonPlayerEdit.setOnClickListener(this);
-
     }
+
 
     @Override
     public void onStart() {
@@ -95,7 +105,7 @@ public class PlayerEdit extends AppCompatActivity implements View.OnClickListene
                 // Getting Player failed, log a message
                 Log.w(TAG, "loadPlayer:onCancelled", databaseError.toException());
                 // [START_EXCLUDE]
-                Toast.makeText(PlayerEdit.this, "Failed to load player.",
+                Toast.makeText(PlayerDetailEdit.this, "Failed to load player.",
                         Toast.LENGTH_SHORT).show();
                 // [END_EXCLUDE]
             }
@@ -129,7 +139,66 @@ public class PlayerEdit extends AppCompatActivity implements View.OnClickListene
         int i = v.getId();
         if (i == R.id.buttonPlayerComment) {
             playerComment();
+        } else if (i == R.id.buttonPlayerEdit){
+            playerEdit();
         }
+    }
+
+    private void playerEdit() {
+        final String name = binding.playerTextLayout.playerName.getText().toString();
+        final String position = binding.playerTextLayout.playerPosition.getText().toString();
+
+        // Disable button so there are no multi-players
+        Toast.makeText(this, "Uploading...", Toast.LENGTH_SHORT).show();
+
+        // [START single_value_read]
+        final String userId = getUid();
+        mDatabase.child("users").child(userId).addListenerForSingleValueEvent(
+                new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        // Get user value
+                        User user = dataSnapshot.getValue(User.class);
+
+                        // [START_EXCLUDE]
+                        if (user == null) {
+                            // User is null, error out
+                            Log.e(TAG, "User " + userId + " is unexpectedly null");
+                            Toast.makeText(PlayerDetailEdit.this,
+                                    "Error: could not fetch user.",
+                                    Toast.LENGTH_SHORT).show();
+                        } else {
+                            // Write new player
+                            writeEditPlayer(userId, user.username, name, position);
+                        }
+
+                        // Finish this Activity, back to the stream
+                        finish();
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        Log.w(TAG, "getUser:onCancelled", databaseError.toException());
+
+                    }
+                });
+    }
+
+    private void writeEditPlayer(String userId, String username, String name, String position) {
+        // Create new player at /user-players/$userid/$playerid and at
+        // /players/$playerid simultaneously
+        //String key = FirebaseDatabase.getInstance().getReference()
+//                .child(getUid()).child("squad").push().getKey();
+//        Player player = new Player(userId, username, name, position);
+//        Map<String, Object> playerValues = player.toMap();
+//
+//        Map<String, Object> childUpdates = new HashMap<>();
+//        childUpdates.put(mPlayerKey , playerValues);
+//
+//        mPlayerReference.updateChildren(childUpdates);
+        Player player = new Player(userId, username, name, position);
+        mEditNameReference.setValue(player.name);
+        mEditPositionReference.setValue(player.position);
     }
 
     private void playerComment() {

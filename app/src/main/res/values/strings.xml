@@ -23,4 +23,8 @@
 
     <string name="heading_squad">Squad</string>
     <string name="heading_my_top_players">Top Scorers</string>
+
+    <string name="heading_notes">Notes</string>
+    <string name="heading_my_top_notes">Top Notes</string>
+    <string name="lorem" />
 </resources>
