@@ -1,9 +1,7 @@
 package com.example.StatRack;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +14,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.StatRack.databinding.ActivityPlayerDetailEditBinding;
-import com.example.StatRack.models.ChangedPlayer;
 import com.example.StatRack.models.Comment;
 import com.example.StatRack.models.Player;
 import com.example.StatRack.models.User;
@@ -29,9 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class PlayerDetailEdit extends AppCompatActivity implements View.OnClickListener {
 

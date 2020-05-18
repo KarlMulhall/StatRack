@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".test_splashpage"></activity>
         <activity android:name=".attendance" />
-        <activity android:name=".TestSquadView"></activity>
+        <activity android:name=".SquadHubActivity"></activity>
         <activity android:name=".TestSquadEdit"></activity>
         <activity android:name=".TestNotesView"></activity>
         <activity android:name=".MainActivity">
@@ -42,7 +42,7 @@
         <activity android:name=".MenuActivity" />
         <activity android:name=".NewPlayerActivity" />
         <activity android:name=".PlayerDetailActivity" />
-        <activity android:name=".PlayerDetailEditActivity" />
+        <activity android:name=".PlayerDetailEdit" />
         <activity android:name=".NewNoteActivity" />
         <activity android:name=".NoteDetailActivity" />
     </application>

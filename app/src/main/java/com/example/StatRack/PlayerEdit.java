@@ -1,7 +1,6 @@
 package com.example.StatRack;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,7 +14,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.StatRack.databinding.ActivityPlayerEditBinding;
-import com.example.StatRack.models.ChangedPlayer;
 import com.example.StatRack.models.Comment;
 import com.example.StatRack.models.Player;
 import com.example.StatRack.models.User;

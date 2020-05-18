@@ -5,23 +5,35 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.example.StatRack.databinding.ActivitySquadViewBinding;
 import com.example.StatRack.fragment.MyPlayersFragment;
 import com.example.StatRack.fragment.MyTopPlayersFragment;
 
-public class TestSquadView extends AppCompatActivity {
+public class SquadHubActivity extends AppCompatActivity {
 
     private static final String TAG = "TestSquadView";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
+            Window w = getWindow();
+            w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        }
+
         ActivitySquadViewBinding binding = ActivitySquadViewBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        getSupportActionBar().hide();
 
         // Create the adapter that will return a fragment for each section
         FragmentPagerAdapter mPagerAdapter = new FragmentPagerAdapter(getSupportFragmentManager(),
@@ -58,7 +70,13 @@ public class TestSquadView extends AppCompatActivity {
         binding.newPlayer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(TestSquadView.this, NewPlayerActivity.class));
+                startActivity(new Intent(SquadHubActivity.this, NewPlayerActivity.class));
+            }
+        });
+        binding.backToMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                backToMenu();
             }
         });
     }
@@ -68,11 +86,11 @@ public class TestSquadView extends AppCompatActivity {
      * @param message
      */
     private void toastMessage(String message){
-        Toast.makeText(TestSquadView.this,message,Toast.LENGTH_SHORT).show();
+        Toast.makeText(SquadHubActivity.this,message,Toast.LENGTH_SHORT).show();
     }
 
     public void backToMenu(){
-        Intent intent = new Intent(TestSquadView.this, MenuActivity.class);
+        Intent intent = new Intent(SquadHubActivity.this, MenuActivity.class);
         startActivity(intent);
     }
 }

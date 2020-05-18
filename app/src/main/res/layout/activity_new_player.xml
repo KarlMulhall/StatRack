@@ -2,39 +2,77 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#FF954CFB">
+
+    <TextView
+        android:layout_margin="?actionBarSize"
+        android:id="@+id/newPlayerTitle"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:textSize="40sp"
+        android:textColor="@android:color/white"
+        android:text="Add New Player"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <EditText
         android:id="@+id/fieldName"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="?actionBarSize"
+        android:paddingStart="10dp"
         android:layout_marginBottom="5dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="16dp"
+        android:textColor="@android:color/white"
+        android:layout_below="@+id/newPlayerTitle"
+        android:background="@drawable/rounded_corner"
         android:hint="Name"
         android:maxLines="1" />
 
     <EditText
         android:id="@+id/fieldPosition"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="?actionBarSize"
         android:layout_below="@+id/fieldName"
+        android:paddingStart="10dp"
         android:layout_marginBottom="5dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="20dp"
         android:hint="Position"
+        android:textColor="@android:color/white"
+        android:background="@drawable/rounded_corner"
         android:inputType="textMultiLine"
         android:maxLines="10"
         android:scrollHorizontally="false" />
 
     <Button
+        android:paddingRight="20dp"
+        android:paddingLeft="20dp"
         android:id="@+id/submitPlayer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/fieldPosition"
+        android:layout_margin="40dp"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:background="@drawable/rounded_corner_button_purple"
+        android:text="Submit"/>
+
+    <Button
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_margin="16dp" />
+        android:layout_alignParentLeft="true"
+        android:layout_margin="40dp"
+        android:textStyle="bold"
+
+        android:textColor="@android:color/white"
+        android:background="@drawable/rounded_corner_button_purple"
+        android:text="back"/>
 
 </RelativeLayout>

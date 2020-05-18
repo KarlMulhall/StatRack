@@ -24,21 +24,12 @@
                 android:text="Welcome" />
 
             <Button
-                android:id="@+id/createPlayerButton"
-                style="?android:textAppearanceSmall"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Create Player"
-                android:textStyle="bold" />
-
-            <Button
                 android:id="@+id/viewPlayersButton"
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="View Players"
+                android:text="Squad Hub"
                 android:textStyle="bold" />
 
             <Button
@@ -47,7 +38,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Edit Player"
+                android:text="Edit Player Info"
                 android:textStyle="bold" />
 
             <Button

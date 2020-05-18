@@ -31,7 +31,6 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_menu);
 
         btnSignOut = (Button) findViewById(R.id.signOutButton);
-        createPlayer = (Button) findViewById(R.id.createPlayerButton);
         editPlayer = (Button) findViewById(R.id.editPlayerButton);
         viewPlayers = (Button) findViewById(R.id.viewPlayersButton);
         deletePlayer = (Button) findViewById(R.id.deletePlayersButton);
@@ -66,14 +65,6 @@ public class MenuActivity extends AppCompatActivity {
         };
 
         email = mAuth.getCurrentUser().getEmail();
-
-        createPlayer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openPlayerCreation();
-
-            }
-        });
 
         editPlayer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -205,11 +196,6 @@ public class MenuActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void openPlayerCreation(){
-        Intent intent = new Intent(MenuActivity.this, TestPlayerCreation.class);
-        startActivity(intent);
-    }
-
     public void openPlayerEdit(){
         Intent intent = new Intent(MenuActivity.this, TestSquadEdit.class);
         startActivity(intent);
@@ -221,7 +207,7 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     public void openViewPlayers(){
-        Intent intent = new Intent(MenuActivity.this, TestSquadView.class);
+        Intent intent = new Intent(MenuActivity.this, SquadHubActivity.class);
         startActivity(intent);
     }
 
