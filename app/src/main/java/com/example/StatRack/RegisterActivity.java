@@ -14,10 +14,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.StatRack.models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterActivity extends AppCompatActivity {
     //Message Tag
@@ -28,6 +32,7 @@ public class RegisterActivity extends AppCompatActivity {
     EditText regEmail, regPass;
 
     //Database
+    private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
 
     private Boolean validEmail()
@@ -95,6 +100,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         //Firebase Auth
         mAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         //If logged in send to main
         if (mAuth.getCurrentUser() != null)
@@ -136,6 +142,7 @@ public class RegisterActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful())
                         {
+                            onAuthSuccess(task.getResult().getUser());
                             toastMessage("Registration Completed!");
                             openMainActivity();
                         }
@@ -160,6 +167,27 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
+    private void onAuthSuccess(FirebaseUser user) {
+        String username = usernameFromEmail(user.getEmail());
+        writeNewUser(user.getUid(), username, user.getEmail());
+
+    }
+
+
+    private String usernameFromEmail(String email) {
+        if (email.contains("@")) {
+            return email.split("@")[0];
+        } else {
+            return email;
+        }
+    }
+
+    private void writeNewUser(String userId, String name, String email) {
+        User user = new User(name, email);
+
+        mDatabase.child("users").child(userId).setValue(user);
+    }
+
     private void toastMessage(String message){
         Toast.makeText(RegisterActivity.this,message,Toast.LENGTH_SHORT).show();
     }
@@ -172,5 +200,6 @@ public class RegisterActivity extends AppCompatActivity {
     public void openMainActivity(){
         Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
         startActivity(intent);
+        finish();
     }
 }

@@ -74,7 +74,7 @@ public class NewPlayerActivity extends AppCompatActivity {
 
         // [START single_value_read]
         final String userId = getUid();
-        mDatabase.child(userId).addListenerForSingleValueEvent(
+        mDatabase.child("users").child(userId).addListenerForSingleValueEvent(
                 new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
