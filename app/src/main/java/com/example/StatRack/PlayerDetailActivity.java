@@ -83,6 +83,11 @@ public class PlayerDetailActivity extends AppCompatActivity implements View.OnCl
                 binding.playerAuthorLayout.playerAuthor.setText(player.author);
                 binding.playerTextLayout.playerName.setText(player.name);
                 binding.playerTextLayout.playerPosition.setText(player.position);
+                binding.playerStatsLayout.playerAppearances.setText("Appearances: " + player.appearances);
+                binding.playerStatsLayout.playerGoals.setText("Goals: " + player.goals);
+                binding.playerStatsLayout.playerAssists.setText("Assists: " + player.assists);
+                binding.playerStatsLayout.playerYellowCards.setText("Yellow Cards: " + player.yCards);
+                binding.playerStatsLayout.playerRedCards.setText("Red Cards: " + player.rCards);
                 // [END_EXCLUDE]
             }
 

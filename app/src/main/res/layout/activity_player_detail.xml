@@ -25,12 +25,22 @@
         android:layout_marginLeft="5dp"
         android:layout_marginTop="10dp" />
 
+    <include
+        android:id="@+id/playerStatsLayout"
+        layout="@layout/include_player_stats"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/playerTextLayout"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp" />
+
     <LinearLayout
         android:id="@+id/commentForm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_below="@+id/playerTextLayout"
+        android:layout_below="@+id/playerStatsLayout"
         android:layout_marginTop="20dp"
         android:weightSum="1.0">
 
