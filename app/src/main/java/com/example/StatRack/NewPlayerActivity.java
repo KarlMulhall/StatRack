@@ -70,12 +70,11 @@ public class NewPlayerActivity extends AppCompatActivity {
             return;
         }
 
-        // Disable button so there are no multi-players
         Toast.makeText(this, "Uploading...", Toast.LENGTH_SHORT).show();
 
         // [START single_value_read]
         final String userId = getUid();
-        mDatabase.child("users").child(userId).addListenerForSingleValueEvent(
+        mDatabase.child(userId).addListenerForSingleValueEvent(
                 new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -91,7 +90,7 @@ public class NewPlayerActivity extends AppCompatActivity {
                                     Toast.LENGTH_SHORT).show();
                         } else {
                             // Write new player
-                            writeNewPlayer(userId, user.username, name, position);
+                            writeNewPlayer(userId, name, position);
                         }
 
                         // Finish this Activity, back to the stream
@@ -106,11 +105,10 @@ public class NewPlayerActivity extends AppCompatActivity {
                 });
     }
 
-    private void writeNewPlayer(String userId, String username, String name, String position) {
-        // Create new player at /user-players/$userid/$playerid and at
-        // /players/$playerid simultaneously
+    private void writeNewPlayer(String userId, String name, String position) {
+
         String key = mDatabase.child("squad").push().getKey();
-        Player player = new Player(userId, username, name, position);
+        Player player = new Player(userId, name, position);
         Map<String, Object> playerValues = player.toMap();
 
         Map<String, Object> childUpdates = new HashMap<>();

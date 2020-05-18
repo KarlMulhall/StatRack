@@ -11,7 +11,6 @@ public class Player
 {
 
     public String uid;
-    public String author;
     public String name;
     public String position;
     public int appearances = 0;
@@ -27,10 +26,9 @@ public class Player
         //empty constructor
     }
 
-    public Player(String uid, String author, String name, String position) {
+    public Player(String uid, String name, String position) {
 
         this.uid = uid;
-        this.author = author;
         this.name = name;
         this.position = position;
 
@@ -40,7 +38,6 @@ public class Player
     public Map<String, Object> toMap() {
         HashMap<String, Object> result = new HashMap<>();
         result.put("uid", uid);
-        result.put("author", author);
         result.put("name", name);
         result.put("position", position);
         result.put("appearances", appearances);

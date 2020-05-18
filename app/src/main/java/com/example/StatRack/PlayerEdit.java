@@ -84,7 +84,6 @@ public class PlayerEdit extends AppCompatActivity implements View.OnClickListene
                 // Get Player object and use the values to update the UI
                 Player player = dataSnapshot.getValue(Player.class);
                 // [START_EXCLUDE]
-                binding.playerAuthorLayout.playerAuthor.setText(player.author);
                 binding.playerTextLayout.playerName.setText(player.name);
                 binding.playerTextLayout.playerPosition.setText(player.position);
                 // [END_EXCLUDE]

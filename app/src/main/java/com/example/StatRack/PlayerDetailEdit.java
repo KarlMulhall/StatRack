@@ -94,7 +94,6 @@ public class PlayerDetailEdit extends AppCompatActivity implements View.OnClickL
                 // Get Player object and use the values to update the UI
                 Player player = dataSnapshot.getValue(Player.class);
                 // [START_EXCLUDE]
-                binding.playerAuthorLayout.playerAuthor.setText(player.author);
                 binding.playerTextLayout.playerName.setText(player.name);
                 binding.playerTextLayout.playerPosition.setText(player.position);
                 // [END_EXCLUDE]
@@ -169,7 +168,7 @@ public class PlayerDetailEdit extends AppCompatActivity implements View.OnClickL
                                     Toast.LENGTH_SHORT).show();
                         } else {
                             // Write new player
-                            writeEditPlayer(userId, user.username, name, position);
+                            writeEditPlayer(userId, name, position);
                         }
 
                         // Finish this Activity, back to the stream
@@ -184,7 +183,7 @@ public class PlayerDetailEdit extends AppCompatActivity implements View.OnClickL
                 });
     }
 
-    private void writeEditPlayer(String userId, String username, String name, String position) {
+    private void writeEditPlayer(String userId, String name, String position) {
         // Create new player at /user-players/$userid/$playerid and at
         // /players/$playerid simultaneously
         //String key = FirebaseDatabase.getInstance().getReference()
@@ -196,7 +195,7 @@ public class PlayerDetailEdit extends AppCompatActivity implements View.OnClickL
 //        childUpdates.put(mPlayerKey , playerValues);
 //
 //        mPlayerReference.updateChildren(childUpdates);
-        Player player = new Player(userId, username, name, position);
+        Player player = new Player(userId, name, position);
         mEditNameReference.setValue(player.name);
         mEditPositionReference.setValue(player.position);
     }
