@@ -27,4 +27,7 @@
     <string name="heading_notes">Notes</string>
     <string name="heading_my_top_notes">Top Notes</string>
     <string name="lorem" />
+    <string name="heading_events">Events</string>
+    <string name="heading_my_top_events">Top Events</string>
+    <string name="heading_note_list">Notes</string>
 </resources>

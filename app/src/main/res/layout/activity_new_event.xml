@@ -25,7 +25,7 @@
         android:textAlignment="center"
         android:textSize="40sp"
         android:textColor="@android:color/white"
-        android:text="Add New Note"
+        android:text="Add New Player"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -39,13 +39,13 @@
         android:layout_marginRight="16dp"
         android:layout_marginTop="16dp"
         android:textColor="@android:color/white"
-        android:layout_below="@+id/newNoteTitle"
+        android:layout_below="@+id/newPlayerTitle"
         android:background="@drawable/rounded_corner"
         android:hint="Title"
         android:maxLines="1" />
 
     <EditText
-        android:id="@+id/fieldDescription"
+        android:id="@+id/fieldLocation"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
         android:layout_below="@+id/fieldTitle"
@@ -54,7 +54,41 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="20dp"
-        android:hint="Description"
+        android:hint="Location"
+        android:textColor="@android:color/white"
+        android:background="@drawable/rounded_corner"
+        android:inputType="textMultiLine"
+        android:maxLines="10"
+        android:scrollHorizontally="false" />
+
+    <EditText
+        android:id="@+id/fieldDate"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:layout_below="@+id/fieldLocation"
+        android:paddingStart="10dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="20dp"
+        android:hint="Date"
+        android:textColor="@android:color/white"
+        android:background="@drawable/rounded_corner"
+        android:inputType="textMultiLine"
+        android:maxLines="10"
+        android:scrollHorizontally="false" />
+
+    <EditText
+        android:id="@+id/fieldTime"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:layout_below="@+id/fieldDate"
+        android:paddingStart="10dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="20dp"
+        android:hint="Time"
         android:textColor="@android:color/white"
         android:background="@drawable/rounded_corner"
         android:inputType="textMultiLine"
@@ -64,10 +98,10 @@
     <Button
         android:paddingRight="20dp"
         android:paddingLeft="20dp"
-        android:id="@+id/submitNote"
+        android:id="@+id/submitEvent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/fieldDescription"
+        android:layout_below="@+id/fieldTime"
         android:layout_margin="40dp"
         android:layout_centerHorizontal="true"
         android:textStyle="bold"

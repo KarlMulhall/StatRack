@@ -130,6 +130,17 @@
                 android:textStyle="bold" />
 
             <Button
+                android:id="@+id/viewNoteButton"
+                style="?android:textAppearanceSmall"
+                android:layout_width="match_parent"
+                android:background="@drawable/buttoncurved_trans"
+                android:textColor="@color/cardview_light_background"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Notes"
+                android:textStyle="bold" />
+
+            <Button
                 android:id="@+id/createNoteButton"
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"

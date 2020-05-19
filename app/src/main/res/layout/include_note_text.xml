@@ -5,21 +5,25 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
+    <EditText
         android:id="@+id/noteTitle"
         style="@style/TextAppearance.AppCompat.Medium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ellipsize="end"
+        android:textColor="@android:color/white"
         android:maxLines="1"
         android:textStyle="bold"
-        tools:text="My First Note" />
+        android:textSize="20dp"
+        tools:text="My First Player" />
 
-    <TextView
+    <EditText
         android:id="@+id/noteDescription"
         android:layout_width="wrap_content"
+        android:textColor="@android:color/white"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        tools:text="@string/lorem" />
+        android:textSize="20dp"
+        tools:text="Position" />
 
 </LinearLayout>

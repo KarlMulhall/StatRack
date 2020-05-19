@@ -18,7 +18,7 @@ public class MenuActivity extends AppCompatActivity {
     private static final String TAG = "MenuActivity";
 
     private Button btnSignOut, deletePlayer, editPlayer, createPlayer, viewPlayers, createEvent, viewEvents, editEvent, deleteEvents,
-            createNote, editNote, deleteNote, attendance, calendar;
+           viewNote, createNote, editNote, deleteNote, attendance, calendar;
 
     public String email;
 
@@ -38,6 +38,7 @@ public class MenuActivity extends AppCompatActivity {
         editEvent = (Button) findViewById(R.id.editEventButton);
         viewEvents = (Button) findViewById(R.id.viewEventsButton);
         deleteEvents = (Button) findViewById(R.id.deleteEventsButton);
+        viewNote = (Button) findViewById(R.id.viewNoteButton);
         createNote = (Button) findViewById(R.id.createNoteButton);
         editNote = (Button) findViewById(R.id.editNoteButton);
         deleteNote = (Button) findViewById(R.id.deleteNoteButton);
@@ -118,19 +119,10 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
-        editNote.setOnClickListener(new View.OnClickListener() {
+        viewNote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openNoteEdit();
-
-            }
-        });
-
-        deleteNote.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openNoteDelete();
-
+                openViewNote();
             }
         });
 
@@ -211,19 +203,15 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     public void openViewEvents(){
-        Intent intent = new Intent(MenuActivity.this, EventViewTest.class);
+        Intent intent = new Intent(MenuActivity.this, EventList.class);
         startActivity(intent);
     }
 
-    public void openNoteEdit(){
-        Intent intent = new Intent(MenuActivity.this, NoteEdit.class);
+    public void openViewNote(){
+        Intent intent = new Intent(MenuActivity.this, NoteList.class);
         startActivity(intent);
     }
 
-    public void openNoteDelete(){
-        Intent intent = new Intent(MenuActivity.this, NoteDelete.class);
-        startActivity(intent);
-    }
 
     public void openAttendance(){
         Intent intent = new Intent(MenuActivity.this, attendance.class);

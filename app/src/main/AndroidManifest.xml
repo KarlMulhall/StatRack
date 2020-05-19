@@ -14,6 +14,8 @@
         <activity android:name=".test_splashpage"></activity>
         <activity android:name=".attendance" />
         <activity android:name=".SquadHubActivity"></activity>
+        <activity android:name=".EventList"></activity>
+        <activity android:name=".NoteList"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,6 +23,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".NewEventActivity" />
+        <activity android:name=".EventDetailActivity" />
         <activity android:name=".loading" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".PlayerDelete" />
@@ -29,15 +33,14 @@
         <activity android:name=".TestEventEdit" />
         <activity android:name=".EventViewTest" />
         <activity android:name=".TestEventDelete" />
-        <activity android:name=".NoteCreation" />
-        <activity android:name=".NoteEdit" />
-        <activity android:name=".NoteDelete" />
         <activity android:name=".MatchLogCreate" />
         <activity android:name=".MatchLogEdit" />
         <activity android:name=".MatchLogDelete" />
         <activity android:name=".MenuActivity" />
         <activity android:name=".NewPlayerActivity" />
         <activity android:name=".PlayerDetailActivity" />
+        <activity android:name=".NewNoteActivity" />
+        <activity android:name=".NoteDetailActivity" />
     </application>
 
 </manifest>
