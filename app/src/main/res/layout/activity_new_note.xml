@@ -39,7 +39,7 @@
         android:layout_marginRight="16dp"
         android:layout_marginTop="16dp"
         android:textColor="@android:color/white"
-        android:layout_below="@+id/newNoteTitle"
+        android:layout_below="@+id/newPlayerTitle"
         android:background="@drawable/rounded_corner"
         android:hint="Title"
         android:maxLines="1" />
