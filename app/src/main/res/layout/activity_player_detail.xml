@@ -14,7 +14,6 @@
         layout="@layout/include_player_author"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
         android:layout_alignParentLeft="true" />
 
     <include
@@ -25,7 +24,7 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/playerAuthorLayout"
         android:layout_marginLeft="5dp"
-        android:layout_marginTop="10dp" />
+         />
 
     <include
         android:id="@+id/playerStatsLayout"
@@ -42,8 +41,10 @@
         style="?android:textAppearanceSmall"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginTop="160dp"
-        android:layout_marginLeft="250dp"
+        android:layout_below="@+id/playerTextLayout"
+        android:layout_toRightOf="@id/playerStatsLayout"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/buttoncurved_trans"
         android:text="+1"
         android:textColor="@color/cardview_light_background"
@@ -55,8 +56,10 @@
         style="?android:textAppearanceSmall"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginTop="160dp"
-        android:layout_marginLeft="290dp"
+        android:layout_below="@+id/playerTextLayout"
+        android:layout_toRightOf="@id/playerStatsLayout"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/buttoncurved_trans"
         android:text="-1"
         android:textColor="@color/cardview_light_background"
@@ -68,8 +71,10 @@
         style="?android:textAppearanceSmall"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginTop="190dp"
-        android:layout_marginLeft="250dp"
+        android:layout_below="@+id/plus1Ap"
+        android:layout_toRightOf="@id/playerStatsLayout"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/buttoncurved_trans"
         android:text="+1"
         android:textColor="@color/cardview_light_background"
@@ -81,8 +86,10 @@
         style="?android:textAppearanceSmall"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginTop="190dp"
-        android:layout_marginLeft="290dp"
+        android:layout_below="@+id/minus1Ap"
+        android:layout_toRightOf="@id/playerStatsLayout"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/buttoncurved_trans"
         android:text="-1"
         android:textColor="@color/cardview_light_background"
@@ -93,8 +100,10 @@
         style="?android:textAppearanceSmall"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginTop="225dp"
-        android:layout_marginLeft="250dp"
+        android:layout_below="@+id/plus1G"
+        android:layout_toRightOf="@id/playerStatsLayout"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/buttoncurved_trans"
         android:text="+1"
         android:textColor="@color/cardview_light_background"
@@ -105,8 +114,10 @@
         style="?android:textAppearanceSmall"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginTop="225dp"
-        android:layout_marginLeft="290dp"
+        android:layout_below="@+id/minus1G"
+        android:layout_toRightOf="@id/playerStatsLayout"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="150dp"
         android:background="@drawable/buttoncurved_trans"
         android:text="-1"
         android:textColor="@color/cardview_light_background"
@@ -117,8 +128,10 @@
         style="?android:textAppearanceSmall"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginTop="270dp"
-        android:layout_marginLeft="250dp"
+        android:layout_below="@+id/plus1As"
+        android:layout_toRightOf="@id/playerStatsLayout"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/buttoncurved_trans"
         android:text="+1"
         android:textColor="@color/cardview_light_background"
@@ -129,8 +142,10 @@
         style="?android:textAppearanceSmall"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginTop="270dp"
-        android:layout_marginLeft="290dp"
+        android:layout_below="@+id/minus1As"
+        android:layout_toRightOf="@id/playerStatsLayout"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="150dp"
         android:background="@drawable/buttoncurved_trans"
         android:text="-1"
         android:textColor="@color/cardview_light_background"
@@ -142,8 +157,10 @@
         style="?android:textAppearanceSmall"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginTop="310dp"
-        android:layout_marginLeft="250dp"
+        android:layout_below="@+id/plus1Y"
+        android:layout_toRightOf="@id/playerStatsLayout"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/buttoncurved_trans"
         android:text="+1"
         android:textColor="@color/cardview_light_background"
@@ -155,13 +172,42 @@
         style="?android:textAppearanceSmall"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginTop="310dp"
-        android:layout_marginLeft="290dp"
+        android:layout_below="@+id/minus1Y"
+        android:layout_toRightOf="@id/playerStatsLayout"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="150dp"
         android:background="@drawable/buttoncurved_trans"
         android:text="-1"
         android:textColor="@color/cardview_light_background"
         android:textSize="10dp"
         android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/buttonPlayerEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:textStyle="bold"
+        android:layout_below="@+id/playerStatsLayout"
+        android:textColor="#ddd"
+        android:background="#ddBD96FF"
+        android:text="Save Changes"/>
+
+    <Button
+        android:id="@+id/buttonPlayerDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_below="@+id/playerStatsLayout"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_toRightOf="@+id/buttonPlayerEdit"
+        android:textStyle="bold"
+        android:textColor="#ddd"
+        android:background="#ddBD96FF"
+        android:text="Delete"/>
 
     <TextView
         android:id="@+id/commentsBanner"
@@ -170,8 +216,7 @@
         android:text="Comments:"
         android:textAlignment="center"
         android:textAllCaps="false"
-        android:layout_below="@+id/playerStatsLayout"
-        android:layout_marginTop="50dp"
+        android:layout_below="@+id/buttonPlayerEdit"
         android:textColor="@android:color/white"
         android:textSize="25sp"
         android:textStyle="bold" />
@@ -182,7 +227,6 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_below="@+id/commentsBanner"
-        android:layout_marginTop="10dp"
         android:weightSum="1.0">
 
         <EditText
@@ -204,29 +248,7 @@
             android:text="Post"
             android:textColor="@android:color/white"/>
 
-        <Button
-            android:id="@+id/buttonPlayerEdit"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginBottom="40dp"
-            android:textStyle="bold"
-            android:textColor="@android:color/white"
-            android:background="#FF954CFB"
-            android:text="Save Changes"/>
 
-        <Button
-            android:id="@+id/buttonPlayerDelete"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginBottom="40dp"
-            android:textStyle="bold"
-            android:textColor="@android:color/white"
-            android:background="#FF954CFB"
-            android:text="Delete"/>
 
     </LinearLayout>
 
@@ -242,11 +264,11 @@
         android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
         android:layout_marginBottom="40dp"
         android:textStyle="bold"
-        android:textColor="@android:color/white"
-        android:background="#FF954CFB"
+        android:textColor="#ddd"
+        android:background="#ddBD96FF"
         android:text="Back"/>
 
 </RelativeLayout>
