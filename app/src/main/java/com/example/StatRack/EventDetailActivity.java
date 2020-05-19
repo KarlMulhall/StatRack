@@ -1,11 +1,15 @@
 package com.example.StatRack;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,9 +17,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.StatRack.databinding.ActivityPlayerEditBinding;
+import com.example.StatRack.databinding.ActivityEventDetailBinding;
 import com.example.StatRack.models.Comment;
-import com.example.StatRack.models.Player;
+import com.example.StatRack.models.Event;
 import com.example.StatRack.models.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
@@ -28,93 +32,126 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PlayerEdit extends AppCompatActivity implements View.OnClickListener {
+public class EventDetailActivity extends AppCompatActivity implements View.OnClickListener {
 
     public String getUid() {
         return FirebaseAuth.getInstance().getCurrentUser().getUid();
     }
 
-    private static final String TAG = "PlayerEdit";
+    private static final String TAG = "EventDetailActivity";
 
-    public static final String EXTRA_PLAYER_KEY = "player_key";
+    public static final String EXTRA_EVENT_KEY = "event_key";
 
-    private DatabaseReference mPlayerReference;
+    private DatabaseReference mEventReference;
     private DatabaseReference mCommentsReference;
-    private ValueEventListener mPlayerListener;
-    private String mPlayerKey;
+    private DatabaseReference mEditLocationReference;
+    private DatabaseReference mEditTitleReference;
+    private DatabaseReference mEditDateReference;
+    private DatabaseReference mEditTimeReference;
+    private ValueEventListener mEventListener;
+    private String mEventKey;
     private CommentAdapter mAdapter;
-    private ActivityPlayerEditBinding binding;
+    private ActivityEventDetailBinding binding;
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityPlayerEditBinding.inflate(getLayoutInflater());
+
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
+            Window w = getWindow();
+            w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        }
+
+        binding = ActivityEventDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // Get player key from intent
-        mPlayerKey = getIntent().getStringExtra(EXTRA_PLAYER_KEY);
-        if (mPlayerKey == null) {
-            throw new IllegalArgumentException("Must pass EXTRA_PLAYER_KEY");
+        getSupportActionBar().hide();
+
+        // Get event key from intent
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        // Get event key from intent
+        mEventKey = getIntent().getStringExtra(EXTRA_EVENT_KEY);
+        if (mEventKey == null) {
+            throw new IllegalArgumentException("Must pass EXTRA_EVENT_KEY");
         }
 
         // Initialize Database
-        mPlayerReference = FirebaseDatabase.getInstance().getReference()
-                .child(getUid()).child("squad").child(mPlayerKey);
+        // Initialize Database
+        mEventReference = FirebaseDatabase.getInstance().getReference()
+                .child(getUid()).child("events").child(mEventKey);
+        mEditLocationReference = FirebaseDatabase.getInstance().getReference()
+                .child(getUid()).child("events").child(mEventKey).child("location");
+        mEditTitleReference = FirebaseDatabase.getInstance().getReference()
+                .child(getUid()).child("events").child(mEventKey).child("title");
+        mEditDateReference = FirebaseDatabase.getInstance().getReference()
+                .child(getUid()).child("events").child(mEventKey).child("date");
+        mEditTitleReference = FirebaseDatabase.getInstance().getReference()
+                .child(getUid()).child("events").child(mEventKey).child("time");
         mCommentsReference = FirebaseDatabase.getInstance().getReference()
-                .child(getUid()).child("player-comments").child(mPlayerKey);
+                .child(getUid()).child("event-comments").child(mEventKey);
 
-        binding.buttonPlayerComment.setOnClickListener(this);
-        binding.recyclerPlayerComments.setLayoutManager(new LinearLayoutManager(this));
-
-        binding.buttonPlayerEdit.setOnClickListener(this);
-
+        binding.buttonEventComment.setOnClickListener(this);
+        binding.recyclerEventComments.setLayoutManager(new LinearLayoutManager(this));
+        binding.buttonEventEdit.setOnClickListener(this);
+        binding.buttonEventDelete.setOnClickListener(this);
     }
 
     @Override
     public void onStart() {
         super.onStart();
 
-        // Add value event listener to the player
-        // [START player_value_event_listener]
-        ValueEventListener playerListener = new ValueEventListener() {
+        // Add value event listener to the event
+        // [START event_value_event_listener]
+        ValueEventListener eventListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                // Get Player object and use the values to update the UI
-                Player player = dataSnapshot.getValue(Player.class);
+                // Get Event object and use the values to update the UI
+                Event event = dataSnapshot.getValue(Event.class);
                 // [START_EXCLUDE]
-                binding.playerTextLayout.playerName.setText(player.name);
-                binding.playerTextLayout.playerPosition.setText(player.position);
+                binding.eventTextLayout.eventTitle.setText(event.title);
+                binding.eventTextLayout.eventLocation.setText(event.location);
+                binding.eventTextLayout.eventDate.setText(event.date);
+                binding.eventTextLayout.eventTime.setText(event.time);
                 // [END_EXCLUDE]
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                // Getting Player failed, log a message
-                Log.w(TAG, "loadPlayer:onCancelled", databaseError.toException());
+                // Getting Event failed, log a message
+                Log.w(TAG, "loadEvent:onCancelled", databaseError.toException());
                 // [START_EXCLUDE]
-                Toast.makeText(PlayerEdit.this, "Failed to load player.",
+                Toast.makeText(EventDetailActivity.this, "Failed to load event.",
                         Toast.LENGTH_SHORT).show();
                 // [END_EXCLUDE]
             }
         };
-        mPlayerReference.addValueEventListener(playerListener);
-        // [END player_value_event_listener]
+        mEventReference.addValueEventListener(eventListener);
+        // [END event_value_event_listener]
 
-        // Keep copy of player listener so we can remove it when app stops
-        mPlayerListener = playerListener;
+        // Keep copy of event listener so we can remove it when app stops
+        mEventListener = eventListener;
+
+        binding.backToEventList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                backToEventList();
+            }
+        });
 
         // Listen for comments
         mAdapter = new CommentAdapter(this, mCommentsReference);
-        binding.recyclerPlayerComments.setAdapter(mAdapter);
+        binding.recyclerEventComments.setAdapter(mAdapter);
     }
 
     @Override
     public void onStop() {
         super.onStop();
 
-        // Remove player value event listener
-        if (mPlayerListener != null) {
-            mPlayerReference.removeEventListener(mPlayerListener);
+        // Remove event value event listener
+        if (mEventListener != null) {
+            mEventReference.removeEventListener(mEventListener);
         }
 
         // Clean up comments listener
@@ -124,12 +161,75 @@ public class PlayerEdit extends AppCompatActivity implements View.OnClickListene
     @Override
     public void onClick(View v) {
         int i = v.getId();
-        if (i == R.id.buttonPlayerComment) {
-            playerComment();
+        if (i == R.id.buttonEventComment) {
+            eventComment();
+        }else if (i == R.id.buttonEventEdit){
+            eventEdit();
+        }else if (i == R.id.buttonEventDelete){
+            eventDelete();
         }
     }
 
-    private void playerComment() {
+    private void eventDelete(){
+        mEventReference.removeValue();
+    }
+
+    private void eventEdit() {
+        final String title = binding.eventTextLayout.eventTitle.getText().toString();
+        final String location = binding.eventTextLayout.eventLocation.getText().toString();
+        final String date = binding.eventTextLayout.eventDate.getText().toString();
+        final String time = binding.eventTextLayout.eventTime.getText().toString();
+
+        // Disable button so there are no multi-events
+        Toast.makeText(this, "Uploading...", Toast.LENGTH_SHORT).show();
+
+        // [START single_value_read]
+        final String userId = getUid();
+        mDatabase.child("users").child(userId).addListenerForSingleValueEvent(
+                new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        // Get user value
+                        User user = dataSnapshot.getValue(User.class);
+
+                        // [START_EXCLUDE]
+                        if (user == null) {
+                            // User is null, error out
+                            Log.e(TAG, "User " + userId + " is unexpectedly null");
+                            Toast.makeText(EventDetailActivity.this,
+                                    "Error: could not fetch user.",
+                                    Toast.LENGTH_SHORT).show();
+                        } else {
+                            // Write new event
+                            writeEditEvent(userId, title, location, date, time);
+                        }
+
+                        // Finish this Activity, back to the stream
+                        finish();
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        Log.w(TAG, "getUser:onCancelled", databaseError.toException());
+
+                    }
+                });
+    }
+
+    private void writeEditEvent(String userId, String title, String location, String date, String time) {
+        Event event = new Event(userId, title, location, date, time);
+        mEditTitleReference.setValue(event.title);
+        mEditLocationReference.setValue(event.location);
+        mEditDateReference.setValue(event.date);
+        mEditTimeReference.setValue(event.time);
+    }
+
+    public void backToEventList(){
+        Intent intent = new Intent(EventDetailActivity.this, EventList.class);
+        startActivity(intent);
+    }
+
+    private void eventComment() {
         final String uid = getUid();
         FirebaseDatabase.getInstance().getReference().child("users").child(uid)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
@@ -260,7 +360,7 @@ public class PlayerEdit extends AppCompatActivity implements View.OnClickListene
 
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
-                    Log.w(TAG, "playerComments:onCancelled", databaseError.toException());
+                    Log.w(TAG, "eventComments:onCancelled", databaseError.toException());
                     Toast.makeText(mContext, "Failed to load comments.",
                             Toast.LENGTH_SHORT).show();
                 }

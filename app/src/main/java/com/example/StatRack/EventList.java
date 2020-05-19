@@ -5,34 +5,43 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 
-import com.example.StatRack.databinding.ActivitySquadEditBinding;
-import com.example.StatRack.fragment.MyPlayersFragment;
-import com.example.StatRack.fragment.MyTopPlayersFragment;
+import com.example.StatRack.databinding.ActivityEventListBinding;
+import com.example.StatRack.fragment.MyEventsFragment;
 
-public class TestSquadEdit extends AppCompatActivity {
+public class EventList extends AppCompatActivity {
 
-    private static final String TAG = "TestSquadEdit";
+    private static final String TAG = "EventList";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ActivitySquadEditBinding binding = ActivitySquadEditBinding.inflate(getLayoutInflater());
+
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
+            Window w = getWindow();
+            w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        }
+
+        ActivityEventListBinding binding = ActivityEventListBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        getSupportActionBar().hide();
 
         // Create the adapter that will return a fragment for each section
         FragmentPagerAdapter mPagerAdapter = new FragmentPagerAdapter(getSupportFragmentManager(),
                 FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
             private final Fragment[] mFragments = new Fragment[]{
-                    new MyPlayersFragment(),
-                    new MyTopPlayersFragment(),
+                    new MyEventsFragment(),
             };
             private final String[] mFragmentNames = new String[]{
-                    getString(R.string.heading_squad),
-                    getString(R.string.heading_my_top_players)
+                    getString(R.string.heading_events),
             };
 
             @Override
@@ -55,10 +64,16 @@ public class TestSquadEdit extends AppCompatActivity {
         binding.tabs.setupWithViewPager(binding.container);
 
         // Button launches NewPlayerActivity
-        binding.newPlayer.setOnClickListener(new View.OnClickListener() {
+        binding.newEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(TestSquadEdit.this, NewPlayerActivity.class));
+                startActivity(new Intent(EventList.this, NewEventActivity.class));
+            }
+        });
+        binding.backToMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                backToMenu();
             }
         });
     }
@@ -68,11 +83,11 @@ public class TestSquadEdit extends AppCompatActivity {
      * @param message
      */
     private void toastMessage(String message){
-        Toast.makeText(TestSquadEdit.this,message,Toast.LENGTH_SHORT).show();
+        Toast.makeText(EventList.this,message,Toast.LENGTH_SHORT).show();
     }
 
     public void backToMenu(){
-        Intent intent = new Intent(TestSquadEdit.this, MenuActivity.class);
+        Intent intent = new Intent(EventList.this, MenuActivity.class);
         startActivity(intent);
     }
 }

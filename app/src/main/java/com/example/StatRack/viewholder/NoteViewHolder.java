@@ -12,20 +12,24 @@ import com.example.StatRack.models.Note;
 public class NoteViewHolder extends RecyclerView.ViewHolder {
 
     public TextView titleView;
-    public TextView authorView;
+    public ImageView starView;
+    public TextView numStarsView;
     public TextView descriptionView;
 
     public NoteViewHolder(View itemView) {
         super(itemView);
 
         titleView = itemView.findViewById(R.id.noteTitle);
-        authorView = itemView.findViewById(R.id.noteAuthor);
+        starView = itemView.findViewById(R.id.star);
+        numStarsView = itemView.findViewById(R.id.noteNumStars);
         descriptionView = itemView.findViewById(R.id.noteDescription);
     }
 
     public void bindToNote(Note note, View.OnClickListener starClickListener) {
         titleView.setText(note.title);
-        authorView.setText(note.author);
+        numStarsView.setText(String.valueOf(note.starCount));
         descriptionView.setText(note.description);
+
+        starView.setOnClickListener(starClickListener);
     }
 }

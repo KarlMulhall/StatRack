@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <EditText
-        android:id="@+id/playerName"
+        android:id="@+id/eventTitle"
         style="@style/TextAppearance.AppCompat.Medium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -15,15 +15,36 @@
         android:maxLines="1"
         android:textStyle="bold"
         android:textSize="20dp"
-        tools:text="My First Player" />
+        tools:text="My First Event" />
 
     <EditText
-        android:id="@+id/playerPosition"
+        android:id="@+id/eventLocation"
         android:layout_width="wrap_content"
         android:textColor="@android:color/white"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:textSize="20dp"
-        tools:text="Position" />
+        tools:text="Location" />
+
+    <EditText
+        android:id="@+id/eventDate"
+        style="@style/TextAppearance.AppCompat.Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:textColor="@android:color/white"
+        android:maxLines="1"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        tools:text="Date" />
+
+    <EditText
+        android:id="@+id/eventTime"
+        android:layout_width="wrap_content"
+        android:textColor="@android:color/white"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textSize="20dp"
+        tools:text="Time" />
 
 </LinearLayout>

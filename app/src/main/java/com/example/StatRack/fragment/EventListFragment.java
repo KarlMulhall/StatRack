@@ -11,10 +11,10 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.StatRack.NoteDetailActivity;
+import com.example.StatRack.EventDetailActivity;
 import com.example.StatRack.R;
-import com.example.StatRack.models.Note;
-import com.example.StatRack.viewholder.NoteViewHolder;
+import com.example.StatRack.models.Event;
+import com.example.StatRack.viewholder.EventViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,27 +26,27 @@ import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.Transaction;
 
-public abstract class NoteListFragment extends Fragment {
+public abstract class EventListFragment extends Fragment {
 
-    private static final String TAG = "NoteListFragment";
+    private static final String TAG = "EventListFragment";
 
     private DatabaseReference mDatabase;
 
-    private FirebaseRecyclerAdapter<Note, NoteViewHolder> mAdapter;
+    private FirebaseRecyclerAdapter<Event, EventViewHolder> mAdapter;
     private RecyclerView mRecycler;
     private LinearLayoutManager mManager;
 
-    public NoteListFragment() {}
+    public EventListFragment() {}
 
     @Override
     public View onCreateView (LayoutInflater inflater, ViewGroup container,
                               Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        View rootView = inflater.inflate(R.layout.fragment_all_notes, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_all_events, container, false);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        mRecycler = rootView.findViewById(R.id.noteList);
+        mRecycler = rootView.findViewById(R.id.eventList);
         mRecycler.setHasFixedSize(true);
 
         return rootView;
@@ -63,52 +63,52 @@ public abstract class NoteListFragment extends Fragment {
         mRecycler.setLayoutManager(mManager);
 
         // Set up FirebaseRecyclerAdapter with the Query
-        Query notesQuery = getQuery(mDatabase);
+        Query eventsQuery = getQuery(mDatabase);
 
-        FirebaseRecyclerOptions options = new FirebaseRecyclerOptions.Builder<Note>()
-                .setQuery(notesQuery, Note.class)
+        FirebaseRecyclerOptions options = new FirebaseRecyclerOptions.Builder<Event>()
+                .setQuery(eventsQuery, Event.class)
                 .build();
 
-        mAdapter = new FirebaseRecyclerAdapter<Note, NoteViewHolder>(options) {
+        mAdapter = new FirebaseRecyclerAdapter<Event, EventViewHolder>(options) {
 
             @Override
-            public NoteViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+            public EventViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
                 LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
-                return new NoteViewHolder(inflater.inflate(R.layout.item_note, viewGroup, false));
+                return new EventViewHolder(inflater.inflate(R.layout.item_event, viewGroup, false));
             }
 
             @Override
-            protected void onBindViewHolder(NoteViewHolder viewHolder, int position, final Note model) {
-                final DatabaseReference noteRef = getRef(position);
+            protected void onBindViewHolder(EventViewHolder viewHolder, int position, final Event model) {
+                final DatabaseReference eventRef = getRef(position);
 
                 // Set click listener for the whole player view
-                final String noteKey = noteRef.getKey();
+                final String eventKey = eventRef.getKey();
                 viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        // Launch PlayerDetailActivity
-                        Intent intent = new Intent(getActivity(), NoteDetailActivity.class);
-                        intent.putExtra(NoteDetailActivity.EXTRA_NOTE_KEY, noteKey);
+                        // Launch EventDetailActivity
+                        Intent intent = new Intent(getActivity(), EventDetailActivity.class);
+                        intent.putExtra(EventDetailActivity.EXTRA_EVENT_KEY, eventKey);
                         startActivity(intent);
                     }
                 });
 
-                // Determine if the current user has liked this player and set UI accordingly
+                // Determine if the current user has liked this event and set UI accordingly
                 if (model.stars.containsKey(getUid())) {
                     viewHolder.starView.setImageResource(R.drawable.ic_toggle_star_24);
                 } else {
                     viewHolder.starView.setImageResource(R.drawable.ic_toggle_star_outline_24);
                 }
 
-                // Bind Player to ViewHolder, setting OnClickListener for the star button
-                viewHolder.bindToNote(model, new View.OnClickListener() {
+                // Bind Event to ViewHolder, setting OnClickListener for the star button
+                viewHolder.bindToEvent(model, new View.OnClickListener() {
                     @Override
                     public void onClick(View starView) {
-                        // Need to write to both places the player is stored
-                        DatabaseReference AllNotesRef = mDatabase.child(model.uid).child("notelist").child(noteRef.getKey());
+                        // Need to write to both places the event is stored
+                        DatabaseReference AllEventsRef = mDatabase.child(model.uid).child("events").child(eventRef.getKey());
 
                         // Run two transactions
-                        onStarClicked(AllNotesRef);
+                        onStarClicked(AllEventsRef);
                     }
                 });
             }
@@ -117,27 +117,27 @@ public abstract class NoteListFragment extends Fragment {
     }
 
     // [START player_stars_transaction]
-    private void onStarClicked(DatabaseReference noteRef) {
-        noteRef.runTransaction(new Transaction.Handler() {
+    private void onStarClicked(DatabaseReference eventRef) {
+        eventRef.runTransaction(new Transaction.Handler() {
             @Override
             public Transaction.Result doTransaction(MutableData mutableData) {
-                Note n = mutableData.getValue(Note.class);
-                if (n == null) {
+                Event p = mutableData.getValue(Event.class);
+                if (p == null) {
                     return Transaction.success(mutableData);
                 }
 
-                if (n.stars.containsKey(getUid())) {
-                    // Unstar the player and remove self from stars
-                    n.starCount = n.starCount - 1;
-                    n.stars.remove(getUid());
+                if (p.stars.containsKey(getUid())) {
+                    // Unstar the event and remove self from stars
+                    p.starCount = p.starCount - 1;
+                    p.stars.remove(getUid());
                 } else {
-                    // Star the player and add self to stars
-                    n.starCount = n.starCount + 1;
-                    n.stars.put(getUid(), true);
+                    // Star the event and add self to stars
+                    p.starCount = p.starCount + 1;
+                    p.stars.put(getUid(), true);
                 }
 
                 // Set value and report transaction success
-                mutableData.setValue(n);
+                mutableData.setValue(p);
                 return Transaction.success(mutableData);
             }
 
@@ -145,11 +145,11 @@ public abstract class NoteListFragment extends Fragment {
             public void onComplete(DatabaseError databaseError, boolean committed,
                                    DataSnapshot currentData) {
                 // Transaction completed
-                Log.d(TAG, "playerTransaction:onComplete:" + databaseError);
+                Log.d(TAG, "eventTransaction:onComplete:" + databaseError);
             }
         });
     }
-    // [END player_stars_transaction]
+    // [END event_stars_transaction]
 
 
     @Override

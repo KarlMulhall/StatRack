@@ -11,8 +11,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.StatRack.databinding.ActivityNewNoteBinding;
-import com.example.StatRack.models.Note;
+import com.example.StatRack.databinding.ActivityNewEventBinding;
+import com.example.StatRack.models.Event;
 import com.example.StatRack.models.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -24,20 +24,20 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.HashMap;
 import java.util.Map;
 
-public class NewNoteActivity extends AppCompatActivity {
+public class NewEventActivity extends AppCompatActivity {
 
     public String getUid() {
         return FirebaseAuth.getInstance().getCurrentUser().getUid();
     }
 
-    private static final String TAG = "NewNoteActivity";
+    private static final String TAG = "NewEventActivity";
     private static final String REQUIRED = "Required";
 
     // [START declare_database_ref]
     private DatabaseReference mDatabase;
     // [END declare_database_ref]
 
-    private ActivityNewNoteBinding binding;
+    private ActivityNewEventBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +50,7 @@ public class NewNoteActivity extends AppCompatActivity {
             w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         }
 
-        binding = ActivityNewNoteBinding.inflate(getLayoutInflater());
+        binding = ActivityNewEventBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         getSupportActionBar().hide();
@@ -59,10 +59,10 @@ public class NewNoteActivity extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         // [END initialize_database_ref]
 
-        binding.submitNote.setOnClickListener(new View.OnClickListener() {
+        binding.submitEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                submitNote();
+                submitEvent();
             }
         });
 
@@ -74,9 +74,11 @@ public class NewNoteActivity extends AppCompatActivity {
         });
     }
 
-    private void submitNote() {
+    private void submitEvent() {
         final String title = binding.fieldTitle.getText().toString();
-        final String description = binding.fieldDescription.getText().toString();
+        final String location = binding.fieldLocation.getText().toString();
+        final String date = binding.fieldDate.getText().toString();
+        final String time = binding.fieldTime.getText().toString();
 
         // Title is required
         if (TextUtils.isEmpty(title)) {
@@ -85,8 +87,19 @@ public class NewNoteActivity extends AppCompatActivity {
         }
 
         // Body is required
-        if (TextUtils.isEmpty(description)) {
-            binding.fieldDescription.setError(REQUIRED);
+        if (TextUtils.isEmpty(location)) {
+            binding.fieldLocation.setError(REQUIRED);
+            return;
+        }
+
+        if (TextUtils.isEmpty(date)) {
+            binding.fieldDate.setError(REQUIRED);
+            return;
+        }
+
+        // Body is required
+        if (TextUtils.isEmpty(time)) {
+            binding.fieldTime.setError(REQUIRED);
             return;
         }
 
@@ -105,12 +118,12 @@ public class NewNoteActivity extends AppCompatActivity {
                         if (user == null) {
                             // User is null, error out
                             Log.e(TAG, "User " + userId + " is unexpectedly null");
-                            Toast.makeText(NewNoteActivity.this,
+                            Toast.makeText(NewEventActivity.this,
                                     "Error: could not fetch user.",
                                     Toast.LENGTH_SHORT).show();
                         } else {
                             // Write new player
-                            writeNewNote(userId, title, description);
+                            writeNewEvent(userId, title, location, date, time);
                         }
 
                         // Finish this Activity, back to the stream
@@ -125,14 +138,14 @@ public class NewNoteActivity extends AppCompatActivity {
                 });
     }
 
-    private void writeNewNote(String userId, String title, String description) {
+    private void writeNewEvent(String userId, String title, String location, String date, String time) {
 
-        String key = mDatabase.child("notelist").push().getKey();
-        Note note = new Note(userId, title, description);
-        Map<String, Object> noteValues = note.toMap();
+        String key = mDatabase.child("events").push().getKey();
+        Event event = new Event(userId, title, location, date, time);
+        Map<String, Object> eventValues = event.toMap();
 
         Map<String, Object> childUpdates = new HashMap<>();
-        childUpdates.put(userId + "/notelist/" + "/" + key, noteValues);
+        childUpdates.put(userId + "/events/" + "/" + key, eventValues);
 
         mDatabase.updateChildren(childUpdates);
     }
@@ -141,4 +154,3 @@ public class NewNoteActivity extends AppCompatActivity {
         finish();
     }
 }
-
