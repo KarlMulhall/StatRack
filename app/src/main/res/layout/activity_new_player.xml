@@ -6,6 +6,19 @@
     android:background="#FF954CFB">
 
     <TextView
+        android:id="@+id/title"
+        android:layout_gravity="center"
+        android:layout_width="170dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:text="StatRack"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:textColor="#fff"
+        android:textSize="40sp" />
+
+    <TextView
         android:layout_margin="?actionBarSize"
         android:id="@+id/newPlayerTitle"
         android:textStyle="bold"

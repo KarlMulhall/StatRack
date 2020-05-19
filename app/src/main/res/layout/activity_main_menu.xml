@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/landingpage"
     tools:context=".MenuActivity">
 
     <ScrollView
@@ -14,20 +15,39 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            android:padding="35dp">
+
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_gravity="center"
+                android:layout_width="170dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
+                android:text="StatRack"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"
+                android:textColor="#fff"
+                android:textSize="40sp" />
 
 
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Welcome" />
+                android:text="Welcome to StatRack."
+                android:textSize="16dp"
+                android:textColor="@color/cardview_light_background"/>
 
             <Button
                 android:id="@+id/viewPlayersButton"
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/buttoncurved_trans"
+                android:textColor="@color/cardview_light_background"
                 android:layout_marginTop="16dp"
                 android:text="Squad Hub"
                 android:textStyle="bold" />
@@ -37,6 +57,8 @@
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/buttoncurved_trans"
+                android:textColor="@color/cardview_light_background"
                 android:layout_marginTop="16dp"
                 android:text="Edit Player Info"
                 android:textStyle="bold" />
@@ -46,6 +68,8 @@
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/buttoncurved_trans"
+                android:textColor="@color/cardview_light_background"
                 android:layout_marginTop="16dp"
                 android:text="Delete Players"
                 android:textStyle="bold" />
@@ -55,6 +79,8 @@
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/buttoncurved_trans"
+                android:textColor="@color/cardview_light_background"
                 android:layout_marginTop="16dp"
                 android:text="Calendar"
                 android:textStyle="bold" />
@@ -64,6 +90,8 @@
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/buttoncurved_trans"
+                android:textColor="@color/cardview_light_background"
                 android:layout_marginTop="16dp"
                 android:text="Create Event"
                 android:textStyle="bold" />
@@ -72,6 +100,8 @@
                 android:id="@+id/viewEventsButton"
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
+                android:background="@drawable/buttoncurved_trans"
+                android:textColor="@color/cardview_light_background"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="View Events"
@@ -81,6 +111,8 @@
                 android:id="@+id/editEventButton"
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
+                android:background="@drawable/buttoncurved_trans"
+                android:textColor="@color/cardview_light_background"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Edit Events"
@@ -89,6 +121,8 @@
             <Button
                 android:id="@+id/deleteEventsButton"
                 style="?android:textAppearanceSmall"
+                android:background="@drawable/buttoncurved_trans"
+                android:textColor="@color/cardview_light_background"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -99,6 +133,8 @@
                 android:id="@+id/createNoteButton"
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
+                android:background="@drawable/buttoncurved_trans"
+                android:textColor="@color/cardview_light_background"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Create Note"
@@ -108,6 +144,8 @@
                 android:id="@+id/editNoteButton"
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
+                android:background="@drawable/buttoncurved_trans"
+                android:textColor="@color/cardview_light_background"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Edit Note"
@@ -116,6 +154,8 @@
             <Button
                 android:id="@+id/deleteNoteButton"
                 style="?android:textAppearanceSmall"
+                android:background="@drawable/buttoncurved_trans"
+                android:textColor="@color/cardview_light_background"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -127,6 +167,8 @@
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/buttoncurved_trans"
+                android:textColor="@color/cardview_light_background"
                 android:layout_marginTop="16dp"
                 android:text="Player Attendance"
                 android:textStyle="bold" />
@@ -136,7 +178,9 @@
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:background="@drawable/buttoncurved_trans"
+                android:textColor="@color/cardview_light_background"
+                android:layout_marginTop="36dp"
                 android:text="Sign Out"
                 android:textStyle="bold" />
 

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FF954CFB"
     tools:context=".NoteDelete">
 
     <ScrollView
@@ -14,11 +15,26 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            android:padding="25dp">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_gravity="center"
+                android:layout_width="170dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
+                android:text="StatRack"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"
+                android:textColor="#fff"
+                android:textSize="40sp" />
 
             <EditText
                 android:id="@+id/noteInput"
                 android:layout_width="match_parent"
+                android:textColor="@color/cardview_light_background"
                 android:layout_height="wrap_content"
                 android:hint="Enter Note You Wish to Delete"/>
 
@@ -27,6 +43,8 @@
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/buttoncurved_trans"
+                android:textColor="@color/cardview_light_background"
                 android:layout_marginTop="16dp"
                 android:text="Delete Note"
                 android:textStyle="bold" />
@@ -35,6 +53,8 @@
                 android:id="@+id/backButton"
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
+                android:background="@drawable/buttoncurved_trans"
+                android:textColor="@color/cardview_light_background"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Back"

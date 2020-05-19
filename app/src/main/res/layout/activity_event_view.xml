@@ -4,12 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/landingpage"
     tools:context=".EventViewTest">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_gravity="center"
+            android:layout_width="170dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="50dp"
+            android:text="StatRack"
+            android:textStyle="bold"
+            android:layout_centerHorizontal="true"
+            android:textColor="#fff"
+            android:textSize="40sp" />
 
         <TextView
             android:id="@+id/pageTitle"

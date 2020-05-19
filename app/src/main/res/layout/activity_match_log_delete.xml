@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/landingpage"
     tools:context=".MatchLogDelete">
 
     <ScrollView
@@ -14,17 +15,34 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="50dp"
             android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_gravity="center"
+                android:layout_width="170dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
+                android:text="StatRack"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"
+                android:textColor="#fff"
+                android:textSize="40sp" />
 
             <EditText
                 android:id="@+id/matchlogInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/cardview_light_background"
                 android:hint="Enter Match Log You Wish to Delete"/>
 
             <Button
                 android:id="@+id/deleteButton"
                 style="?android:textAppearanceSmall"
+                android:background="@drawable/buttoncurved_trans"
+                android:textColor="#FFFFFF"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -34,6 +52,8 @@
             <Button
                 android:id="@+id/backButton"
                 style="?android:textAppearanceSmall"
+                android:background="@drawable/buttoncurved_trans"
+                android:textColor="#FFFFFF"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"

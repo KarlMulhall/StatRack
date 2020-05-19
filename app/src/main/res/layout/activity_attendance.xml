@@ -4,11 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/landingpage"
     tools:context=".attendance">
 
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="match_parent"
+        android:padding="20dp"
         android:layout_weight="1">
 
         <LinearLayout
@@ -16,50 +18,72 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
+            <TextView
+                android:id="@+id/title"
+                android:layout_gravity="center"
+                android:layout_width="170dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="50dp"
+                android:text="StatRack"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"
+                android:textColor="#fff"
+                android:textSize="40sp" />
+
             <EditText
                 android:id="@+id/playerInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Enter Player Who's Attendance You're Taking"/>
+                android:hint="Enter Players Name (ie Mark)"
+                />
 
             <EditText
                 android:id="@+id/dateInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Enter Date"/>
+                android:hint="Enter Date (ie 25/05/30)"/>
 
             <RadioButton
                 android:id="@+id/present"
+                android:buttonTint="@color/cardview_light_background"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Present"/>
+                android:text="Present"
+                android:textColor="#ffffff"/>
 
             <RadioButton
                 android:id="@+id/absent"
+                android:buttonTint="@color/cardview_light_background"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Absent"/>
+                android:text="Absent"
+                android:textColor="#ffffff"/>
 
             <Button
                 android:id="@+id/submitButton"
                 style="?android:textAppearanceSmall"
-                android:layout_width="match_parent"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="50dp"
                 android:text="Submit Player Attendance"
+                android:layout_marginLeft="43dp"
+                android:background="@drawable/buttoncurved_trans"
+                android:textColor="#FFFFFF"
                 android:textStyle="bold" />
 
             <Button
                 android:id="@+id/backButton"
                 style="?android:textAppearanceSmall"
-                android:layout_width="match_parent"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Back"
+                android:layout_marginLeft="43dp"
+                android:background="@drawable/buttoncurved_trans"
+                android:textColor="#FFFFFF"
                 android:textStyle="bold" />
 
         </LinearLayout>
-
     </ScrollView>
-
 </LinearLayout>
