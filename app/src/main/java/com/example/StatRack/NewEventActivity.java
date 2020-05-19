@@ -140,12 +140,12 @@ public class NewEventActivity extends AppCompatActivity {
 
     private void writeNewEvent(String userId, String title, String location, String date, String time) {
 
-        String key = mDatabase.child("events").push().getKey();
+        String key = mDatabase.child("eventlist").push().getKey();
         Event event = new Event(userId, title, location, date, time);
         Map<String, Object> eventValues = event.toMap();
 
         Map<String, Object> childUpdates = new HashMap<>();
-        childUpdates.put(userId + "/events/" + "/" + key, eventValues);
+        childUpdates.put(userId + "/eventlist/" + "/" + key, eventValues);
 
         mDatabase.updateChildren(childUpdates);
     }
@@ -154,3 +154,4 @@ public class NewEventActivity extends AppCompatActivity {
         finish();
     }
 }
+

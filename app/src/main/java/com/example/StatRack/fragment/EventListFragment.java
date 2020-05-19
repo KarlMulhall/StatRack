@@ -86,26 +86,26 @@ public abstract class EventListFragment extends Fragment {
                 viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        // Launch EventDetailActivity
+                        // Launch PlayerDetailActivity
                         Intent intent = new Intent(getActivity(), EventDetailActivity.class);
                         intent.putExtra(EventDetailActivity.EXTRA_EVENT_KEY, eventKey);
                         startActivity(intent);
                     }
                 });
 
-                // Determine if the current user has liked this event and set UI accordingly
+                // Determine if the current user has liked this player and set UI accordingly
                 if (model.stars.containsKey(getUid())) {
                     viewHolder.starView.setImageResource(R.drawable.ic_toggle_star_24);
                 } else {
                     viewHolder.starView.setImageResource(R.drawable.ic_toggle_star_outline_24);
                 }
 
-                // Bind Event to ViewHolder, setting OnClickListener for the star button
+                // Bind Player to ViewHolder, setting OnClickListener for the star button
                 viewHolder.bindToEvent(model, new View.OnClickListener() {
                     @Override
                     public void onClick(View starView) {
-                        // Need to write to both places the event is stored
-                        DatabaseReference AllEventsRef = mDatabase.child(model.uid).child("events").child(eventRef.getKey());
+                        // Need to write to both places the player is stored
+                        DatabaseReference AllEventsRef = mDatabase.child(model.uid).child("eventlist").child(eventRef.getKey());
 
                         // Run two transactions
                         onStarClicked(AllEventsRef);
@@ -121,23 +121,23 @@ public abstract class EventListFragment extends Fragment {
         eventRef.runTransaction(new Transaction.Handler() {
             @Override
             public Transaction.Result doTransaction(MutableData mutableData) {
-                Event p = mutableData.getValue(Event.class);
-                if (p == null) {
+                Event e = mutableData.getValue(Event.class);
+                if (e == null) {
                     return Transaction.success(mutableData);
                 }
 
-                if (p.stars.containsKey(getUid())) {
-                    // Unstar the event and remove self from stars
-                    p.starCount = p.starCount - 1;
-                    p.stars.remove(getUid());
+                if (e.stars.containsKey(getUid())) {
+                    // Unstar the player and remove self from stars
+                    e.starCount = e.starCount - 1;
+                    e.stars.remove(getUid());
                 } else {
-                    // Star the event and add self to stars
-                    p.starCount = p.starCount + 1;
-                    p.stars.put(getUid(), true);
+                    // Star the player and add self to stars
+                    e.starCount = e.starCount + 1;
+                    e.stars.put(getUid(), true);
                 }
 
                 // Set value and report transaction success
-                mutableData.setValue(p);
+                mutableData.setValue(e);
                 return Transaction.success(mutableData);
             }
 
@@ -145,11 +145,11 @@ public abstract class EventListFragment extends Fragment {
             public void onComplete(DatabaseError databaseError, boolean committed,
                                    DataSnapshot currentData) {
                 // Transaction completed
-                Log.d(TAG, "eventTransaction:onComplete:" + databaseError);
+                Log.d(TAG, "playerTransaction:onComplete:" + databaseError);
             }
         });
     }
-    // [END event_stars_transaction]
+    // [END player_stars_transaction]
 
 
     @Override

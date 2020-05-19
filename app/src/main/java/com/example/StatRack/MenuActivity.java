@@ -20,8 +20,7 @@ public class MenuActivity extends AppCompatActivity {
 
     private static final String TAG = "MenuActivity";
 
-    private Button btnSignOut, deletePlayer, editPlayer, createPlayer, viewPlayers, createEvent, viewEvents, editEvent, deleteEvents,
-           viewNote, createNote, editNote, deleteNote, attendance, calendar;
+    private Button btnSignOut, viewPlayers, viewEvents, viewNote, calendar;
 
     public String email;
 
@@ -44,18 +43,9 @@ public class MenuActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         btnSignOut = (Button) findViewById(R.id.signOutButton);
-        editPlayer = (Button) findViewById(R.id.editPlayerButton);
         viewPlayers = (Button) findViewById(R.id.viewPlayersButton);
-        deletePlayer = (Button) findViewById(R.id.deletePlayersButton);
-        createEvent = (Button) findViewById(R.id.createEventButton);
-        editEvent = (Button) findViewById(R.id.editEventButton);
         viewEvents = (Button) findViewById(R.id.viewEventsButton);
-        deleteEvents = (Button) findViewById(R.id.deleteEventsButton);
         viewNote = (Button) findViewById(R.id.viewNoteButton);
-        createNote = (Button) findViewById(R.id.createNoteButton);
-        editNote = (Button) findViewById(R.id.editNoteButton);
-        deleteNote = (Button) findViewById(R.id.deleteNoteButton);
-        attendance = (Button) findViewById(R.id.attendanceButton);
         calendar = (Button) findViewById(R.id.calendarButton);
 
         // Initialize Firebase Auth
@@ -94,37 +84,6 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
-        deletePlayer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openPlayerDelete();
-            }
-        });
-
-        createEvent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openEventCreation();
-
-            }
-        });
-
-        editEvent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openEventEdit();
-
-            }
-        });
-
-        deleteEvents.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openEventDelete();
-
-            }
-        });
-
         viewEvents.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -136,14 +95,6 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 openViewNote();
-            }
-        });
-
-        attendance.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openAttendance();
-
             }
         });
 
@@ -185,11 +136,6 @@ public class MenuActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void openPlayerDelete(){
-        Intent intent = new Intent(MenuActivity.this, PlayerDelete.class);
-        startActivity(intent);
-    }
-
     public void openViewPlayers(){
         Intent intent = new Intent(MenuActivity.this, SquadHubActivity.class);
         startActivity(intent);
@@ -200,21 +146,6 @@ public class MenuActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void openEventCreation(){
-        Intent intent = new Intent(MenuActivity.this, TestEventCreation.class);
-        startActivity(intent);
-    }
-
-    public void openEventEdit(){
-        Intent intent = new Intent(MenuActivity.this, TestEventEdit.class);
-        startActivity(intent);
-    }
-
-    public void openEventDelete(){
-        Intent intent = new Intent(MenuActivity.this, TestEventDelete.class);
-        startActivity(intent);
-    }
-
     public void openViewEvents(){
         Intent intent = new Intent(MenuActivity.this, EventList.class);
         startActivity(intent);
@@ -222,12 +153,6 @@ public class MenuActivity extends AppCompatActivity {
 
     public void openViewNote(){
         Intent intent = new Intent(MenuActivity.this, NoteList.class);
-        startActivity(intent);
-    }
-
-
-    public void openAttendance(){
-        Intent intent = new Intent(MenuActivity.this, attendance.class);
         startActivity(intent);
     }
 }

@@ -31,7 +31,6 @@ public class Event
         this.location = location;
         this.date = date;
         this.time = time;
-
     }
 
     public Event(String userId, String username, String title, String location, String date, String time) {

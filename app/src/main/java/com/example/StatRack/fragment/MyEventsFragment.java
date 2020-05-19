@@ -11,6 +11,6 @@ public class MyEventsFragment extends EventListFragment {
     public Query getQuery(DatabaseReference databaseReference) {
         // All my events
         return databaseReference.child(getUid())
-                .child("events");
+                .child("eventlist");
     }
 }

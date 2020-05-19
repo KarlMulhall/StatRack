@@ -12,7 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".test_splashpage"></activity>
-        <activity android:name=".attendance" />
         <activity android:name=".SquadHubActivity"></activity>
         <activity android:name=".EventList"></activity>
         <activity android:name=".NoteList"></activity>
@@ -27,15 +26,7 @@
         <activity android:name=".EventDetailActivity" />
         <activity android:name=".loading" />
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".PlayerDelete" />
-        <activity android:name=".TestEventCreation" />
         <activity android:name=".Calendar" />
-        <activity android:name=".TestEventEdit" />
-        <activity android:name=".EventViewTest" />
-        <activity android:name=".TestEventDelete" />
-        <activity android:name=".MatchLogCreate" />
-        <activity android:name=".MatchLogEdit" />
-        <activity android:name=".MatchLogDelete" />
         <activity android:name=".MenuActivity" />
         <activity android:name=".NewPlayerActivity" />
         <activity android:name=".PlayerDetailActivity" />

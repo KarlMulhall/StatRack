@@ -41,7 +41,7 @@ public class EventList extends AppCompatActivity {
                     new MyEventsFragment(),
             };
             private final String[] mFragmentNames = new String[]{
-                    getString(R.string.heading_events),
+                    getString(R.string.heading_event_list),
             };
 
             @Override

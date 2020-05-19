@@ -69,9 +69,9 @@ public class EventDetailActivity extends AppCompatActivity implements View.OnCli
 
         getSupportActionBar().hide();
 
-        // Get event key from intent
+        // Get player key from intent
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        // Get event key from intent
+        // Get player key from intent
         mEventKey = getIntent().getStringExtra(EXTRA_EVENT_KEY);
         if (mEventKey == null) {
             throw new IllegalArgumentException("Must pass EXTRA_EVENT_KEY");
@@ -80,15 +80,15 @@ public class EventDetailActivity extends AppCompatActivity implements View.OnCli
         // Initialize Database
         // Initialize Database
         mEventReference = FirebaseDatabase.getInstance().getReference()
-                .child(getUid()).child("events").child(mEventKey);
+                .child(getUid()).child("eventlist").child(mEventKey);
         mEditLocationReference = FirebaseDatabase.getInstance().getReference()
-                .child(getUid()).child("events").child(mEventKey).child("location");
+                .child(getUid()).child("eventlist").child(mEventKey).child("location");
         mEditTitleReference = FirebaseDatabase.getInstance().getReference()
-                .child(getUid()).child("events").child(mEventKey).child("title");
+                .child(getUid()).child("eventlist").child(mEventKey).child("title");
         mEditDateReference = FirebaseDatabase.getInstance().getReference()
-                .child(getUid()).child("events").child(mEventKey).child("date");
-        mEditTitleReference = FirebaseDatabase.getInstance().getReference()
-                .child(getUid()).child("events").child(mEventKey).child("time");
+                .child(getUid()).child("eventlist").child(mEventKey).child("date");
+        mEditTimeReference = FirebaseDatabase.getInstance().getReference()
+                .child(getUid()).child("eventlist").child(mEventKey).child("time");
         mCommentsReference = FirebaseDatabase.getInstance().getReference()
                 .child(getUid()).child("event-comments").child(mEventKey);
 
@@ -102,12 +102,12 @@ public class EventDetailActivity extends AppCompatActivity implements View.OnCli
     public void onStart() {
         super.onStart();
 
-        // Add value event listener to the event
-        // [START event_value_event_listener]
+        // Add value event listener to the player
+        // [START player_value_event_listener]
         ValueEventListener eventListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                // Get Event object and use the values to update the UI
+                // Get Player object and use the values to update the UI
                 Event event = dataSnapshot.getValue(Event.class);
                 // [START_EXCLUDE]
                 binding.eventTextLayout.eventTitle.setText(event.title);
@@ -119,7 +119,7 @@ public class EventDetailActivity extends AppCompatActivity implements View.OnCli
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                // Getting Event failed, log a message
+                // Getting Player failed, log a message
                 Log.w(TAG, "loadEvent:onCancelled", databaseError.toException());
                 // [START_EXCLUDE]
                 Toast.makeText(EventDetailActivity.this, "Failed to load event.",
@@ -128,9 +128,9 @@ public class EventDetailActivity extends AppCompatActivity implements View.OnCli
             }
         };
         mEventReference.addValueEventListener(eventListener);
-        // [END event_value_event_listener]
+        // [END player_value_event_listener]
 
-        // Keep copy of event listener so we can remove it when app stops
+        // Keep copy of player listener so we can remove it when app stops
         mEventListener = eventListener;
 
         binding.backToEventList.setOnClickListener(new View.OnClickListener() {
@@ -149,7 +149,7 @@ public class EventDetailActivity extends AppCompatActivity implements View.OnCli
     public void onStop() {
         super.onStop();
 
-        // Remove event value event listener
+        // Remove player value event listener
         if (mEventListener != null) {
             mEventReference.removeEventListener(mEventListener);
         }
@@ -180,7 +180,7 @@ public class EventDetailActivity extends AppCompatActivity implements View.OnCli
         final String date = binding.eventTextLayout.eventDate.getText().toString();
         final String time = binding.eventTextLayout.eventTime.getText().toString();
 
-        // Disable button so there are no multi-events
+        // Disable button so there are no multi-players
         Toast.makeText(this, "Uploading...", Toast.LENGTH_SHORT).show();
 
         // [START single_value_read]
@@ -200,7 +200,7 @@ public class EventDetailActivity extends AppCompatActivity implements View.OnCli
                                     "Error: could not fetch user.",
                                     Toast.LENGTH_SHORT).show();
                         } else {
-                            // Write new event
+                            // Write new player
                             writeEditEvent(userId, title, location, date, time);
                         }
 
@@ -360,7 +360,7 @@ public class EventDetailActivity extends AppCompatActivity implements View.OnCli
 
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
-                    Log.w(TAG, "eventComments:onCancelled", databaseError.toException());
+                    Log.w(TAG, "playerComments:onCancelled", databaseError.toException());
                     Toast.makeText(mContext, "Failed to load comments.",
                             Toast.LENGTH_SHORT).show();
                 }

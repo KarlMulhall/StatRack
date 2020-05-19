@@ -30,4 +30,5 @@
     <string name="heading_events">Events</string>
     <string name="heading_my_top_events">Top Events</string>
     <string name="heading_note_list">Notes</string>
+    <string name="heading_event_list" >Events</string>
 </resources>

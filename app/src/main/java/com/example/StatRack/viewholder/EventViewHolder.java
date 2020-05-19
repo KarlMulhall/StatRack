@@ -23,7 +23,7 @@ public class EventViewHolder extends RecyclerView.ViewHolder {
 
         titleView = itemView.findViewById(R.id.eventTitle);
         starView = itemView.findViewById(R.id.star);
-        numStarsView = itemView.findViewById(R.id.playerNumStars);
+        numStarsView = itemView.findViewById(R.id.eventNumStars);
         locationView = itemView.findViewById(R.id.eventLocation);
         dateView = itemView.findViewById(R.id.eventDate);
         timeView = itemView.findViewById(R.id.eventTime);
@@ -39,4 +39,3 @@ public class EventViewHolder extends RecyclerView.ViewHolder {
         starView.setOnClickListener(starClickListener);
     }
 }
-

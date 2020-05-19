@@ -53,6 +53,7 @@
         android:textColor="@android:color/white"
         android:background="#FF954CFB"
         android:text="Delete"/>
+
     <TextView
         android:id="@+id/commentsBanner"
         android:layout_width="wrap_content"

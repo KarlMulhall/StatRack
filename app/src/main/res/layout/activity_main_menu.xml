@@ -54,28 +54,6 @@
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/editPlayerButton"
-                style="?android:textAppearanceSmall"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/buttoncurved_trans"
-                android:textColor="@color/cardview_light_background"
-                android:layout_marginTop="16dp"
-                android:text="Edit Player Info"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/deletePlayersButton"
-                style="?android:textAppearanceSmall"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/buttoncurved_trans"
-                android:textColor="@color/cardview_light_background"
-                android:layout_marginTop="16dp"
-                android:text="Delete Players"
-                android:textStyle="bold" />
-
-            <Button
                 android:id="@+id/calendarButton"
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
@@ -84,17 +62,6 @@
                 android:textColor="@color/cardview_light_background"
                 android:layout_marginTop="16dp"
                 android:text="Calendar"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/createEventButton"
-                style="?android:textAppearanceSmall"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/buttoncurved_trans"
-                android:textColor="@color/cardview_light_background"
-                android:layout_marginTop="16dp"
-                android:text="Create Event"
                 android:textStyle="bold" />
 
             <Button
@@ -109,28 +76,6 @@
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/editEventButton"
-                style="?android:textAppearanceSmall"
-                android:layout_width="match_parent"
-                android:background="@drawable/buttoncurved_trans"
-                android:textColor="@color/cardview_light_background"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Edit Events"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/deleteEventsButton"
-                style="?android:textAppearanceSmall"
-                android:background="@drawable/buttoncurved_trans"
-                android:textColor="@color/cardview_light_background"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Delete Events"
-                android:textStyle="bold" />
-
-            <Button
                 android:id="@+id/viewNoteButton"
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
@@ -139,50 +84,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Notes"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/createNoteButton"
-                style="?android:textAppearanceSmall"
-                android:layout_width="match_parent"
-                android:background="@drawable/buttoncurved_trans"
-                android:textColor="@color/cardview_light_background"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Create Note"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/editNoteButton"
-                style="?android:textAppearanceSmall"
-                android:layout_width="match_parent"
-                android:background="@drawable/buttoncurved_trans"
-                android:textColor="@color/cardview_light_background"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Edit Note"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/deleteNoteButton"
-                style="?android:textAppearanceSmall"
-                android:background="@drawable/buttoncurved_trans"
-                android:textColor="@color/cardview_light_background"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Delete Note"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/attendanceButton"
-                style="?android:textAppearanceSmall"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/buttoncurved_trans"
-                android:textColor="@color/cardview_light_background"
-                android:layout_marginTop="16dp"
-                android:text="Player Attendance"
                 android:textStyle="bold" />
 
             <Button
