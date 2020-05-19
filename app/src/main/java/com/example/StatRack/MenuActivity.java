@@ -66,14 +66,6 @@ public class MenuActivity extends AppCompatActivity {
 
         email = mAuth.getCurrentUser().getEmail();
 
-        editPlayer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openPlayerEdit();
-
-            }
-        });
-
         viewPlayers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -123,14 +115,6 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 openViewEvents();
-            }
-        });
-
-        createNote.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openNoteCreation();
-
             }
         });
 
@@ -196,11 +180,6 @@ public class MenuActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void openPlayerEdit(){
-        Intent intent = new Intent(MenuActivity.this, TestSquadEdit.class);
-        startActivity(intent);
-    }
-
     public void openPlayerDelete(){
         Intent intent = new Intent(MenuActivity.this, PlayerDelete.class);
         startActivity(intent);
@@ -233,11 +212,6 @@ public class MenuActivity extends AppCompatActivity {
 
     public void openViewEvents(){
         Intent intent = new Intent(MenuActivity.this, EventViewTest.class);
-        startActivity(intent);
-    }
-
-    public void openNoteCreation(){
-        Intent intent = new Intent(MenuActivity.this, TestNotesView.class);
         startActivity(intent);
     }
 

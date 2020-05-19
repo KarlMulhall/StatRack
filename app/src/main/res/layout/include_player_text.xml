@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
+    <EditText
         android:id="@+id/playerName"
         style="@style/TextAppearance.AppCompat.Medium"
         android:layout_width="wrap_content"
@@ -17,7 +17,7 @@
         android:textSize="20dp"
         tools:text="My First Player" />
 
-    <TextView
+    <EditText
         android:id="@+id/playerPosition"
         android:layout_width="wrap_content"
         android:textColor="@android:color/white"

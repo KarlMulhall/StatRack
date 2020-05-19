@@ -20,6 +20,7 @@ public class Player
     public int rCards = 0;
     public int starCount = 0;
     public Map<String, Boolean> stars = new HashMap<>();
+    public int author;
 
     public Player()
     {
@@ -32,6 +33,9 @@ public class Player
         this.name = name;
         this.position = position;
 
+    }
+
+    public Player(String userId, String username, String name, String position) {
     }
 
     @Exclude

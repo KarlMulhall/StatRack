@@ -6,13 +6,13 @@
     tools:viewBindingIgnore="true">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/noteList"
+        android:id="@+id/playerListEdit"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
         android:clipToPadding="false"
         android:padding="5dp"
         android:scrollbars="vertical"
-        tools:listitem="@layout/item_note" />
+        tools:listitem="@layout/item_player" />
 
 </FrameLayout>

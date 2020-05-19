@@ -79,6 +79,30 @@
             android:text="Post"
             android:textColor="@android:color/white"/>
 
+        <Button
+            android:id="@+id/buttonPlayerEdit"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="40dp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:background="#FF954CFB"
+            android:text="Save Changes"/>
+
+        <Button
+            android:id="@+id/buttonPlayerDelete"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="40dp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:background="#FF954CFB"
+            android:text="Delete"/>
+
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -87,8 +111,6 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/commentForm"
         tools:listitem="@layout/item_comment" />
-
-
 
     <Button
         android:id="@+id/backToSquadHub"
