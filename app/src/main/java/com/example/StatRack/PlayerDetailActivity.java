@@ -42,8 +42,19 @@ public class PlayerDetailActivity extends AppCompatActivity implements View.OnCl
 
     public static final String EXTRA_PLAYER_KEY = "player_key";
 
+    public static int appearance;
+    public static int goals;
+    public static int assists;
+    public static int yellows;
+    public static int reds;
+
     private DatabaseReference mPlayerReference;
     private DatabaseReference mCommentsReference;
+    private DatabaseReference mAppearanceReference;
+    private DatabaseReference mGoalsReference;
+    private DatabaseReference mAssistsReference;
+    private DatabaseReference mRedCardsReference;
+    private DatabaseReference mYellowCardsReference;
     private ValueEventListener mPlayerListener;
     private String mPlayerKey;
     private CommentAdapter mAdapter;
@@ -75,6 +86,16 @@ public class PlayerDetailActivity extends AppCompatActivity implements View.OnCl
                 .child(getUid()).child("squad").child(mPlayerKey);
         mCommentsReference = FirebaseDatabase.getInstance().getReference()
                 .child(getUid()).child("player-comments").child(mPlayerKey);
+        mAppearanceReference = FirebaseDatabase.getInstance().getReference()
+                .child(getUid()).child("squad").child(mPlayerKey).child("appearances");
+        mAssistsReference = FirebaseDatabase.getInstance().getReference()
+                .child(getUid()).child("squad").child(mPlayerKey).child("assists");
+        mGoalsReference = FirebaseDatabase.getInstance().getReference()
+                .child(getUid()).child("squad").child(mPlayerKey).child("goals");
+        mRedCardsReference = FirebaseDatabase.getInstance().getReference()
+                .child(getUid()).child("squad").child(mPlayerKey).child("rCards");
+        mYellowCardsReference = FirebaseDatabase.getInstance().getReference()
+                .child(getUid()).child("squad").child(mPlayerKey).child("yCards");
 
         binding.buttonPlayerComment.setOnClickListener(this);
         binding.recyclerPlayerComments.setLayoutManager(new LinearLayoutManager(this));
@@ -100,6 +121,12 @@ public class PlayerDetailActivity extends AppCompatActivity implements View.OnCl
                 binding.playerStatsLayout.playerAssists.setText("Assists: " + player.assists);
                 binding.playerStatsLayout.playerYellowCards.setText("Yellow Cards: " + player.yCards);
                 binding.playerStatsLayout.playerRedCards.setText("Red Cards: " + player.rCards);
+
+                appearance = player.appearances;
+                goals = player.goals;
+                assists = player.assists;
+                yellows = player.yCards;
+                reds = player.rCards;
                 // [END_EXCLUDE]
             }
 
@@ -123,6 +150,76 @@ public class PlayerDetailActivity extends AppCompatActivity implements View.OnCl
             @Override
             public void onClick(View v) {
                 backToSquadHub();
+            }
+        });
+
+        binding.plus1Ap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                plus1Ap();
+            }
+        });
+
+        binding.minus1Ap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                minus1Ap();
+            }
+        });
+
+        binding.plus1G.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                plus1G();
+            }
+        });
+
+        binding.minus1G.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                minus1G();
+            }
+        });
+
+        binding.plus1As.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                plusAs();
+            }
+        });
+
+        binding.minus1As.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                minusAs();
+            }
+        });
+
+        binding.plus1R.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                plus1rCards();
+            }
+        });
+
+        binding.minus1R.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                minusrCards();
+            }
+        });
+
+        binding.plus1Y.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                plusyCards();
+            }
+        });
+
+        binding.minus1Y.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                minusyCards();
             }
         });
 
@@ -155,6 +252,57 @@ public class PlayerDetailActivity extends AppCompatActivity implements View.OnCl
     public void backToSquadHub(){
         Intent intent = new Intent(PlayerDetailActivity.this, SquadHubActivity.class);
         startActivity(intent);
+    }
+
+    private void plus1Ap()
+    {
+        //+ 1 to appearance
+        mAppearanceReference.setValue(appearance + 1);
+    }
+
+    private void minus1Ap()
+    {
+        mAppearanceReference.setValue(appearance - 1);
+    }
+
+    private void plus1G()
+    {
+        mGoalsReference.setValue(goals + 1);
+    }
+
+    private void minus1G()
+    {
+        mGoalsReference.setValue(goals - 1);
+    }
+
+    private void plusAs()
+    {
+        mAssistsReference.setValue(assists + 1);
+    }
+
+    private void minusAs()
+    {
+        mAssistsReference.setValue(assists - 1);
+    }
+
+    private void plus1rCards()
+    {
+        mRedCardsReference.setValue(reds + 1);
+    }
+
+    private void minusrCards()
+    {
+        mRedCardsReference.setValue(reds - 1);
+    }
+
+    private void plusyCards()
+    {
+        mYellowCardsReference.setValue(yellows + 1);
+    }
+
+    private void minusyCards()
+    {
+        mYellowCardsReference.setValue(yellows - 1);
     }
 
     private void playerComment() {

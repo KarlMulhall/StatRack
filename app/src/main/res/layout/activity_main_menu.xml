@@ -37,6 +37,7 @@
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textAlignment="center"
                 android:text="Welcome to StatRack."
                 android:textSize="16dp"
                 android:textColor="@color/cardview_light_background"/>
