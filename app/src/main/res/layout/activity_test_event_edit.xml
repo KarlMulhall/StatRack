@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/landingpage"
     tools:context=".TestEventEdit">
 
     <ScrollView
@@ -14,28 +15,46 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="25dp"
             android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_gravity="center"
+                android:layout_width="170dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
+                android:text="StatRack"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"
+                android:textColor="#fff"
+                android:textSize="40sp" />
 
             <EditText
                 android:id="@+id/eventInput"
                 android:layout_width="match_parent"
+                android:textColor="@color/cardview_light_background"
                 android:layout_height="wrap_content"
                 android:hint="Enter Event You Wish to Edit"/>
 
             <EditText
                 android:id="@+id/nameInput"
+                android:textColor="@color/cardview_light_background"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Enter Event"/>
 
             <EditText
                 android:id="@+id/timeInput"
+                android:textColor="@color/cardview_light_background"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Enter Start Time"/>
 
             <EditText
                 android:id="@+id/dateInput"
+                android:textColor="@color/cardview_light_background"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Enter Date"/>
@@ -43,6 +62,7 @@
             <EditText
                 android:id="@+id/locationInput"
                 android:layout_width="match_parent"
+                android:textColor="@color/cardview_light_background"
                 android:layout_height="wrap_content"
                 android:hint="Enter Location of Event"/>
 
@@ -51,6 +71,8 @@
                 android:id="@+id/edit"
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
+                android:background="@drawable/buttoncurved_trans"
+                android:textColor="@color/cardview_light_background"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Edit Event"
@@ -59,6 +81,8 @@
             <Button
                 android:id="@+id/backButton"
                 style="?android:textAppearanceSmall"
+                android:background="@drawable/buttoncurved_trans"
+                android:textColor="@color/cardview_light_background"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"

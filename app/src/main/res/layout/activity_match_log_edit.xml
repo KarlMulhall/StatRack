@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/landingpage"
     tools:context=".MatchLogEdit">
 
     <ScrollView
@@ -14,77 +15,103 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="35dp"
             android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_gravity="center"
+                android:layout_width="170dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
+                android:text="StatRack"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"
+                android:textColor="#fff"
+                android:textSize="40sp" />
 
             <EditText
                 android:id="@+id/matchlogInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/cardview_light_background"
                 android:hint="Enter Match Log you Want to Edit"/>
 
             <EditText
                 android:id="@+id/oppositionInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/cardview_light_background"
                 android:hint="Enter Opposition"/>
 
             <EditText
                 android:id="@+id/locationInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/cardview_light_background"
                 android:hint="Enter Location"/>
 
             <EditText
                 android:id="@+id/starttimeInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/cardview_light_background"
                 android:hint="Enter Start Time"/>
 
             <EditText
                 android:id="@+id/endtimeInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/cardview_light_background"
                 android:hint="Enter End Time"/>
 
             <EditText
                 android:id="@+id/dateInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/cardview_light_background"
                 android:hint="Enter Date"/>
 
             <EditText
                 android:id="@+id/goalsscoredInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/cardview_light_background"
                 android:hint="Enter Goals Scored"/>
 
             <EditText
                 android:id="@+id/oppositionscoreInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/cardview_light_background"
                 android:hint="Enter Goals Scored By Opposition"/>
 
             <EditText
                 android:id="@+id/injuriesInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/cardview_light_background"
                 android:hint="Enter Injuries"/>
 
             <EditText
                 android:id="@+id/absencesInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/cardview_light_background"
                 android:hint="Enter Absences"/>
 
             <EditText
                 android:id="@+id/yellowcardsInput"
                 android:layout_width="match_parent"
+                android:textColor="@color/cardview_light_background"
                 android:layout_height="wrap_content"
                 android:hint="Number of Yellowcards"/>
 
             <EditText
                 android:id="@+id/redcardsInput"
                 android:layout_width="match_parent"
+                android:textColor="@color/cardview_light_background"
                 android:layout_height="wrap_content"
                 android:hint="Number of Redcards"/>
 
@@ -93,6 +120,8 @@
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/buttoncurved_trans"
+                android:textColor="#FFFFFF"
                 android:layout_marginTop="16dp"
                 android:text="Edit"
                 android:textStyle="bold" />
@@ -102,6 +131,8 @@
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/buttoncurved_trans"
+                android:textColor="#FFFFFF"
                 android:layout_marginTop="16dp"
                 android:text="Back"
                 android:textStyle="bold" />

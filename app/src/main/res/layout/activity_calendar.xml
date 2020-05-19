@@ -5,24 +5,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/landingpage"
     tools:context=".Calendar">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_gravity="center"
+        android:layout_width="170dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="50dp"
+        android:text="StatRack"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:textColor="#fff"
+        android:textSize="40sp" />
 
     <!-- Add TextView to display the date -->
     <TextView
         android:id="@+id/date_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="150dp"
-        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="90dp"
         android:text="Set the Date"
-        android:textColor="@android:color/background_dark"
+        android:textColor="@android:color/background_light"
         android:textStyle="bold" />
 
     <!-- Add CalenderView to display the Calender -->
     <CalendarView
         android:id="@+id/calender"
-        android:layout_marginTop="80dp"
-        android:layout_marginLeft="19dp"
+        android:background="@color/cardview_light_background"
+        android:layout_marginTop="150dp"
+        android:layout_marginLeft="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
     </CalendarView>

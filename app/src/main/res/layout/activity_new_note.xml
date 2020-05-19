@@ -2,16 +2,31 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/landingpage"
     android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_gravity="center"
+        android:layout_width="170dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:text="StatRack"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:textColor="#fff"
+        android:textSize="40sp" />
 
     <EditText
         android:id="@+id/fieldTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
+        android:textColor="@color/cardview_light_background"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="80dp"
         android:hint="Title"
         android:maxLines="1" />
 
@@ -20,6 +35,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/fieldTitle"
+        android:textColor="@color/cardview_light_background"
         android:layout_marginBottom="5dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
@@ -34,6 +50,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:background="@drawable/buttoncurved_trans"
+        android:text="Create"
+        android:textColor="#FFFFFF"
         android:layout_alignParentRight="true"
         android:layout_margin="16dp" />
 
